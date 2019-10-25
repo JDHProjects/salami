@@ -2,10 +2,10 @@
     "name": "salami",
     "version": "1.0.0",
     "description": "GPIO currently",
-    "main": "bot.js",
+    "main": "index.js",
     "author": "Joshua Purdy",
     "scripts": {
-        "start": "nodemon bot.js"
+        "start": "nodemon index.js"
     },
     "dependencies": {
         "discord.js": "^11.5.1"
