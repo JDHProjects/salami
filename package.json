@@ -4,9 +4,11 @@
     "description": "GPIO currently",
     "main": "bot.js",
     "author": "Joshua Purdy",
-    "scripts": { "start": "nodemon bot.js" },
+    "scripts": {
+        "start": "nodemon bot.js"
+    },
     "dependencies": {
-        "discord.io": "^2.5.3",
+        "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
         "winston": "^3.2.1"
     },
     "devDependencies": {
