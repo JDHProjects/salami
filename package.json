@@ -1,8 +1,8 @@
 {
-“name”: “salami”,
-“version”: “1.0.0”,
-“description”: “GPIO currently”,
-“main”: “bot.js”,
-“author”: “Joshua Purdy”,
-“dependencies”: {}
+    "name": "salami",
+    "version": "1.0.0",
+    "description": "GPIO currently",
+    "main": "bot.js",
+    "author": "Joshua Purdy",
+    "dependencies": {}
 }
