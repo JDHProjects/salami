@@ -4,8 +4,12 @@
     "description": "GPIO currently",
     "main": "bot.js",
     "author": "Joshua Purdy",
+    "scripts": { "start": "nodemon bot.js" },
     "dependencies": {
         "discord.io": "^2.5.3",
         "winston": "^3.2.1"
+    },
+    "devDependencies": {
+        "nodemon": "^1.19.4"
     }
 }
