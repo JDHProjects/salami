@@ -22,7 +22,7 @@ client.on('message', msg => {
                 msg.channel.send('Wrong way round idiot!')
                 break;
             default:
-                msg.channel.send('Sorry, I don\t know that command yet!')
+                msg.channel.send('Sorry, I don\'t know that command yet!')
                 break;
 
         }
