@@ -25,7 +25,7 @@ client.on('message', msg => {
                 msg.channel.send('Don\'t tell me what to do')
                 break;
             case 'server':
-                if (msg.guild.available()){
+                if (msg.guild.available){
                     msg.channel.send(`Server name: ${message.guild.name}\nTotal members: ${message.guild.memberCount}`)
                 }
                 else{
