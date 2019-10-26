@@ -1,43 +1,37 @@
 const Discord = require('discord.js')
 const { prefix, token } = require('./config.json');
-const client = new Discord.Client()
+const fs = require('fs');
+
+const client = new Discord.Client();
+client.commands = new Discord.Collection();
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
+	client.commands.set(command.name, command);
+}
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
 })
 
-client.on('message', msg => {
+client.on('message', message => {
+	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-    if (msg.content.substring(0, 1) == prefix) {
-        var args = msg.content.substring(1).split(' ');
-        var cmd = args[0];
-    
-        args = args.splice(1);
-        switch(cmd) {
-            // !ping
-            case 'ping':
-                msg.channel.send('Pong!')
-                break;
-            case 'pong':
-                msg.channel.send('Wrong way round idiot!')
-                break;
-            case 'stop':
-                msg.channel.send('Don\'t tell me what to do')
-                break;
-            case 'server':
-                if (msg.guild.available){
-                    msg.channel.send(`Server name: ${msg.guild.name}\nTotal members: ${msg.guild.memberCount}\nServer Owner: ${msg.guild.owner}\nCurrent Host Region: ${msg.guild.region}\nEstablished: ${msg.guild.createdAt}`)
-                }
-                else{
-                    msg.channel.send('Hmmm, I can\'t find the server, is it down?')
-                }
-                break;
-            default:
-                msg.channel.send('Sorry, I don\'t know that command yet!')
-                break;
+	const args = message.content.slice(prefix.length).split(/ +/);
+	const command = args.shift().toLowerCase();
 
-        }
+	if (!client.commands.has(command)){
+        message.channel.send('Sorry, I don\'t know that command yet!');
+        return;
     }
-})
+
+    try {
+        client.commands.get(command).execute(message, args);
+    } catch (error) {
+        console.error(error);
+        message.channel.send('there was an error trying to execute that command!');
+    }
+});
 
 client.login(token)
