@@ -19,8 +19,11 @@ client.on('message', msg => {
                 msg.channel.send('Pong!')
                 break;
             case 'pong':
-                msg.channel.send('Wrong way round idiot!')
-                break;
+                    msg.channel.send('Wrong way round idiot!')
+                    break;
+            case 'stop':
+                    msg.channel.send('Don\'t tell me what to do')
+                    break;
             default:
                 msg.channel.send('Sorry, I don\'t know that command yet!')
                 break;
