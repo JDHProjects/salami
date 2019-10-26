@@ -26,9 +26,7 @@ client.on('message', msg => {
                 break;
             case 'server':
                 if (msg.guild.available){
-                    msg.channel.send(`
-                    Server name: ${msg.guild.name}\nTotal members: ${msg.guild.memberCount}\nServer Owner: ${msg.guild.owner}\nCurrent Host Region: ${msg.guild.region}\nEstablished: ${msg.guild.createdAt}
-                    `)
+                    msg.channel.send(`Server name: ${msg.guild.name}\nTotal members: ${msg.guild.memberCount}\nServer Owner: ${msg.guild.owner}\nCurrent Host Region: ${msg.guild.region}\nEstablished: ${msg.guild.createdAt}`)
                 }
                 else{
                     msg.channel.send('Hmmm, I can\'t find the server, is it down?')
