@@ -19,11 +19,19 @@ client.on('message', msg => {
                 msg.channel.send('Pong!')
                 break;
             case 'pong':
-                    msg.channel.send('Wrong way round idiot!')
-                    break;
+                msg.channel.send('Wrong way round idiot!')
+                break;
             case 'stop':
-                    msg.channel.send('Don\'t tell me what to do')
-                    break;
+                msg.channel.send('Don\'t tell me what to do')
+                break;
+            case 'server':
+                if (msg.guild.available()){
+                    msg.channel.send(`Server name: ${message.guild.name}\nTotal members: ${message.guild.memberCount}`)
+                }
+                else{
+                    msg.channel.send('Hmmm, I can\'t find the server, is it down?')
+                }
+                break;
             default:
                 msg.channel.send('Sorry, I don\'t know that command yet!')
                 break;
