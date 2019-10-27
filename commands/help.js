@@ -20,7 +20,7 @@ module.exports = {
                 data.push(`**Name:** ${command.name}`);
                 if (command.description) data.push(`**Description:** ${command.description}`);
                 if (command.usage) data.push(`**Usage:** ${command.usage}`);
-                if (command.example) data.push(`**Example:** ${prefix}${command.name} ${command.example}`);
+                command.example ? data.push(`**Example:** ${prefix}${command.name} ${command.example}`) : data.push(`**Example:** ${prefix}${command.name}`);
             }
         }
         else{
