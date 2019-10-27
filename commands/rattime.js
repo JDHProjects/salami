@@ -2,7 +2,7 @@ module.exports = {
 	name: 'rat-time',
     description: 'Sends rat time image',
     usage: `Just send rat-time, theres really not much to this`,
-    example: 'rat-time',    
+    example: '',    
 	execute(message, args) {
         randInt = Math.floor((Math.random() * 5) + 1);
         
