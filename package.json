@@ -8,7 +8,8 @@
         "start": "nodemon index.js"
     },
     "dependencies": {
-        "discord.js": "^11.5.1"
+        "discord.js": "^11.5.1",
+        "request": "^2.88.0"
     },
     "devDependencies": {
         "nodemon": "^1.19.4"
