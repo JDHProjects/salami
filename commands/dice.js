@@ -1,6 +1,8 @@
 module.exports = {
 	name: 'd',
-	description: 'Rolls any dice',
+    description: 'Rolls as many dice as required and adds them up for you',
+    usage: '2D6 will roll 2xD6 dice, 1D10 will roll 1xD10 dice etc. Multiple Dice can be supplied to a single command',
+    example: '2D20 1D10',
 	execute(message, args) {
         randInt = Math.random();
         msg = '';
