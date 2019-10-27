@@ -36,7 +36,7 @@ module.exports = {
             }  
         }
         msg += `**Overall Total: ${total}**\n\n`;
-        message.channel.send(msg);
+        message.channel.send(msg, { split: true });
         
 	},
 };
