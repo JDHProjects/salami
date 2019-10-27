@@ -19,7 +19,7 @@ module.exports = {
             diceValue = parseInt(argArgs[1]);
             diceTotal = 0;
             
-            if(argArgs.length === 2 && !isNaN(diceCount) && !isNaN(diceValue)){
+            if(argArgs.length === 2 && !isNaN(diceCount) && !isNaN(diceValue) && diceValue < 1000 && diceValue > 0 && diceCount < 100 && diceCount > 0){
                 for (j = 1; j <= diceCount; j++) {
                     currentDice = Math.floor((Math.random() * diceValue) + 1);
                     diceTotal += currentDice;
