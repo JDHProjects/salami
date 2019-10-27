@@ -5,9 +5,14 @@ module.exports = {
         randInt = Math.random();
         msg = '';
         total = 0;
-        //intArray
+
         for (i in args){
-            argArgs = args[i].split('D');
+            if (args[i].includes('D')){
+                argArgs = args[i].split('D');
+            }
+            else {
+                argArgs = args[i].split('d');
+            }
             diceCount = parseInt(argArgs[0]);
             diceValue = parseInt(argArgs[1]);
             diceTotal = 0;
