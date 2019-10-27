@@ -1,7 +1,7 @@
 module.exports = {
 	name: 'd',
     description: 'Rolls as many dice as required and adds them up for you',
-    usage: '2D6 will roll 2xD6 dice, 1D10 will roll 1xD10 dice etc. Multiple Dice can be supplied to a single command',
+    usage: '2D6 will roll 2xD6 dice, 1D10 will roll 1xD10 dice etc. Multiple Dice can be supplied to a single command. Can roll up to 100 dice with a value up to 1 million',
     example: '2D20 1D10',
 	execute(message, args) {
         randInt = Math.random();
@@ -19,7 +19,7 @@ module.exports = {
             diceValue = parseInt(argArgs[1]);
             diceTotal = 0;
             
-            if(argArgs.length === 2 && !isNaN(diceCount) && !isNaN(diceValue) && diceValue < 1000 && diceValue > 0 && diceCount < 100 && diceCount > 0){
+            if(argArgs.length === 2 && !isNaN(diceCount) && !isNaN(diceValue) && diceValue <= 1000000 && diceValue > 0 && diceCount <= 100 && diceCount > 0){
                 for (j = 1; j <= diceCount; j++) {
                     currentDice = Math.floor((Math.random() * diceValue) + 1);
                     diceTotal += currentDice;
