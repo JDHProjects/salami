@@ -11,7 +11,7 @@ module.exports = {
                 message.channel.send(response.request.uri.href) 
             });
         }
-        catch{
+        catch (e) {
             message.channel.send('Something went wrong, please try again!') 
         }
 	},
