@@ -19,15 +19,17 @@ client.on('message', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 	const args = message.content.slice(prefix.length).split(/ +/);
-	const command = args.shift().toLowerCase();
+	const commandName = args.shift().toLowerCase();
 
-	if (!client.commands.has(command)){
+	if (!client.commands.has(commandName)){
         message.channel.send('Sorry, I don\'t know that command yet!');
         return;
     }
 
+    const command = client.commands.get(commandName);
+
     try {
-        client.commands.get(command).execute(message, args);
+        command.execute(message, args);
     } catch (error) {
         console.error(error);
         message.channel.send('there was an error trying to execute that command!');
