@@ -4,6 +4,6 @@ module.exports = {
 	usage: 'Just send ping, theres really not much to this',
     example: '',
 	execute(message, args) {
-		message.channel.send('Ping!');
+		message.channel.send('Pong!');
 	},
 };
