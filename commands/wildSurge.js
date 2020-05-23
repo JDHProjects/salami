@@ -7,7 +7,7 @@ module.exports = {
     example: '',
 	execute(message, args) {
         randInt = Math.floor((Math.random() * wild_values.length));
-
+        message.delete()
         message.channel.send(`You rolled ${randInt}: ${wild_values[randInt]}`);
 	},
 };
