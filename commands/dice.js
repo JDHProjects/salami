@@ -2,7 +2,7 @@ module.exports = {
 	name: 'd',
     description: 'Rolls as many dice as required and adds them up for you',
     usage: '2D6 will roll 2xD6 dice, 1D10 will roll 1xD10 dice etc. Modifier can be added at end with +5 -5 etc. Multiple Dice can be supplied to a single command. Can roll up to 100 dice with a value up to 1 million',
-    example: 'd 2D20 1D10 -2',
+    example: '2D20 1D10 -2',
 	execute(message, args) {
         randInt = Math.random();
         msg = '';

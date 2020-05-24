@@ -6,7 +6,7 @@ module.exports = {
 	name: 'image',
 	description: 'Returns the first google image result of your choice',
 	usage: 'The word or phrase you want to search is the command argument',
-    example: 'image nature landscape',
+    example: 'nature landscape',
 	execute(message, args) {
             if(args.length > 0){
                 allArgs = ""
