@@ -14,7 +14,7 @@ module.exports = {
                     if (i > 0){
                         allArgs+=" ";
                     }
-                    allArgs+=args[i];
+                    allArgs+=i;
                 }
                 gis(allArgs, function (error, results) {
                     if (!error && results[0] != undefined) {
