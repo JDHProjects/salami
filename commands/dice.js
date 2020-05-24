@@ -7,13 +7,23 @@ module.exports = {
         randInt = Math.random();
         msg = '';
         total = 0;
+        modifier = 0;
+        modifierPolarity = '';
 
         for (i in args){
             if (args[i].includes('D')){
                 argArgs = args[i].split('D');
             }
-            else {
+            else if (args[i].includes('d')) {
                 argArgs = args[i].split('d');
+            }
+            else if (args[i].includes('-')){
+                modifier = -parseInt(args[i].split('-')[1]);
+                modifierPolarity = '-';
+            }
+            else if (args[i].includes('+')){
+                modifier = parseInt(args[i].split('+')[1]);
+                modifierPolarity = '+';
             }
             diceCount = parseInt(argArgs[0]);
             diceValue = parseInt(argArgs[1]);
@@ -35,7 +45,13 @@ module.exports = {
                 return;
             }  
         }
-        msg += `**Overall Total: ${total}**\n\n`;
+
+        msg += `**Overall Total: ${total}**\n\n`;    
+        if(modifier != 0){
+            msg += `Modifier: ${modifierPolarity}${modifier}\n`;
+            msg += `**Modifier Adjusted Total: ${total+modifier}**\n\n`;
+        }
+
         message.channel.send(msg, { split: true });
         
 	},
