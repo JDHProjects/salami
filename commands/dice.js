@@ -46,7 +46,7 @@ module.exports = {
                   
                 
             }
-            else if (!modifierTurn) {
+            else if (!skip) {
                 message.channel.send(`Invalid dice format!`);
                 return;
             }  
