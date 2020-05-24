@@ -4,7 +4,7 @@ module.exports = {
 	name: 'syncvideo',
 	description: 'Generates a random sync video room to use',
 	usage: 'Just send syncvideo, theres really not much to this',
-    example: '',
+    example: 'syncvideo',
 	execute(message, args) {
             request({url:'http://www.sync-video.com/random',followAllRedirects :false}, function (error, response, body) {
                 try{
