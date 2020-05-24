@@ -9,16 +9,26 @@ module.exports = {
     example: 'nature landscape',
 	execute(message, args) {
             if(args.length > 0){
+                imageIndex = 0;
                 allArgs = ""
                 for (i in args){
                     if (i > 0){
                         allArgs+=" ";
                     }
-                    allArgs+=args[i];
+                    if (i < args.length - 1 || isNaN(args[i])){
+                        allArgs+=args[i];
+                    }
+                    else{
+                        imageIndex = args[args.length-1];
+                    }
                 }
+                
                 gis(allArgs, function (error, results) {
                     if (!error && results[0] != undefined) {
-                        message.channel.send(results[0].url);
+                        if (imageIndex >= results.length){
+                            imageIndex = 0;
+                        }
+                        message.channel.send(results[imageIndex].url);
                       }
                     else {
                         
