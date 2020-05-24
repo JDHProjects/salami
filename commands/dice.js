@@ -11,7 +11,7 @@ module.exports = {
         modifierPolarity = '';
 
         for (i in args){
-            modifierTurn = false;
+            skip = false;
             if (args[i].includes('D')){
                 argArgs = args[i].split('D');
             }
@@ -19,20 +19,23 @@ module.exports = {
                 argArgs = args[i].split('d');
             }
             else if (args[i].includes('-')){
-                modifierTurn = true;
+                skip = true;
                 modifier = -parseInt(args[i].split('-')[1]);
                 modifierPolarity = '-';
             }
             else if (args[i].includes('+')){
-                modifierTurn = true;
+                skip = true;
                 modifier = parseInt(args[i].split('+')[1]);
                 modifierPolarity = '+';
+            }
+            else{
+                skip = true;
             }
             diceCount = parseInt(argArgs[0]);
             diceValue = parseInt(argArgs[1]);
             diceTotal = 0;
             
-            if(argArgs.length === 2 && !modifierTurn && !isNaN(diceCount) && !isNaN(diceValue) && diceValue <= 1000000 && diceValue > 0 && diceCount <= 100 && diceCount > 0){
+            if(argArgs.length === 2 && !skip && !isNaN(diceCount) && !isNaN(diceValue) && diceValue <= 1000000 && diceValue > 0 && diceCount <= 100 && diceCount > 0){
                 for (j = 1; j <= diceCount; j++) {
                     currentDice = Math.floor((Math.random() * diceValue) + 1);
                     diceTotal += currentDice;
