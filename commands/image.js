@@ -4,7 +4,7 @@ var gis = require('g-i-s');
 
 module.exports = {
 	name: 'image',
-	description: 'Returns the first google image result of your choice',
+	description: 'Returns the first google image result of your choice.\nALL IMAGES FROM GOOGLE, I TAKE NO RESPONSIBILITY FOR THE IMAGES RETURNED',
 	usage: 'The word or phrase you want to search is the command argument',
     example: 'nature landscape',
 	execute(message, args) {
