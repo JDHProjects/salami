@@ -50,7 +50,7 @@ module.exports = {
         }
 
         msg += `**Overall Total: ${total}**\n\n`;    
-        if(!isNAN(modifier) && modifier != 0){
+        if(!isNaN(modifier) && modifier != 0){
             msg += `Modifier: ${modifierPolarity}${Math.abs(modifier)}\n`;
             msg += `**Modifier Adjusted Total: ${total+modifier}**\n\n`;
         }
