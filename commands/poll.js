@@ -78,15 +78,6 @@ module.exports = {
                 
             });
         }
-        else{
-            if(collector.ended){
-                message.channel.send("There is currently no poll in this channel")
-            }
-            else{
-                message.channel.send("fuck off")
-            }
-            
-        }
         
 	},
 };
