@@ -20,7 +20,7 @@ module.exports = {
             counter = -1;
             currentMessage = null;
             timeLimit = 60000;
-            if (args[1] != undefined && !isNaN(parseInt(args[1])) && parseInt(args[1]) < 1800000){
+            if (args[1] != undefined && !isNaN(parseInt(args[1])) && parseInt(args[1]) <= 1800){
                 timeLimit = parseInt(args[1]) * 1000;
             }
 
