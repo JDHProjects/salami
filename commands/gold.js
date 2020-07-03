@@ -4,7 +4,7 @@ module.exports = {
     name: 'gold',
     description: 'DND party gold counter (Server wide)',
     usage: 'set [number] to set gold, add [number] to add gold, remove [number] to remove gold. Send gold to check total',
-    example: 'gold add 10',
+    example: 'add 10',
 	execute(message, args) {
         var fs = require('fs');
         messageText = ""
