@@ -80,7 +80,7 @@ function saveStats(commandName, authorId){
         loc = statArray.length - 1
     }
 
-    statArray[loc][statArray[0].indexOf(commandName)] += 1
+    statArray[loc][statArray[0].indexOf(commandName)] = parseInt(statArray[loc][statArray[0].indexOf(commandName)]) + 1
 
     fs.writeFile('assets/usage-stats/commands-per-user.csv', stringify(statArray, []), function (err) {
         if (err) throw err;
