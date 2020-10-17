@@ -84,7 +84,7 @@ module.exports = {
 
 function reactResults(message, timeLimit){
     for (i = 0; i < counter; i++){
-        message.react(questions[i])      
+        message.react(questions[i])
     }
     const filter = (reaction) => {
         return questions.includes(reaction.emoji.name)
