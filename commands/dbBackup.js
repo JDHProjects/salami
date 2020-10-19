@@ -5,6 +5,6 @@ module.exports = {
     example: 'dbbackup',
     admin: true,
 	execute(message, args) {
-    message.author.send("DB backup file", { files: ["../database.sqlite"] });
+    message.author.send("DB backup file", { files: ["./database.sqlite"] });
   }
 };
