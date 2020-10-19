@@ -34,7 +34,7 @@ module.exports = {
       options.order = [[command, 'DESC']]
     }
 
-    
+
     commandStats.findAll(options)
     .then(stats => {
       for (x in stats){

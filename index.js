@@ -8,6 +8,8 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
+const adminIDs = [249937022033068044,163266240863797249]
+
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command);
@@ -30,6 +32,11 @@ client.on('message', message => {
     }
 
     const command = client.commands.get(commandName);
+
+    if (command.admin === true && !adminIDs.includes(parseInt(message.author.id))){
+        message.channel.send("You're not an admin!");
+        return;
+    }
 
     try {
         command.execute(message, args);
