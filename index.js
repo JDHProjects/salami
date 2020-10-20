@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 const { prefix, token } = require('./config.json');
-const { commandStats } = require('./db/dbSetup.js')
+const { commandStats, runEachCommand } = require('./db/dbSetup.js')
 
 const fs = require('fs');
 
@@ -38,14 +38,20 @@ client.on('message', message => {
         return;
     }
 
-    try {
-        command.execute(message, args);
-    } catch (error) {
-        console.error(error);
-        message.channel.send('there was an error trying to execute that command!');
-    }
+    runEachCommand(message.author.id)
+    .then(resp =>{
+        try {
+            command.execute(message, args);
+        } catch (error) {
+            console.error(error);
+            message.channel.send('there was an error trying to execute that command!');
+        }
+        
+        saveStats(commandName, message.author.id)
+    })
+
+
     
-    saveStats(commandName, message.author.id)
 
 });
 
@@ -54,14 +60,6 @@ client.login(token)
 function saveStats(commandName, authorId){
     commandStats.findByPk(authorId)
     .then(stat => {
-        if (stat === null){
-            commandStats.create({user_id: authorId})
-            .then(newStat => {
-                newStat.increment(commandName,{ by: 1 })
-            })
-        }
-        else{
-            stat.increment(commandName,{ by: 1 })
-        }
+        stat.increment(commandName)
     })
 }
