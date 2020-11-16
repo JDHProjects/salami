@@ -31,28 +31,35 @@ module.exports = {
 
     options = {}
     if (command != null){
-      options.order = [[command, 'DESC']]
+      options.where = {command_name: command}
+      options.order = [['count', 'DESC']]
     }
 
 
     commandStats.findAll(options)
     .then(stats => {
-      for (x in stats){
-        for (i in commandArray){
-          countArray[i] += stats[x].dataValues[commandArray[i]]
-        }
+
+      stats.forEach(stat => {
+        countArray[commandArray.indexOf(stat.dataValues.command_name)] += stat.dataValues.count
+      });
+      
+      if (stats.length < 3){
+        statsCount = stats.length
+      }
+      else{
+        statsCount = 3
       }
       if(command != null){
         buildMsg+=`**Leaderboard for ${command}**\n`
-        for (x = 0; x < (full ? stats.length : 3); x++) {
-          buildMsg+=`${parseInt(x)+1}) <@${stats[x].dataValues.user_id}> : ${stats[x].dataValues[command]}\n`
+        for (x = 0; x < (full ? stats.length : statsCount); x++) {
+          buildMsg+=`${parseInt(x)+1}) <@${stats[x].dataValues.user_id}> : ${stats[x].dataValues.count}\n`
         }
         total = countArray[commandArray.indexOf(command)]
       }
       else{
         buildMsg+=`**Top used commands**\n`
         total = countArray.reduce((a, b) => a + b, 0)
-        for (x = 0; x < (full ? commandArray.length : 3); x++) {
+        for (x = 0; x < (full ? commandArray.length : statsCount); x++) {
           let maxIndex = countArray.indexOf(Math.max(...countArray))
           buildMsg+=`${parseInt(x)+1}) ${commandArray[maxIndex]} : ${countArray[maxIndex]}\n`
           countArray[maxIndex] = -1

@@ -37,8 +37,7 @@ client.on('message', message => {
         message.channel.send("You're not an admin!");
         return;
     }
-
-    runEachCommand(message.author.id)
+    runEachCommand(commandName, message.author.id.toString())
     .then(resp =>{
         try {
             command.execute(message, args);
@@ -46,20 +45,7 @@ client.on('message', message => {
             console.error(error);
             message.channel.send('there was an error trying to execute that command!');
         }
-        
-        saveStats(commandName, message.author.id)
     })
-
-
-    
-
 });
 
 client.login(token)
-
-function saveStats(commandName, authorId){
-    commandStats.findByPk(authorId)
-    .then(stat => {
-        stat.increment(commandName)
-    })
-}

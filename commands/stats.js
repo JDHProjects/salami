@@ -15,16 +15,25 @@ module.exports = {
     }
 
     buildMsg=""
-    commandStats.findByPk(user.id)
-    .then(stat => {
-      //console.log(stat)
-      if (stat === null){
+    commandStats.findAll({where: {user_id: user.id}})
+    .then(stats => {
+      console.log(stats)
+      let commandArray = []
+      let valueArray = []
+      stats.forEach(stat => {
+        commandArray.push(stat.dataValues.command_name)
+        valueArray.push(stat.dataValues.count)
+      });
+      if (stats === []){
         buildMsg="You haven't used the bot yet!"
       }
       else{
-        commentCount = 3
-        let commandArray = Object.keys(stat.dataValues).slice(1)
-        let valueArray = Object.values(stat.dataValues).slice(1)
+        if (commandArray.length < 3){
+          commentCount = commandArray.length
+        }
+        else{
+          commentCount = 3
+        }
         for (i in args){
           if (args[i] == "full"){
             commentCount = commandArray.length
@@ -40,6 +49,5 @@ module.exports = {
       }
       message.channel.send(buildMsg)
     })
-    
 	},
 };

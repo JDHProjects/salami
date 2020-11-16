@@ -6,17 +6,16 @@ module.exports = (sequelize, DataTypes) => {
   let buildModel = {
     user_id: {
 			type: DataTypes.STRING,
-			primaryKey: true,
+			allowNull: false
 		},
-  }
-
-  for (const file of commandFiles) {
-    const command = require(`../commands/${file}`);
-    buildModel[command.name] = {
+		command_name: {
+			type: DataTypes.STRING,
+			allowNull: false
+		},
+		count: {
 			type: DataTypes.INTEGER,
-			defaultValue: 0,
-			allowNull: false,
-		}
+			defaultValue: 0
+		},
   }
 
 	return sequelize.define('command_stats',

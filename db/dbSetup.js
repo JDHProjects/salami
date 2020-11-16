@@ -10,26 +10,25 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 const commandStats = require('../models/command_stats')(sequelize, Sequelize.DataTypes);
 const bankAccounts = require('../models/bank_accounts')(sequelize, Sequelize.DataTypes);
 
-const runEachCommand = function(userID) {
+const runEachCommand = function(commandName, userID) {
 	return new Promise(function(resolve, reject) {
-		commandStats.findByPk(userID)
+		commandStats.findOrCreate({
+		where: { 
+			user_id: userID,
+			command_name: commandName 
+		}})
 		.then(user => {
-			if (user === null){
-				commandStats.create({user_id: userID})
-			}
-			bankAccounts.findByPk(userID)
-			.then(user => {
-				if (user === null){
-					bankAccounts.create({user_id: userID})
-				}
-				else{
-					user.increment('money')
-				}
+			user[0].increment('count')
+			bankAccounts.findOrCreate({
+			where: { user_id: userID }
+			})
+			.then(bankUser => {
+				bankUser[0].increment('money')
 				resolve("User added")
 			})
-		})
+		});
 	})
 };
 
-sequelize.sync({alter:true})
+sequelize.sync()
 module.exports = { runEachCommand, commandStats, bankAccounts };
