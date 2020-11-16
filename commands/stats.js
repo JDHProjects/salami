@@ -1,3 +1,5 @@
+const fs = require('fs');
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 module.exports = {
     name: 'stats',
@@ -14,15 +16,18 @@ module.exports = {
       user = message.author
     }
 
+    commandArray = []
+    valueArray = []
+    for (const file of commandFiles) {
+      commandArray.push(require(`../commands/${file}`).name)
+      valueArray.push(0)
+    }
+
     buildMsg=""
     commandStats.findAll({where: {user_id: user.id}})
     .then(stats => {
-      console.log(stats)
-      let commandArray = []
-      let valueArray = []
       stats.forEach(stat => {
-        commandArray.push(stat.dataValues.command_name)
-        valueArray.push(stat.dataValues.count)
+        valueArray[commandArray.indexOf(stat.dataValues.command_name)] = stat.dataValues.count
       });
       if (stats === []){
         buildMsg="You haven't used the bot yet!"
