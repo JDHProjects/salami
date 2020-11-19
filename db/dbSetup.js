@@ -31,4 +31,5 @@ const runEachCommand = function(commandName, userID) {
 };
 
 sequelize.sync()
+bankAccounts.findOrCreate({ where: { user_id: "637400095821660180" } })
 module.exports = { runEachCommand, commandStats, bankAccounts };

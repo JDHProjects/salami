@@ -9,6 +9,9 @@ module.exports = {
     if (message.mentions.users.size > 0){
      transferUser = message.mentions.users.first()
     }
+    else{
+      transferUser = null
+    }
 
     send = false
     amount = 0
@@ -22,14 +25,19 @@ module.exports = {
     }
 		bankAccounts.findByPk(message.author.id)
     .then(sender => {
-      if (send){
+      if (transferUser != null){
         if (amount <= sender.dataValues.money){
           bankAccounts.findByPk(transferUser.id)
           .then(receiver => {
             if(receiver != undefined){
-              sender.decrement('money', {by: amount})
-              receiver.increment('money', {by: amount})
-              message.channel.send(`${amount} salami transferred from <@${message.author.id}> to <@${transferUser.id}>`)
+              if(send){
+                sender.decrement('money', {by: amount})
+                receiver.increment('money', {by: amount})
+                message.channel.send(`${amount} salami transferred from <@${message.author.id}> to <@${transferUser.id}>`)
+              }
+              else{
+                message.channel.send(`<@${transferUser.id}> has ${receiver.dataValues.money} salami`)
+              }
             }
             else{
               message.channel.send(`<@${transferUser.id}> doesn't have a bank account, the first time they use the bot, one will be generated for them`)
