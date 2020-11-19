@@ -32,6 +32,10 @@ module.exports = {
           else{
             message.channel.send(`${flip == 1 ? "heads" : "tails"}! <@${message.author.id}>, you lose`)
             user.decrement('money', {by: amount})
+            bankAccounts.findByPk( "637400095821660180" )
+            .then(salami => {
+              salami.increment('money', {by: amount})
+            })
           }
         }
         else{
