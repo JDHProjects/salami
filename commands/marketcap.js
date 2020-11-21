@@ -13,9 +13,11 @@ module.exports = {
           weekday: "long", year: "numeric", month: "short",  
           day: "numeric", hour: "2-digit", minute: "2-digit"  
       };  
-      message.channel.send(`The current market cap on ${date.toLocaleTimeString("en-us", options)} is:\n**${total} salami**`)
+      bankAccounts.findByPk( "637400095821660180" )
+        .then(salami => {
+          botMoney = salami.dataValues.money
+          message.channel.send(`The current market cap on ${date.toLocaleTimeString("en-us", options)} is:\n**${total} salami**\n<@637400095821660180> owns ${Math.floor((botMoney/total)*100)}% of the market cap`)
+        })
     })
-
-		
 	},
 };
