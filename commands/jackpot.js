@@ -8,21 +8,26 @@ module.exports = {
 
     bankAccounts.findByPk(message.author.id)
     .then(user => {
-      result = Math.floor(Math.random() * 10000)
-      if(result == 0){
+      if(user.dataValues.money >= 2){
         bankAccounts.findByPk( "637400095821660180" )
         .then(salami => {
-          amount = salami.dataValues.money
-          message.channel.send(`<@${message.author.id}> **YOU WIN!!!!**\nTransferring ${amount} salami to your account!`)
-          user.increment('money', {by: amount})
-          salami.decrement('money', {by: amount})
+          result = Math.floor(Math.random() * 10000)
+          if(result == 0){
+            amount = salami.dataValues.money
+            message.channel.send(`<@${message.author.id}> **YOU WIN!!!!**\nTransferring ${amount} salami to your account!`)
+            user.increment('money', {by: amount})
+            salami.decrement('money', {by: amount})
+          }
+          else{
+            user.decrement('money', {by: 2})
+            salami.increment('money', {by: 2})
+            message.channel.send(`<@${message.author.id}>, you didn't win the jackpot, better luck next time`)
+          }
         })
       }
       else{
-        user.decrement('money')
-        message.channel.send(`<@${message.author.id}>, you didn't win the jackpot, better luck next time`)
+        message.channel.send(`Sorry <@${message.author.id}>, you need at least 2 salami to play`)
       }
-      
     })
 
 		
