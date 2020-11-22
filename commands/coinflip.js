@@ -2,6 +2,7 @@ module.exports = {
 	name: 'coinflip',
   description: 'Flip a coin, guess on the result, you can even bet on the result if you want',
   usage: `requires either "heads" or "tails", bet by providing a number as an additional arg`,
+  cooldown: 3,
   example: 'heads 100',
 	execute(message, args) {
     const { bankAccounts, lossWithTax, sendFromBank } = require('../db/dbSetup.js')
