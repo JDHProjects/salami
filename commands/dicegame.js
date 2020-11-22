@@ -4,7 +4,7 @@ module.exports = {
   usage: `requires from "one" to "six" in words, bet by providing a number as an additional arg`,
   example: '"one" 100',
 	execute(message, args) {
-    const { bankAccounts } = require('../db/dbSetup.js')
+    const { bankAccounts, lossWithTax } = require('../db/dbSetup.js')
 
     wordsToNum={
       one:1,
@@ -43,15 +43,11 @@ module.exports = {
           result = Math.floor(Math.random() * 6) + 1 
           if(result == guess){
             message.channel.send(`${numToWords[result]}! <@${message.author.id}>, you win!`)
-            user.increment('money', {by: amount * 5})
+            sendFromBank(user, amount*5)
           }
           else{
             message.channel.send(`${numToWords[result]}! <@${message.author.id}>, you lose`)
-            user.decrement('money', {by: amount})
-            bankAccounts.findByPk( "637400095821660180" )
-            .then(salami => {
-              salami.increment('money', {by: amount})
-            })
+            lossWithTax(user, amount)
           }
         }
         else{

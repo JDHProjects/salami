@@ -4,7 +4,7 @@ module.exports = {
   usage: `requires either "heads" or "tails", bet by providing a number as an additional arg`,
   example: 'heads 100',
 	execute(message, args) {
-    const { bankAccounts } = require('../db/dbSetup.js')
+    const { bankAccounts, lossWithTax, sendFromBank } = require('../db/dbSetup.js')
 
     amount = 0
     guess = -1
@@ -27,15 +27,11 @@ module.exports = {
           flip = Math.floor(Math.random() * 2) 
           if(flip == guess){
             message.channel.send(`${flip == 1 ? "heads" : "tails"}! <@${message.author.id}>, you win!`)
-            user.increment('money', {by: amount})
+            sendFromBank(user, amount)
           }
           else{
             message.channel.send(`${flip == 1 ? "heads" : "tails"}! <@${message.author.id}>, you lose`)
-            user.decrement('money', {by: amount})
-            bankAccounts.findByPk( "637400095821660180" )
-            .then(salami => {
-              salami.increment('money', {by: amount})
-            })
+            lossWithTax(user, amount)
           }
         }
         else{
