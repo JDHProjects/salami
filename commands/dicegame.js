@@ -2,7 +2,7 @@ module.exports = {
 	name: 'dicegame',
   description: 'Roll a dice, guess on the result, you can even bet on the result if you want',
   usage: `requires from "one" to "six" in words, bet by providing a number as an additional arg`,
-  cooldown: 3,
+  cooldown: 2,
   example: '"one" 100',
 	execute(message, args) {
     const { bankAccounts, lossWithTax, sendFromBank } = require('../db/dbSetup.js')
