@@ -4,7 +4,7 @@ module.exports = {
   usage: `requires from "one" to "six" in words, bet by providing a number as an additional arg`,
   example: '"one" 100',
 	execute(message, args) {
-    const { bankAccounts, lossWithTax } = require('../db/dbSetup.js')
+    const { bankAccounts, lossWithTax, sendFromBank } = require('../db/dbSetup.js')
 
     wordsToNum={
       one:1,
