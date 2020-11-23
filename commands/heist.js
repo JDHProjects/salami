@@ -11,7 +11,7 @@ module.exports = {
     .then(user => {
       if (user.dataValues.money >= 1000){
         lossWithTax(user, 1000)
-        if (Math.floor(Math.random() * 2) != 0) {
+        if (Math.floor(Math.random() * 3) != 0) {
           total = Math.floor(Math.random() * 100)
           if (total < 1){
             winnings = ((Math.random() * 100) + 50)
