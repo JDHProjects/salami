@@ -16,10 +16,10 @@ module.exports = {
     example: 'poll create 120',
 	execute(message, args) {
         if (args[0] != undefined && args[0].toLowerCase() == "create"){
-            msg = '';
-            counter = -1;
-            currentMessage = null;
-            timeLimit = 60000;
+            let msg = '';
+            let counter = -1;
+            let currentMessage = null;
+            let timeLimit = 60000;
             if (args[1] != undefined && !isNaN(parseInt(args[1])) && parseInt(args[1]) <= 1800){
                 timeLimit = parseInt(args[1]) * 1000;
             }
@@ -94,8 +94,8 @@ function reactResults(message, timeLimit){
     
     
     collector.on('end', collected => {
-        maxKey = 0;
-        maxValue = 0;
+        let maxKey = 0;
+        let maxValue = 0;
         for (let [key, value] of collected){
             if (value.count > maxValue){
                 maxValue = value.count;
