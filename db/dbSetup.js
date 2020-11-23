@@ -34,13 +34,14 @@ const runEachCommand = function(commandName, userID) {
 
 const lossWithTax = function(user, amount) {
 	return new Promise(function(resolve, reject) {
+		let absAmount = Math.abs(amount)
 		bankAccounts.findByPk("637400095821660180")
 		.then(salami => {
 			bankAccounts.findByPk("0")
 			.then(bank => {
-				tax = Math.floor(amount * 0.3)
-				postTax = amount - tax
-				user.decrement('money', {by: amount})
+				tax = Math.floor(absAmount * 0.3)
+				postTax = absAmount - tax
+				user.decrement('money', {by: absAmount})
 				salami.increment('money', {by: postTax})
 				bank.increment('money', {by: tax})
 				resolve("loss taxed")
@@ -51,14 +52,24 @@ const lossWithTax = function(user, amount) {
 
 const sendFromBank = function(user, amount) {
 	return new Promise(function(resolve, reject) {
+		let absAmount = Math.abs(amount)
 		bankAccounts.findByPk("0")
 		.then(bank => {
 			if (bank.dataValues.money > 0){
-				user.increment('money', {by: amount})
-				bank.decrement('money', {by: amount})
+				user.increment('money', {by: absAmount})
+				bank.decrement('money', {by: absAmount})
 				resolve("money sent")
 			}
 		})
+	})
+};
+
+const transfer = function(sender, reciever, amount) {
+	return new Promise(function(resolve, reject) {
+		let absAmount = Math.abs(amount)
+		reciever.increment('money', {by: absAmount})
+		sender.decrement('money', {by: absAmount})
+		resolve("money transferred")
 	})
 };
 
@@ -73,4 +84,4 @@ bankAccounts.sum('money')
 		}
 	})
 })
-module.exports = { runEachCommand, commandStats, bankAccounts, sequelize, lossWithTax, sendFromBank };
+module.exports = { runEachCommand, commandStats, bankAccounts, sequelize, lossWithTax, sendFromBank, transfer };

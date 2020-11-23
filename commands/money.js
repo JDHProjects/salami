@@ -4,7 +4,7 @@ module.exports = {
   usage: `With no args it returns your balance, or with args you can send to others`,
   example: 'send @Salami 10',
 	execute(message, args) {
-    const { bankAccounts } = require('../db/dbSetup.js')
+    const { bankAccounts, transfer } = require('../db/dbSetup.js')
 
     if (message.mentions.users.size > 0){
      transferUser = message.mentions.users.first()
@@ -48,9 +48,8 @@ module.exports = {
             .then(receiver => {
               if(receiver != undefined){
                 if(send){
-                  sender.decrement('money', {by: amount})
-                  receiver.increment('money', {by: amount})
-                  message.channel.send(`${amount} salami transferred from <@${message.author.id}> to <@${transferUser.id}>`)
+                  transfer(sender,receiver,amount)
+                  message.channel.send(`${Math.abs(amount)} salami transferred from <@${message.author.id}> to <@${transferUser.id}>`)
                 }
                 else{
                   message.channel.send(`<@${transferUser.id}> has ${receiver.dataValues.money} salami`)
