@@ -17,7 +17,7 @@ module.exports = {
         guess=0
       }
       else if (!isNaN(parseInt(args[i]))){
-        amount = parseInt(args[i])
+        amount = Math.abs(parseInt(args[i]))
       }
     }
 

@@ -13,9 +13,9 @@ module.exports = {
       transferUser = null
     }
 
-    send = false
-    list = false
-    amount = 0
+    let send = false
+    let list = false
+    let amount = 0
     for (i in args){
       if (args[i] == "send"){
         send = true
@@ -24,7 +24,7 @@ module.exports = {
         list = true
       }
       else if (!isNaN(parseInt(args[i]))){
-        amount = parseInt(args[i])
+        amount = Math.abs(parseInt(args[i]))
       }
     }
     if (list){

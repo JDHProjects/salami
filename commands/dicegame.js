@@ -33,7 +33,7 @@ module.exports = {
         guessInWords=args[i]
       }
       else if (!isNaN(parseInt(args[i]))){
-        amount = parseInt(args[i])
+        amount = Math.abs(parseInt(args[i]))
       }
     }
 
