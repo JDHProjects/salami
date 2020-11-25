@@ -41,9 +41,20 @@ const lossWithTax = function(user, amount) {
 			.then(bank => {
 				tax = Math.floor(absAmount * 0.3)
 				postTax = absAmount - tax
+
+				let excess = 0
+				if(salami.dataValues.money + postTax > 500000){
+					excess = salami.dataValues.money - 500000 
+					salami.decrement('money', {by: excess})
+					excess += postTax
+				}
+				else{
+					salami.increment('money', {by: postTax})
+				}
+
 				user.decrement('money', {by: absAmount})
-				salami.increment('money', {by: postTax})
-				bank.increment('money', {by: tax})
+				bank.increment('money', {by: tax + excess})
+
 				resolve("loss taxed")
 			});
 		});
