@@ -24,8 +24,8 @@ client.on('ready', () => {
 client.on('message', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-	const args = message.content.slice(prefix.length).split(/ +/);
-	const commandName = args.shift().toLowerCase();
+	const args = message.content.slice(prefix.length).split(/ +/).map(arg => arg.toLowerCase());;
+	const commandName = args.shift();
 
 	if (!client.commands.has(commandName)){
         message.channel.send('Sorry, I don\'t know that command yet!');
