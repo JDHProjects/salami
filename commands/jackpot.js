@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'jackpot',
-  description: 'Run this command to try and win the jackpot, currently there\'s a 1 in 5000 chance of winning',
+  description: 'Run this command to try and win the jackpot, currently there\'s a 1 in 5000 chance of winning. Roll 0 to win',
   usage: `just send jackpot`,
   example: '',
 	execute(message, args) {
@@ -19,7 +19,7 @@ module.exports = {
           }
           else{
             transfer(user,salami,2)
-            message.channel.send(`<@${message.author.id}>, you didn't win the jackpot, better luck next time`)
+            message.channel.send(`<@${message.author.id}>, you didn't win the jackpot, better luck next time. You rolled ${result}`)
           }
         })
       }
