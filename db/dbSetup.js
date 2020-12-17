@@ -9,6 +9,7 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 
 const commandStats = require('../models/command_stats')(sequelize, Sequelize.DataTypes);
 const bankAccounts = require('../models/bank_accounts')(sequelize, Sequelize.DataTypes);
+const hookAKeys = require('../models/hook_a_keys')(sequelize, Sequelize.DataTypes);
 
 const runEachCommand = function(commandName, userID) {
 	return new Promise(function(resolve, reject) {
@@ -95,4 +96,4 @@ bankAccounts.sum('money')
 		}
 	})
 })
-module.exports = { runEachCommand, commandStats, bankAccounts, sequelize, lossWithTax, sendFromBank, transfer };
+module.exports = { runEachCommand, commandStats, bankAccounts, hookAKeys, sequelize, lossWithTax, sendFromBank, transfer };

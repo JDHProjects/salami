@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const { prefix, token } = require('./config.json');
+const { prefix, token, adminIDs } = require('./config.json');
 const { commandStats, runEachCommand } = require('./db/dbSetup.js')
 
 const fs = require('fs');
@@ -9,8 +9,6 @@ client.commands = new Discord.Collection();
 const cooldowns = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
-const adminIDs = [249937022033068044]
-
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command);
@@ -18,7 +16,6 @@ for (const file of commandFiles) {
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  commandStats.sync({alter:true});
 })
 
 client.on('message', message => {
