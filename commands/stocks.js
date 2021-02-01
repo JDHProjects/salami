@@ -150,7 +150,6 @@ const getPrice = function(ticker) {
 	return new Promise(function(resolve, reject) {
     yahooFinance.quote(ticker, ["price"])
     .then(info => { 
-      console.log(info)
       if (info.price.regularMarketPrice === undefined){
         reject("ticker not found");
       }
@@ -158,20 +157,30 @@ const getPrice = function(ticker) {
       let marketType = info.price.marketState === "REGULAR" ?
                          "Open" :
                          info.price.marketState === "PRE" ? 
-                         "Premarket" :
-                          "After hours";
+                          "Premarket" :
+                          info.price.marketState === "POST" ?
+                            "After hours" :
+                            "Closed";
 
-      let price = marketType == "Open" ?
+      let price = marketType === "Open" ?
                     info.price.regularMarketPrice :
-                    marketType == "After hours" ? 
-                      info.price.postMarketPrice : 
-                      info.price.preMarketPrice;
-      
+                    marketType === "Premarket" ? 
+                      info.price.preMarketPrice : 
+                      info.price.postMarketPrice;
+
+      if(price == undefined){
+        price = info.price.regularMarketPrice;
+      }
+
       let percentChange = marketType == "Open" ?
                             info.price.regularMarketChangePercent :
-                            marketType == "After hours" ? 
-                              info.price.postMarketChangePercent : 
-                              info.price.preMarketChangePercent;
+                            marketType == "Premarket" ? 
+                              info.price.preMarketChangePercent : 
+                              info.price.postMarketChangePercent;
+
+      if(percentChange == undefined){
+        percentChange = info.price.regularMarketChangePercent;
+      }
 
       let salamiPrice = price >= 0.01 ? Math.round(price * 100) : 1;
 
