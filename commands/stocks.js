@@ -135,7 +135,7 @@ module.exports = {
           values.forEach(value => {
             msg += value
           })
-          message.reply(msg, { split: true })
+          message.channel.send(`<@${message.author.id}>,\n`+msg, { split: true })
 
         })
       })
