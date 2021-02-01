@@ -153,12 +153,12 @@ const getPrice = function(ticker) {
       if (info.price.regularMarketPrice === undefined){
         reject("ticker not found");
       }
-
-      let marketType = info.price.marketState != "CLOSED" ?
+      
+      let marketType = info.price.marketState === "REGULAR" ?
                          "Open" :
-                         info.price.preMarketPrice === undefined ? 
-                           "After hours" : 
-                           "Premarket"
+                         info.price.marketState === "PRE" ? 
+                         "Premarket" :
+                          "After hours";
 
       let price = marketType == "Open" ?
                     info.price.regularMarketPrice :
@@ -190,23 +190,24 @@ const getPrice = function(ticker) {
 const getStockInfo = function(stock) {
 	return new Promise(function(resolve, reject) {
     let msg = ""
+    if (Math.round(stock.dataValues.quantity*stock.dataValues.average_cost) >= 1){
       getPrice(stock.dataValues.stock)
       .then( resp => {
-        if (Math.round(stock.dataValues.quantity*resp.salamiPrice) > 0){
-          let percentGain = ((resp.salamiPrice - stock.dataValues.average_cost) / stock.dataValues.average_cost) * 100
-          let salamiGain = (resp.salamiPrice - stock.dataValues.average_cost) * stock.dataValues.quantity
-          msg += "Stock                       :   " + stock.dataValues.stock + "\n"
-          msg += "Quantity                 :   " + Math.round(stock.dataValues.quantity*10000)/10000 + "\n"
-          msg += "Value                      :   " + Math.round(stock.dataValues.quantity*resp.salamiPrice) + " salami\n"
-          msg += "Average Cost        :   " + Math.round(stock.dataValues.average_cost*100)/100 + "\n"
-          msg += "Percentage Gain   :   " + Math.round(percentGain * 100) / 100 + "%\n"
-          msg += "Total Salami Gain :   " + Math.round(salamiGain) + " salami\n\n"
-          
-          resolve(msg);
-        }
-        else{
-          resolve(msg);
-        }
-    })
+        let percentGain = ((resp.salamiPrice - stock.dataValues.average_cost) / stock.dataValues.average_cost) * 100
+        let salamiGain = (resp.salamiPrice - stock.dataValues.average_cost) * stock.dataValues.quantity
+        msg += "Stock                       :   " + stock.dataValues.stock + "\n"
+        msg += "Quantity                 :   " + Math.round(stock.dataValues.quantity*10000)/10000 + "\n"
+        msg += "Value                      :   " + Math.round(stock.dataValues.quantity*resp.salamiPrice) + " salami\n"
+        msg += "Average Cost        :   " + Math.round(stock.dataValues.average_cost*100)/100 + "\n"
+        msg += "Percentage Gain   :   " + Math.round(percentGain * 100) / 100 + "%\n"
+        msg += "Total Salami Gain :   " + Math.round(salamiGain) + " salami\n\n"
+        
+        resolve(msg);
+      })
+    }
+    else{
+      resolve(msg);
+    }
+
   })
 }
