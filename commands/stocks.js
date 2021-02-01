@@ -150,6 +150,7 @@ const getPrice = function(ticker) {
 	return new Promise(function(resolve, reject) {
     yahooFinance.quote(ticker, ["price"])
     .then(info => { 
+      console.log(info)
       if (info.price.regularMarketPrice === undefined){
         reject("ticker not found");
       }
@@ -172,7 +173,7 @@ const getPrice = function(ticker) {
                               info.price.postMarketChangePercent : 
                               info.price.preMarketChangePercent;
 
-      let salamiPrice = price >= 0.01 ? parseInt(price * 100) : 1;
+      let salamiPrice = price >= 0.01 ? Math.round(price * 100) : 1;
 
       resolve( {"symbol":info.price.symbol,
                 "price":price,
