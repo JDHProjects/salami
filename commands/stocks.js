@@ -17,7 +17,7 @@ module.exports = {
         .then(resp => {
           let msg = "Market is:   " + resp.marketType + "\n";
 
-          msg += resp.symbol + "   : " + resp.price + " USD\n"
+          msg += resp.symbol + "   : " + resp.price.toPrecision(5) + " "+resp.currency+"\n"
           msg += resp.symbol +"   : "+resp.salamiPrice + " salami" + "\n"
           msg += "Percentage Change:   " + Math.round(resp.percentChange*100000)/1000 + "%"
           message.channel.send(msg)
@@ -34,7 +34,7 @@ module.exports = {
     else if (args[0] == "buy"){
       if (args.length === 3){
         let salamiAmount = Math.abs(parseInt(args[2]))
-        if (!isNaN(salamiAmount) || salamiAmount <= 1) { 
+        if (!isNaN(salamiAmount) && salamiAmount >= 1) { 
           bankAccounts.findByPk(message.author.id)
           .then(buyer => {
             if(buyer.dataValues.money >= salamiAmount) {
@@ -82,8 +82,9 @@ module.exports = {
     }
     else if (args[0] == "sell"){
       if (args.length === 3){
+        let amount = args[2].toLowerCase()
         let salamiAmount = Math.abs(parseInt(args[2]))
-        if (!isNaN(salamiAmount)) { 
+        if (!isNaN(salamiAmount) || amount == "all" || amount == "half") { 
           bankAccounts.findByPk(message.author.id)
           .then(seller => {
             let ticker = args[1].toUpperCase()
@@ -91,16 +92,26 @@ module.exports = {
               where: { user_id: message.author.id, stock: ticker }
               })
             .then(stock => {
-              if (stock != undefined){
+              if (stock != undefined && stock.dataValues.quantity > 0){
                 getPrice(ticker)
                 .then(resp => {
-                  if(Math.round(stock.dataValues.quantity * resp.salamiPrice) >= salamiAmount){
+                  if(amount == "half" || amount == "all" || (Math.round(stock.dataValues.quantity * resp.salamiPrice) >= salamiAmount)){
                     bankAccounts.findByPk("0")
                     .then(bank => {
-                      let sharesToSell = salamiAmount / resp.salamiPrice
+                      let sharesToSell = 0
+                      if (amount == "half"){
+                        sharesToSell = stock.dataValues.quantity / 2
+                        salamiAmount = stock.dataValues.quantity * resp.salamiPrice
+                      } else if(amount == "all") {
+                        sharesToSell = stock.dataValues.quantity
+                        salamiAmount = stock.dataValues.quantity * resp.salamiPrice
+                      } else {
+                        sharesToSell = salamiAmount / resp.salamiPrice
+                      }
+                      
                       transfer(bank,seller,salamiAmount)
                       stock.decrement("quantity", { by:  sharesToSell })
-                      message.reply("\nYou have sold " + Math.round(sharesToSell*10000)/10000 + " shares \nAt "+resp.salamiPrice + " salami per share")
+                      message.reply("\nYou have sold " + Math.round(sharesToSell*10000)/10000 + " shares \nAt "+resp.salamiPrice + " salami per share\nFor a total of: "+salamiAmount+" salami")
                     })
                   }
                   else{
@@ -153,7 +164,6 @@ const getPrice = function(ticker) {
       if (info.price.regularMarketPrice === undefined){
         reject("ticker not found");
       }
-      
       let marketType = info.price.marketState === "REGULAR" ?
                          "Open" :
                          info.price.marketState === "PRE" ? 
@@ -188,7 +198,8 @@ const getPrice = function(ticker) {
                 "price":price,
                 "salamiPrice":salamiPrice,
                 "marketType":marketType,
-                "percentChange":percentChange 
+                "percentChange":percentChange,
+                "currency":info.price.currency
                } );
     })
     .catch(err => {
@@ -200,13 +211,13 @@ const getPrice = function(ticker) {
 const getStockInfo = function(stock) {
 	return new Promise(function(resolve, reject) {
     let msg = ""
-    if (Math.round(stock.dataValues.quantity*stock.dataValues.average_cost) >= 1){
+    if (stock.dataValues.quantity > 0){
       getPrice(stock.dataValues.stock)
       .then( resp => {
         let percentGain = ((resp.salamiPrice - stock.dataValues.average_cost) / stock.dataValues.average_cost) * 100
         let salamiGain = (resp.salamiPrice - stock.dataValues.average_cost) * stock.dataValues.quantity
         msg += "Stock                       :   " + stock.dataValues.stock + "\n"
-        msg += "Quantity                 :   " + Math.round(stock.dataValues.quantity*10000)/10000 + "\n"
+        msg += "Quantity                 :   " + stock.dataValues.quantity.toPrecision(5)  + "\n"
         msg += "Value                      :   " + Math.round(stock.dataValues.quantity*resp.salamiPrice) + " salami\n"
         msg += "Average Cost        :   " + Math.round(stock.dataValues.average_cost*100)/100 + "\n"
         msg += "Percentage Gain   :   " + Math.round(percentGain * 100) / 100 + "%\n"
@@ -216,6 +227,7 @@ const getStockInfo = function(stock) {
       })
     }
     else{
+      stock.update({quantity:0})
       resolve(msg);
     }
 
