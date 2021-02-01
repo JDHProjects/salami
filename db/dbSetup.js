@@ -65,7 +65,7 @@ const lossWithTax = function(user, amount) {
 
 const sendFromBank = function(user, amount) {
 	return new Promise(function(resolve, reject) {
-		let absAmount = Math.abs(amount)
+		let absAmount = Math.abs(Math.round(amount))
 		bankAccounts.findByPk("0")
 		.then(bank => {
 			if (bank.dataValues.money > 0){
@@ -79,7 +79,7 @@ const sendFromBank = function(user, amount) {
 
 const transfer = function(sender, reciever, amount) {
 	return new Promise(function(resolve, reject) {
-		let absAmount = Math.abs(amount)
+		let absAmount = Math.abs(Math.round(amount))
 		reciever.increment('money', {by: absAmount})
 		sender.decrement('money', {by: absAmount})
 		resolve("money transferred")

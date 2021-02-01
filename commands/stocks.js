@@ -111,7 +111,7 @@ module.exports = {
                       
                       transfer(bank,seller,salamiAmount)
                       stock.decrement("quantity", { by:  sharesToSell })
-                      message.reply("\nYou have sold " + Math.round(sharesToSell*10000)/10000 + " shares \nAt "+resp.salamiPrice + " salami per share\nFor a total of: "+salamiAmount+" salami")
+                      message.reply("\nYou have sold " + Math.round(sharesToSell*10000)/10000 + " shares \nAt "+resp.salamiPrice + " salami per share\nFor a total of: "+Math.round(salamiAmount)+" salami")
                     })
                   }
                   else{
