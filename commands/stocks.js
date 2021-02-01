@@ -135,7 +135,7 @@ module.exports = {
           values.forEach(value => {
             msg += value
           })
-          message.reply(msg)
+          message.reply(msg, { split: true })
 
         })
       })
