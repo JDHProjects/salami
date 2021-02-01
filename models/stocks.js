@@ -6,17 +6,21 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING,
 			allowNull: false
 		},
-		command_name: {
+		stock: {
 			type: DataTypes.STRING,
 			allowNull: false
 		},
-		count: {
-			type: DataTypes.INTEGER,
+		quantity: {
+			type: DataTypes.DOUBLE,
+			defaultValue: 0
+		},
+		average_cost: {
+			type: DataTypes.DOUBLE,
 			defaultValue: 0
 		},
   }
 
-	return sequelize.define('command_stats',
+	return sequelize.define('stocks',
 		buildModel
 	, {
 		timestamps: false,

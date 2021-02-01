@@ -7,6 +7,7 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 	storage: 'database.sqlite',
 });
 
+const stocks = require('../models/stocks')(sequelize, Sequelize.DataTypes);
 const commandStats = require('../models/command_stats')(sequelize, Sequelize.DataTypes);
 const bankAccounts = require('../models/bank_accounts')(sequelize, Sequelize.DataTypes);
 const hookAKeys = require('../models/hook_a_keys')(sequelize, Sequelize.DataTypes);
@@ -91,9 +92,9 @@ bankAccounts.sum('money')
 .then(total => {
 	bankAccounts.findOrCreate({ where: { user_id: "0" } })
 	.then( bank => {
-		if (total < 5000000){
-			bank[0].increment( 'money', { by: 5000000 - total} )
+		if (total < 1000000000){
+			bank[0].increment( 'money', { by: 1000000000 - total} )
 		}
 	})
 })
-module.exports = { runEachCommand, commandStats, bankAccounts, hookAKeys, sequelize, lossWithTax, sendFromBank, transfer };
+module.exports = { runEachCommand, stocks, commandStats, bankAccounts, hookAKeys, sequelize, lossWithTax, sendFromBank, transfer };
