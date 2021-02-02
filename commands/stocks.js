@@ -101,13 +101,12 @@ module.exports = {
                       let sharesToSell = 0
                       if (amount == "half"){
                         sharesToSell = stock.dataValues.quantity / 2
-                        salamiAmount = stock.dataValues.quantity * resp.salamiPrice
                       } else if(amount == "all") {
                         sharesToSell = stock.dataValues.quantity
-                        salamiAmount = stock.dataValues.quantity * resp.salamiPrice
                       } else {
                         sharesToSell = salamiAmount / resp.salamiPrice
                       }
+                      salamiAmount = sharesToSell * resp.salamiPrice
                       
                       transfer(bank,seller,salamiAmount)
                       stock.decrement("quantity", { by:  sharesToSell })
