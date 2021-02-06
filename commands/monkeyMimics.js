@@ -14,7 +14,7 @@ module.exports = {
         } while (monkeyTwo === monkeyOne)
         do {
             monkeyThree = Math.floor((Math.random() * photoCount) + 1);
-        } while (monkeyThree === monkeyOne && monkeyThree === monkeyTwo)
+        } while (monkeyThree === monkeyOne || monkeyThree === monkeyTwo)
         message.reply('Lets play Monkey Mimics!');
         message.channel.send({
             files: [
