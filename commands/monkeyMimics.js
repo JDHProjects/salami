@@ -5,35 +5,33 @@ module.exports = {
     example: '',    
 	execute(message, args) {
         let photoCount = 257
-        let monkeyOne = 0
-        let monkeyTwo = 0
-        let monkeyThree = 0
-        monkeyOne = Math.floor((Math.random() * photoCount) + 1);
+        let monkeyNums = [0,0,0]
+        monkeyNums[0] = Math.floor((Math.random() * photoCount) + 1);
         do {
-            monkeyTwo = Math.floor((Math.random() * photoCount) + 1);
-        } while (monkeyTwo === monkeyOne)
+            monkeyNums[1] = Math.floor((Math.random() * photoCount) + 1);
+        } while (monkeyNums[1] === monkeyNums[0])
         do {
-            monkeyThree = Math.floor((Math.random() * photoCount) + 1);
-        } while (monkeyThree === monkeyOne || monkeyThree === monkeyTwo)
+            monkeyNums[2] = Math.floor((Math.random() * photoCount) + 1);
+        } while (monkeyNums[2] === monkeyNums[0] || monkeyNums[2] === monkeyNums[1])
         message.reply('Lets play Monkey Mimics!');
         message.channel.send({
             files: [
-                "./assets/monkey-mimics/"+monkeyOne+".jpeg"
+                "./assets/monkey-mimics/"+monkeyNums[0]+".jpeg"
             ]
         });
         message.channel.send({
             files: [
-                "./assets/monkey-mimics/"+monkeyTwo+".jpeg"
+                "./assets/monkey-mimics/"+monkeyNums[1]+".jpeg"
             ]
         });
         message.channel.send({
             files: [
-                "./assets/monkey-mimics/"+monkeyThree+".jpeg"
+                "./assets/monkey-mimics/"+monkeyNums[2]+".jpeg"
             ]
         });
         message.author.send('Heres your monkey to imitate!', {
             files: [
-                "./assets/monkey-mimics/"+monkeyOne+".jpeg"
+                "./assets/monkey-mimics/"+monkeyNums[Math.floor(Math.random() * monkeyNums.length)]+".jpeg"
             ]
         });
         
