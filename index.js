@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 const { prefix, token, adminIDs } = require('./config.json');
-const { commandStats, runEachCommand } = require('./db/dbSetup.js')
+const { runEachCommand } = require('./db/dbSetup.js')
+const stringSimilarity = require("string-similarity");
 
 const fs = require('fs');
 
@@ -8,10 +9,12 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const cooldowns = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const commandNames = []
 
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command);
+    commandNames.push(command.name)
 }
 
 client.on('ready', () => {
@@ -26,7 +29,13 @@ client.on('message', message => {
 	const commandName = args.shift();
 
 	if (!client.commands.has(commandName)){
-        message.channel.send('Sorry, I don\'t know that command yet!');
+        let similar = stringSimilarity.findBestMatch(commandName, commandNames).bestMatch;
+        if (similar.rating < 0.3){
+            message.channel.send(`Sorry, I don\'t know that command!`);
+        }
+        else{
+            message.channel.send(`Sorry, I don\'t know that command!\nDid you mean:\n       \`${prefix}${similar.target}\``);
+        }
         return;
     }
 
