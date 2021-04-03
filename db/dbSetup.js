@@ -27,7 +27,7 @@ const runEachCommand = function(commandName, userID) {
 			.then(bankUser => {
 				sendFromBank(bankUser[0], 1)
 				.then(resp => {
-					resolve("User added")
+					resolve("command registered")
 				})
 			})
 		});
@@ -73,6 +73,9 @@ const sendFromBank = function(user, amount) {
 				bank.decrement('money', {by: absAmount})
 				resolve("money sent")
 			}
+			else{
+				resolve("no money in bank")
+			}
 		})
 	})
 };
@@ -89,15 +92,24 @@ const transfer = function(sender, reciever, amount) {
 	})
 };
 
-sequelize.sync()
-bankAccounts.findOrCreate({ where: { user_id: "637400095821660180" } })
-bankAccounts.sum('money')
-.then(total => {
-	bankAccounts.findOrCreate({ where: { user_id: "0" } })
-	.then( bank => {
-		if (total != 1000000000){
-			bank[0].increment( 'money', { by: 1000000000 - total} )
-		}
+const refreshBank = function() {
+	return new Promise(function(resolve, reject) {
+		bankAccounts.findOrCreate({ where: { user_id: "637400095821660180" } })
+		bankAccounts.sum('money')
+		.then(total => {
+			bankAccounts.findOrCreate({ where: { user_id: "0" } })
+			.then( bank => {
+				if (total != 1000000000){
+					bank[0].increment( 'money', { by: 1000000000 - total} )
+					resolve("bank refreshed")
+				}
+			})
+		})
 	})
-})
-module.exports = { runEachCommand, stocks, commandStats, bankAccounts, hookAKeys, sequelize, lossWithTax, sendFromBank, transfer };
+};
+
+
+sequelize.sync();
+refreshBank();
+
+module.exports = { runEachCommand, stocks, commandStats, bankAccounts, hookAKeys, sequelize, lossWithTax, sendFromBank, transfer, refreshBank };
