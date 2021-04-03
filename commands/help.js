@@ -1,4 +1,4 @@
-const { prefix } = require('../config.json');
+const { prefix, adminIDs } = require('../config.json');
 
 module.exports = {
 	name: 'help',
@@ -26,6 +26,10 @@ module.exports = {
         else{
             data.push('Here\'s a list of all my commands:');
             data.push(commands.filter(command =>  command.admin == null).map(command => command.name).join(', '));
+            data.push('\nYou\'re an admin, so here\'s a list of the admin commands you can use:');
+            if(adminIDs.includes(parseInt(message.author.id))){
+                data.push(commands.filter(command =>  command.admin != null).map(command => command.name).join(', '));
+            }
             data.push(`\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`);
         }
         message.channel.send(data, { split: true });
