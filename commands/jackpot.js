@@ -16,7 +16,7 @@ module.exports = {
       if(user.dataValues.money >= 2){
         bankAccounts.findByPk( "637400095821660180" )
         .then(salami => {
-          result = 1000 //Math.floor(Math.random() * 5000)
+          result = Math.floor(Math.random() * 5000)
           if(result == 0){
             let amount = salami.dataValues.money;
             message.channel.send(`<@${message.author.id}> **YOU WIN!!!!**\nTransferring ${amount} salami to your account!`)
@@ -25,13 +25,13 @@ module.exports = {
           else if(spotPrizes.includes(result)){
             let amount = (5000-result)*10 + Math.floor(Math.random() * 50);
             amount = salami.dataValues.money < amount ? salami.dataValues.money : amount;
-            message.channel.send(`<@${message.author.id}> **SPOT PRIZE!!!!**\nTransferring ${amount} salami to your account!`)
+            message.channel.send(`<@${message.author.id}> **SPOT PRIZE!!!!**\nYou rolled ${result}\nTransferring ${amount} salami to your account!`)
             transfer(salami,user,amount)
 
           }
           else {
             transfer(user,salami,2)
-            message.channel.send(`<@${message.author.id}>, you didn't win the jackpot, better luck next time. You rolled ${result}`)
+            message.channel.send(`<@${message.author.id}>, you didn't win the jackpot, better luck next time.\nYou rolled ${result}`)
           }
         })
       }
