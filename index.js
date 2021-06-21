@@ -62,7 +62,7 @@ client.on('message', message => {
 
     const command = client.commands.get(commandName);
 
-    if (command.admin === true && !adminIDs.includes(parseInt(message.author.id))){
+    if (command.admin === true && !adminIDs.includes(message.author.id)){
         message.channel.send("You're not an admin!");
         return;
     }
