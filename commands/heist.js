@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'heist',
-  description: 'try and perform a bank heisst, the setup cost is 1k though',
+  description: 'try and perform a bank heist, the setup cost is 1k though',
   usage: `just send heist, theres really not much to this`,
   cooldown: 30,
   example: '',
