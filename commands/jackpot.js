@@ -1,4 +1,4 @@
-const { bulkReply } = require('../functions/bulkReply.js')
+const { bulkReply } = require('../functions/bulkMessage.js')
 
 module.exports = {
 	name: 'jackpot',
@@ -21,24 +21,24 @@ module.exports = {
           result = Math.floor(Math.random() * 5000)
           if(result == 0){
             let amount = salami.dataValues.money;
-            bulkReply(message, `<@${message.author.id}> **YOU WIN!!!!**\nTransferring ${amount} salami to your account!`)
+            bulkReply(message, `**YOU WIN!!!!**\nTransferring ${amount} salami to your account!`)
             transfer(salami,user,amount)
           }
           else if(spotPrizes.includes(result)){
             let amount = (5000-result)*10 + Math.floor(Math.random() * 50);
             amount = salami.dataValues.money < amount ? salami.dataValues.money : amount;
-            bulkReply(message, `<@${message.author.id}> **SPOT PRIZE!!!!**\nYou rolled ${result}\nTransferring ${amount} salami to your account!`)
+            bulkReply(message, `**SPOT PRIZE!!!!**\nYou rolled ${result}\nTransferring ${amount} salami to your account!`)
             transfer(salami,user,amount)
 
           }
           else {
             transfer(user,salami,2)
-            bulkReply(message, `<@${message.author.id}>, you didn't win the jackpot, better luck next time.\nYou rolled ${result}`)
+            bulkReply(message, `you didn't win the jackpot, better luck next time.\nYou rolled ${result}`)
           }
         })
       }
       else{
-        bulkReply(message, `Sorry <@${message.author.id}>, you need at least 2 salami to play`)
+        bulkReply(message, `you need at least 2 salami to play`)
       }
     })
 		
