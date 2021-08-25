@@ -70,14 +70,12 @@ module.exports = {
                 else{
                     msg+="**Choose your answer from the reactions below!**"
                     message.channel.send(msg)
-                        .then(message => {
-                            reactResults(message, timeLimit, counter)
-                        })
+                    .then(message => {
+                        reactResults(message, timeLimit, counter)
+                    })
                 }
-                
             });
         }
-        
 	},
 };
 
@@ -90,7 +88,6 @@ function reactResults(message, timeLimit, counter){
     };
     
     const collector = message.createReactionCollector(filter, { time: timeLimit });
-    
     
     collector.on('end', collected => {
         let maxKey = 0;
