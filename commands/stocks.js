@@ -136,17 +136,23 @@ module.exports = {
       stocks.findAll({where: {user_id: message.author
         .id}})
       .then(stocks => {
-        let msg = " you own:\n"
+        let msg = ""
         stockPromises = []
         stocks.forEach(stock => {
           stockPromises.push(getStockInfo(stock))
         });
-        Promise.all(stockPromises).then(values =>{
-          values.forEach(value => {
-            msg += value
-          })
-          message.channel.send(`<@${message.author.id}>,\n`+msg, { split: true })
-
+        Promise.all(stockPromises).then(values => {
+          let filterValues = values.filter(value => value != '');
+          if (filterValues.length > 0) {
+            msg += " you own:\n"
+            filterValues.forEach(value => {
+              msg += value
+            })
+          }
+          else {
+            msg += " you don't own any stocks"
+          }
+          message.channel.send(`<@${message.author.id}>,`+msg, { split: true })
         })
       })
     }
