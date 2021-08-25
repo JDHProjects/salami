@@ -71,8 +71,7 @@ module.exports = {
                     msg+="**Choose your answer from the reactions below!**"
                     message.channel.send(msg)
                         .then(message => {
-                            reactResults(message, timeLimit)
-                            
+                            reactResults(message, timeLimit, counter)
                         })
                 }
                 
@@ -82,7 +81,7 @@ module.exports = {
 	},
 };
 
-function reactResults(message, timeLimit){
+function reactResults(message, timeLimit, counter){
     for (i = 0; i < counter; i++){
         message.react(questions[i])
     }
