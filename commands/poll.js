@@ -95,12 +95,24 @@ function reactResults(message, timeLimit, counter){
     collector.on('end', collected => {
         let maxKey = 0;
         let maxValue = 0;
+        let draw = false;
         for (let [key, value] of collected){
             if (value.count > maxValue){
                 maxValue = value.count;
                 maxKey = key;
             }
+            else if (value.count == maxValue) {
+                draw = true;
+            }
         }
-        message.channel.send("The winner is...\n"+maxKey+" with "+(maxValue-1)+" user votes!")
+        if (maxValue == 1) {
+            message.channel.send("Noone voted :(")
+        }
+        else if(draw){
+            message.channel.send("It's a draw!")
+        }
+        else {
+            message.channel.send("The winner is...\n"+maxKey+" with "+(maxValue-1)+" user votes!")
+        }
     });
 }
