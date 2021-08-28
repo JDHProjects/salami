@@ -1,5 +1,4 @@
 const yahooFinance = require('yahoo-finance');
-const { activeStocks } = require('../config.json');
 
 module.exports = {
     name: 'stocks',
