@@ -104,5 +104,3 @@ client.on('message', message => {
 });
 
 client.login()
-
-module.exports = client;
