@@ -7,7 +7,7 @@
     "scripts": {
         "start": "nodemon index.js",
         "development": "PREFIX=. DOWN_DETECTION=FALSE nodemon index.js",
-        "production": "PREFIX=> DOWN_DETECTION=TRUE nodemon index.js"
+        "production": "PREFIX=\\> DOWN_DETECTION=TRUE nodemon index.js"
     },
     "dependencies": {
         "cron": "^1.8.2",
