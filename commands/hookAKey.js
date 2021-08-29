@@ -1,4 +1,4 @@
-const { adminIDs } = require('../config.json');
+require('dotenv').config();
 
 module.exports = {
 	name: 'hook-a-key',
@@ -10,7 +10,7 @@ module.exports = {
     let fs = require('fs');
     const { bankAccounts, hookAKeys, lossWithTax, sequelize } = require('../db/dbSetup.js')
     if(message.attachments.size == 1){
-      if(adminIDs.includes(parseInt(message.author.id))){
+      if(process.env.OWNER == message.author.id){
         if(message.attachments.first().name.slice(-3) == "txt"){
           fetchUrl(message.attachments.first().url, function(error, meta, body){
             let re = /[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]-[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]-[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]/g;

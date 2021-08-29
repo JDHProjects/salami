@@ -1,4 +1,5 @@
-const { prefix, adminIDs } = require('../config.json');
+require('dotenv').config();
+const prefix = process.env.PREFIX;
 
 module.exports = {
 	name: 'help',
@@ -16,6 +17,9 @@ module.exports = {
             if (!command) {
                 data.push('that\'s not a valid command!');
             }
+            else if(command.admin != null && process.env.OWNER != message.author.id){
+                data.push(`You're not an admin!`);
+            }
             else{
                 data.push(`**Name:** ${command.name}`);
                 if (command.description) data.push(`**Description:** ${command.description}`);
@@ -26,8 +30,8 @@ module.exports = {
         else{
             data.push('Here\'s a list of all my commands:');
             data.push(commands.filter(command =>  command.admin == null).map(command => command.name).join(', '));
-            data.push('\nYou\'re an admin, so here\'s a list of the admin commands you can use:');
-            if(adminIDs.includes(parseInt(message.author.id))){
+            if(process.env.OWNER == message.author.id){
+                data.push('\nYou\'re an admin, so here\'s a list of the admin commands you can use:');
                 data.push(commands.filter(command =>  command.admin != null).map(command => command.name).join(', '));
             }
             data.push(`\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`);

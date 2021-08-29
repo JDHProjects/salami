@@ -1,9 +1,10 @@
 const Discord = require('discord.js')
-const { prefix, token, adminIDs } = require('./config.json');
 const { runEachCommand, upOrDown } = require('./db/dbSetup.js')
 const stringSimilarity = require("string-similarity");
 
 const fs = require('fs');
+require('dotenv').config();
+const prefix = process.env.PREFIX;
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -19,9 +20,8 @@ const job = new CronJob('0 * * * * *', function() {
     .then(function (res) {
         upOrDown(res.alive ? "true" : "false")
         .then(resp => {
-            if (resp != 0)
-            for (adminID of adminIDs) {
-                client.users.fetch(adminID.toString(), false).then((admin) => {
+            if (resp != 0) {
+                client.users.fetch(process.env.OWNER, false).then((admin) => {
                     admin.send(`Salami was down for: ${Math.round(resp/5)*5} seconds`);
                 });
             }
@@ -38,8 +38,10 @@ for (const file of commandFiles) {
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 
-    job.start();
-    console.log("Down detection started")
+    if(process.env.DOWN_DETECTION == "TRUE"){
+        job.start();
+        console.log("Down detection started")
+    }
 })
 
 client.on('message', message => {
@@ -62,7 +64,7 @@ client.on('message', message => {
 
     const command = client.commands.get(commandName);
 
-    if (command.admin === true && !adminIDs.includes(message.author.id)){
+    if (command.admin === true && process.env.OWNER != message.author.id){
         message.channel.send("You're not an admin!");
         return;
     }
@@ -101,4 +103,4 @@ client.on('message', message => {
     })
 });
 
-client.login(token)
+client.login()
