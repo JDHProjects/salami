@@ -47,8 +47,8 @@ const lossWithTax = function(user, amount) {
 				postTax = absAmount - tax
 
 				let excess = 0
-				if(salami.dataValues.money + postTax > 500000){
-					excess = salami.dataValues.money - 500000 
+				if(salami.dataValues.money + postTax > 10000000){
+					excess = salami.dataValues.money - 10000000 
 					salami.decrement('money', {by: excess})
 					excess += postTax
 				}
