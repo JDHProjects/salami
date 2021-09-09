@@ -98,14 +98,16 @@ const transfer = function(sender, reciever, amount) {
 const refreshBank = function() {
 	return new Promise(function(resolve, reject) {
 		bankAccounts.findOrCreate({ where: { user_id: "637400095821660180" } })
-		bankAccounts.sum('money')
-		.then(total => {
-			bankAccounts.findOrCreate({ where: { user_id: "0" } })
-			.then( bank => {
-				if (total != 1000000000){
-					bank[0].increment( 'money', { by: 1000000000 - total} )
-					resolve("bank refreshed")
-				}
+		.then(_ => {
+			bankAccounts.sum('money')
+			.then(total => {
+				bankAccounts.findOrCreate({ where: { user_id: "0" } })
+				.then( bank => {
+					if (total != 1000000000){
+						bank[0].increment( 'money', { by: 1000000000 - total} )
+						resolve("bank refreshed")
+					}
+				})
 			})
 		})
 	})
@@ -127,11 +129,12 @@ const upOrDown = function(up) {
 	})
 };
 
-
-
-sequelize.sync();
-
-botValues.findOrCreate({ where: { variable: "botConnected" } })
-refreshBank();
+sequelize.sync()
+.then(_ => {
+	botValues.findOrCreate({ where: { variable: "botConnected" } })
+	.then(_ => {
+		refreshBank();
+	})
+});
 
 module.exports = { fiveEMonsters, runEachCommand, stocks, commandStats, bankAccounts, hookAKeys, upOrDown, sequelize, lossWithTax, sendFromBank, transfer, refreshBank };

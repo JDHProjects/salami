@@ -1,10 +1,11 @@
-const fs = require('fs');
-
 module.exports = (sequelize, DataTypes) => {
   let buildModel = {
     name: {
 			type: DataTypes.STRING,
 			allowNull: false
+		},
+		description: {
+			type: DataTypes.STRING,
 		},
 		type: {
 			type: DataTypes.STRING,
@@ -110,7 +111,7 @@ module.exports = (sequelize, DataTypes) => {
 
   }
 
-	return sequelize.define('stocks',
+	return sequelize.define('5e_monsters',
 		buildModel
 	, {
 		timestamps: false,

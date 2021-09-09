@@ -1,5 +1,3 @@
-const fs = require('fs');
-
 module.exports = (sequelize, DataTypes) => {
   let buildModel = {
     user_id: {
