@@ -13,6 +13,7 @@ const commandStats = require('../models/command_stats')(sequelize, Sequelize.Dat
 const bankAccounts = require('../models/bank_accounts')(sequelize, Sequelize.DataTypes);
 const hookAKeys = require('../models/hook_a_keys')(sequelize, Sequelize.DataTypes);
 const botValues = require('../models/bot_values')(sequelize, Sequelize.DataTypes);
+const fiveEMonsters = require('../models/5e_monsters')(sequelize, Sequelize.DataTypes);
 
 const runEachCommand = function(commandName, userID) {
 	return new Promise(function(resolve, reject) {
@@ -133,4 +134,4 @@ sequelize.sync();
 botValues.findOrCreate({ where: { variable: "botConnected" } })
 refreshBank();
 
-module.exports = { runEachCommand, stocks, commandStats, bankAccounts, hookAKeys, upOrDown, sequelize, lossWithTax, sendFromBank, transfer, refreshBank };
+module.exports = { fiveEMonsters, runEachCommand, stocks, commandStats, bankAccounts, hookAKeys, upOrDown, sequelize, lossWithTax, sendFromBank, transfer, refreshBank };
