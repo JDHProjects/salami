@@ -1,5 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
   let buildModel = {
+		id: {
+			type: DataTypes.INTEGER,
+			primaryKey: true,
+		},
     name: {
 			type: DataTypes.STRING,
 			allowNull: false
@@ -10,23 +14,23 @@ module.exports = (sequelize, DataTypes) => {
 		type: {
 			type: DataTypes.STRING,
 		},
+		size : {
+			type: DataTypes.STRING,
+		},
 		alignment: {
 			type: DataTypes.STRING,
 		},
 		ac: {
 			type: DataTypes.INTEGER,
-			allowNull: false
 		},
 		ac_info: {
 			type: DataTypes.STRING,
 		},
 		average_hp: {
 			type: DataTypes.INTEGER,
-			allowNull: false
 		},
 		hp_dice: {
 			type: DataTypes.STRING,
-			allowNull: false
 		},
 		speed: {
 			type: DataTypes.STRING,
@@ -76,13 +80,13 @@ module.exports = (sequelize, DataTypes) => {
 		damage_immunities: {
 			type: DataTypes.STRING,
 		},
-		condition_immunities: {
-			type: DataTypes.STRING,
-		},
 		damage_resistances: {
 			type: DataTypes.STRING,
 		},
-		condition_resistances: {
+		damage_vulnerabilities: {
+			type: DataTypes.STRING,
+		},
+		condition_immunities: {
 			type: DataTypes.STRING,
 		},
 		senses: {
@@ -93,13 +97,14 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		challenge_rating: {
 			type: DataTypes.DOUBLE,
-			allowNull: false
 		},
 		challenge_xp: {
-			type: DataTypes.INTEGER,
-			allowNull: false
+			type: DataTypes.STRING,
 		},
 		traits: {
+			type: DataTypes.STRING,
+		},
+		reactions: {
 			type: DataTypes.STRING,
 		},
 		actions: {
@@ -108,7 +113,6 @@ module.exports = (sequelize, DataTypes) => {
 		legendary_actions: {
 			type: DataTypes.STRING,
 		},
-
   }
 
 	return sequelize.define('5e_monsters',
