@@ -10,6 +10,7 @@ module.exports = {
 	execute(message, args) {
     const { fiveEMonsters } = require('../db/dbSetup.js')
 		let msg = ""
+		message.channel.startTyping();
 		fiveEMonsters.findOne({order: sequelize.random() })
 		.then((monster) => {
 			searchForImage(`dnd 5e ${monster.dataValues.name}`, 0)
@@ -63,6 +64,7 @@ module.exports = {
 				}
 				
 				message.channel.send({ embed: exampleEmbed });
+				message.channel.stopTyping();
 			})
 		}); 
 	},
