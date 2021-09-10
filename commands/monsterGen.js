@@ -1,6 +1,7 @@
 const { sequelize } = require('../db/dbSetup.js')
 const { MessageEmbed } = require('discord.js');
 const { searchForImage } = require('../functions/searchForImage.js')
+const { parseAndRollDice } = require('../functions/parseAndRollDice')
 
 module.exports = {
 	name: 'monstergen',
@@ -15,20 +16,20 @@ module.exports = {
 		.then((monster) => {
 			searchForImage(`dnd 5e ${monster.dataValues.name}`, 0)
 			.then(url => {
-				const exampleEmbed = new MessageEmbed()
+				const monsterEmbed = new MessageEmbed()
 					.setColor('#0099ff')
 					.setTitle(monster.dataValues.name)
 					.setURL(`https://roll20.net/compendium/dnd5e/Monsters:${monster.dataValues.name}`.replaceAll(" ", "%20"))
 					.setDescription(`*${monster.dataValues.size} ${monster.dataValues.type}, ${monster.dataValues.alignment}*`)
 					.setImage(url)
 					if (monster.dataValues.description != null){
-						exampleEmbed.addField('Description', `${monster.dataValues.description}`, false)
+						monsterEmbed.addField('Description', `${monster.dataValues.description}`, false)
 					}
-					exampleEmbed.addField('Stats', `**Armor Class**: ${monster.dataValues.ac} ${monster.dataValues.ac_info != null ? " ("+monster.dataValues.ac_info+")" : ""}
-																					**Hit Points**: ${monster.dataValues.average_hp} (${monster.dataValues.hp_dice})
+					monsterEmbed.addField('Stats', `**Armor Class**: ${monster.dataValues.ac} ${monster.dataValues.ac_info != null ? " ("+monster.dataValues.ac_info+")" : ""}
+																					**Hit Points**: ${parseAndRollDice(monster.dataValues.hp_dice)[1]} (Rolled from: ${monster.dataValues.hp_dice})
 																					**Speed**: ${monster.dataValues.speed}`, false)
 					
-					exampleEmbed.addFields(
+					monsterEmbed.addFields(
 						{ name: 'STR', value: `${monster.dataValues.str} (${monster.dataValues.str_mod})`, inline: true },
 						{ name: 'DEX', value: `${monster.dataValues.dex} (${monster.dataValues.dex_mod})`, inline: true },
 						{ name: 'CON', value: `${monster.dataValues.con} (${monster.dataValues.con_mod})`, inline: true },
@@ -48,22 +49,22 @@ module.exports = {
 				misc_info += `${monster.dataValues.languages != null ? `**Languages**: ${monster.dataValues.languages}\n` : ""}`
 				misc_info += `${`**Challenge Rating**: ${monster.dataValues.challenge_rating} (${monster.dataValues.challenge_xp} XP)\n`}`
 
-				exampleEmbed.addField('Stats', misc_info)
+				monsterEmbed.addField('Stats', misc_info)
 
 				if (monster.dataValues.traits != null){
-					exampleEmbed.addField('Traits', `${monster.dataValues.traits}`, false)
+					monsterEmbed.addField('Traits', `${monster.dataValues.traits}`, false)
 				}
 				if (monster.dataValues.actions != null){
-					exampleEmbed.addField('Actions', `${monster.dataValues.actions}`, false)
+					monsterEmbed.addField('Actions', `${monster.dataValues.actions}`, false)
 				}
 				if (monster.dataValues.reactions != null){
-					exampleEmbed.addField('Reactions', `${monster.dataValues.reactions}`, false)
+					monsterEmbed.addField('Reactions', `${monster.dataValues.reactions}`, false)
 				}
 				if (monster.dataValues.legendary_actions != null){
-					exampleEmbed.addField('Legendary Actions', `${monster.dataValues.legendary_actions}`, false)
+					monsterEmbed.addField('Legendary Actions', `${monster.dataValues.legendary_actions}`, false)
 				}
 				
-				message.channel.send({ embed: exampleEmbed });
+				message.channel.send({ embed: monsterEmbed });
 				message.channel.stopTyping();
 			})
 		}); 
