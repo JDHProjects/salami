@@ -67,7 +67,7 @@ const addMonsters = function() {
 				let monster = {
 					id: monsterJson.id,
 					name: monsterJson.name,
-					description: description,
+					description: description == undefined ? undefined : description.trim(),
 					type: monsterJson.data.Type,
 					size: monsterJson.data.Size,
 					alignment: monsterJson.data.Alignment,
@@ -76,7 +76,7 @@ const addMonsters = function() {
 					average_hp: hpAndDice[0],
 					//needed as roll20 have ONE monster that is doesn't have hp dice (Diseased Giant Rat) 
 					hp_dice: hpAndDice[1] == undefined ? "2d6" : hpAndDice[1].slice(0,-1),
-					speed: monsterJson.data.Speed,
+					speed: monsterJson.data.Speed.trim(),
 					str: monsterJson.data["STR"],
 					str_mod: monsterJson.data["data-STR-mod"],
 					dex: monsterJson.data["DEX"],
@@ -89,20 +89,20 @@ const addMonsters = function() {
 					wis_mod: monsterJson.data["data-WIS-mod"],
 					cha: monsterJson.data["CHA"],
 					cha_mod: monsterJson.data["data-CHA-mod"],
-					saving_throws: monsterJson.data["Saving Throws"],
-					skills: monsterJson.data.Skills,
-					damage_immunities: monsterJson.data.Immunities,
-					damage_resistances: monsterJson.data.Resistances,
-					damage_vulnerabilities: monsterJson.data.Vulnerabilities,
-					condition_immunities: monsterJson.data["Condition Immunities"],
-					senses: (monsterJson.data.Senses == undefined ? "" : monsterJson.data.Senses + ", ") +`Passive Perception ${monsterJson.data["Passive Perception"]}`,
-					languages: monsterJson.data.Languages,
+					saving_throws: monsterJson.data["Saving Throws"] == undefined ? undefined : monsterJson.data["Saving Throws"].trim(),
+					skills: monsterJson.data.Skills == undefined ? undefined : monsterJson.data.Skills.trim(),
+					damage_immunities: monsterJson.data.Immunities == undefined ? undefined : monsterJson.data.Immunities.trim(),
+					damage_resistances: monsterJson.data.Resistances == undefined ? undefined : monsterJson.data.Resistances.trim(),
+					damage_vulnerabilities: monsterJson.data.Vulnerabilities == undefined ? undefined : monsterJson.data.Vulnerabilities.trim(),
+					condition_immunities: monsterJson.data["Condition Immunities"] == undefined ? undefined : monsterJson.data["Condition Immunities"].trim(),
+					senses: (monsterJson.data.Senses == undefined ? "" : monsterJson.data.Senses.trim() + ", ") +`Passive Perception ${monsterJson.data["Passive Perception"]}`,
+					languages: monsterJson.data.Languages == undefined ? undefined : monsterJson.data.Languages.trim(),
 					challenge_rating: fractionToDecimal(monsterJson.data["Challenge Rating"]),
 					challenge_xp: monsterJson.data["data-XP"],
-					traits: traits,
-					actions: actions,
-					legendary_actions: legendaryActions,
-					reactions: reactions
+					traits: traits == undefined ? undefined : traits.trim(),
+					actions: actions == undefined ? undefined : actions.trim(),
+					legendary_actions: legendaryActions == undefined ? undefined : legendaryActions.trim(),
+					reactions: reactions == undefined ? undefined : reactions.trim()
 				}
 
 				fiveEMonsters.upsert(monster)
