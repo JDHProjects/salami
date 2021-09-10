@@ -1,0 +1,134 @@
+var request = require("request")
+const names = require('../assets/monster-names/names.json');
+
+const addMonsters = function() {
+	const { fiveEMonsters } = require('../db/dbSetup.js')
+	let count = 0
+	for(i in names){
+		request({url:`https://roll20.net/compendium/dnd5e/Monsters:${names[i]}.json`}, function (error, response, body) {
+			let monsterJson = JSON.parse(body)
+
+			if(monsterJson.data.Category == "Monsters")
+			{
+				let description = undefined
+				let traits = undefined
+				let actions = undefined
+				let legendaryActions = undefined
+				let reactions = undefined
+
+				//needed as roll20 have ONE monster that is formatted with <h3> instead of <h2> (Medusa)
+				if (monsterJson.htmlcontent.includes("<h3>")){
+					cleanContent = monsterJson.htmlcontent.replaceAll("\n", "").replaceAll("\t", "").replaceAll("<b>", "**").replaceAll(": </b>", "**: ").replaceAll("<p>", "").replaceAll("</p>", "\n").replaceAll("\n\n", "\n").replaceAll("  ", " ")
+					contentSplit = cleanContent.split("<h3");
+
+					for (j in contentSplit){
+						if (contentSplit[j].includes(">Traits</h3>")){
+							traits = contentSplit[j].split("</h3>")[1]
+						}
+						else if (contentSplit[j].includes(">Actions</h3>")){
+							actions = contentSplit[j].split("</h3>")[1]
+						}
+						else if (contentSplit[j].includes(">Legendary Actions</h3>")){
+							legendaryActions = contentSplit[j].split("</h3>")[1]
+						}
+						else if (contentSplit[j].includes(">Reactions</h3>")){
+							reactions = contentSplit[j].split("</h3>")[1]
+						}
+						else if(contentSplit[j].length > 0){
+							description = contentSplit[j]
+						}
+					}
+				}
+				else{
+					cleanContent = monsterJson.htmlcontent.replaceAll("\n", "").replaceAll("\t", "").replaceAll("<strong>", "**").replaceAll("</strong>", "**").replaceAll("<br>", "\n").replaceAll("\n\n", "\n").replaceAll("  ", " ")
+					contentSplit = cleanContent.split("<h2");
+
+					for (j in contentSplit){
+						if (contentSplit[j].includes(">Traits</h2>")){
+							traits = contentSplit[j].split("</h2>")[1]
+						}
+						else if (contentSplit[j].includes(">Actions</h2>")){
+							actions = contentSplit[j].split("</h2>")[1]
+						}
+						else if (contentSplit[j].includes(">Legendary Actions</h2>")){
+							legendaryActions = contentSplit[j].split("</h2>")[1]
+						}
+						else if (contentSplit[j].includes(">Reactions</h2>")){
+							reactions = contentSplit[j].split("</h2>")[1]
+						}
+						else if(contentSplit[j].length > 0){
+							description = contentSplit[j]
+						}
+					}
+				}
+				acAndInfo = monsterJson.data.AC.split(" (", 2)
+				hpAndDice = monsterJson.data.HP.split(" (", 2)
+
+				let monster = {
+					id: monsterJson.id,
+					name: monsterJson.name,
+					description: description,
+					type: monsterJson.data.Type,
+					size: monsterJson.data.Size,
+					alignment: monsterJson.data.Alignment,
+					ac: acAndInfo[0],
+					ac_info: acAndInfo[1] == undefined ? undefined : acAndInfo[1].slice(0,-1),
+					average_hp: hpAndDice[0],
+					//needed as roll20 have ONE monster that is doesn't have hp dice (Diseased Giant Rat) 
+					hp_dice: hpAndDice[1] == undefined ? "2d6" : hpAndDice[1].slice(0,-1),
+					speed: monsterJson.data.Speed,
+					str: monsterJson.data["STR"],
+					str_mod: monsterJson.data["data-STR-mod"],
+					dex: monsterJson.data["DEX"],
+					dex_mod: monsterJson.data["data-DEX-mod"],
+					con: monsterJson.data["CON"],
+					con_mod: monsterJson.data["data-CON-mod"],
+					int: monsterJson.data["INT"],
+					int_mod: monsterJson.data["data-INT-mod"],
+					wis: monsterJson.data["WIS"],
+					wis_mod: monsterJson.data["data-WIS-mod"],
+					cha: monsterJson.data["CHA"],
+					cha_mod: monsterJson.data["data-CHA-mod"],
+					saving_throws: monsterJson.data["Saving Throws"],
+					skills: monsterJson.data.Skills,
+					damage_immunities: monsterJson.data.Immunities,
+					damage_resistances: monsterJson.data.Resistances,
+					damage_vulnerabilities: monsterJson.data.Vulnerabilities,
+					condition_immunities: monsterJson.data["Condition Immunities"],
+					senses: (monsterJson.data.Senses == undefined ? "" : monsterJson.data.Senses + ", ") +`Passive Perception ${monsterJson.data["Passive Perception"]}`,
+					languages: monsterJson.data.Languages,
+					challenge_rating: fractionToDecimal(monsterJson.data["Challenge Rating"]),
+					challenge_xp: monsterJson.data["data-XP"],
+					traits: traits,
+					actions: actions,
+					legendary_actions: legendaryActions,
+					reactions: reactions
+				}
+
+				fiveEMonsters.upsert(monster)
+			}
+		});
+	}
+	
+};
+
+function fractionToDecimal(stringNum){
+	let num = 0
+	if(stringNum.includes("/")){
+		splitString = stringNum.split("/",2)
+		let numerator = parseInt(splitString[0])
+		let denominator = parseInt(splitString[1])
+		if(isNaN(numerator) || isNaN(denominator) || denominator == 0){
+			return -1
+		}
+		return (Math.round((numerator/denominator) * 100) / 100)
+	}
+ 	num = parseInt(stringNum)
+	if(isNaN(num)){
+		return -1
+	}
+	return num
+}
+
+
+module.exports = { addMonsters };
