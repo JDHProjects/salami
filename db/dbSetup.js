@@ -1,3 +1,5 @@
+const { addMonsters } = require('../functions/add5EMonstersToDB.js')
+
 const { time } = require('cron');
 const Sequelize = require('sequelize');
 
@@ -133,7 +135,15 @@ sequelize.sync()
 .then(_ => {
 	botValues.findOrCreate({ where: { variable: "botConnected" } })
 	.then(_ => {
-		refreshBank();
+		refreshBank()
+		.then(_ => {
+			fiveEMonsters.count().then(c => {
+				if(c == 0){
+					addMonsters()
+					console.log("monsters added to DB")
+				}
+			})
+		})
 	})
 });
 
