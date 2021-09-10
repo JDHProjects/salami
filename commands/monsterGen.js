@@ -14,7 +14,7 @@ module.exports = {
 		message.channel.startTyping();
 		fiveEMonsters.findOne({order: sequelize.random() })
 		.then((monster) => {
-			searchForImage(`dnd 5e ${monster.dataValues.name}`, 0)
+			searchForImage(`dnd 5e ${monster.dataValues.name} image`, 0)
 			.then(url => {
 				const monsterEmbed = new MessageEmbed()
 					.setColor('#0099ff')
@@ -23,16 +23,16 @@ module.exports = {
 					.setDescription(`*${monster.dataValues.size} ${monster.dataValues.type}, ${monster.dataValues.alignment}*`)
 					.setImage(url)
 					if (monster.dataValues.description != null){
-						monsterEmbed.addField('Description', `${monster.dataValues.description}`, false)
+						monsterEmbed.addField('\u200b\nDescription', `${monster.dataValues.description}`, false)
 					}
-					monsterEmbed.addField('Stats', `**Armor Class**: ${monster.dataValues.ac} ${monster.dataValues.ac_info != null ? " ("+monster.dataValues.ac_info+")" : ""}
-																					**Hit Points**: ${parseAndRollDice(monster.dataValues.hp_dice)[1]} (Rolled from: ${monster.dataValues.hp_dice})
-																					**Speed**: ${monster.dataValues.speed}`, false)
+					monsterEmbed.addField('\u200b\nStats', `**Armor Class**: ${monster.dataValues.ac} ${monster.dataValues.ac_info != null ? " ("+monster.dataValues.ac_info+")" : ""}
+																									**Hit Points**: ${parseAndRollDice(monster.dataValues.hp_dice)[1]} (Rolled from: ${monster.dataValues.hp_dice})
+																									**Speed**: ${monster.dataValues.speed}`, false)
 					
 					monsterEmbed.addFields(
-						{ name: 'STR', value: `${monster.dataValues.str} (${monster.dataValues.str_mod})`, inline: true },
-						{ name: 'DEX', value: `${monster.dataValues.dex} (${monster.dataValues.dex_mod})`, inline: true },
-						{ name: 'CON', value: `${monster.dataValues.con} (${monster.dataValues.con_mod})`, inline: true },
+						{ name: '\u200b\nSTR', value: `${monster.dataValues.str} (${monster.dataValues.str_mod})`, inline: true },
+						{ name: '\u200b\nDEX', value: `${monster.dataValues.dex} (${monster.dataValues.dex_mod})`, inline: true },
+						{ name: '\u200b\nCON', value: `${monster.dataValues.con} (${monster.dataValues.con_mod})`, inline: true },
 						{ name: 'INT', value: `${monster.dataValues.int} (${monster.dataValues.int_mod})`, inline: true },
 						{ name: 'WIS', value: `${monster.dataValues.wis} (${monster.dataValues.wis_mod})`, inline: true },
 						{ name: 'CHA', value: `${monster.dataValues.cha} (${monster.dataValues.cha_mod})`, inline: true },
@@ -49,19 +49,19 @@ module.exports = {
 				misc_info += `${monster.dataValues.languages != null ? `**Languages**: ${monster.dataValues.languages}\n` : ""}`
 				misc_info += `${`**Challenge Rating**: ${monster.dataValues.challenge_rating} (${monster.dataValues.challenge_xp} XP)\n`}`
 
-				monsterEmbed.addField('Stats', misc_info)
+				monsterEmbed.addField('\u200b\nStats', misc_info)
 
 				if (monster.dataValues.traits != null){
-					monsterEmbed.addField('Traits', `${monster.dataValues.traits}`, false)
+					checkLength(monsterEmbed, '\u200b\nTraits', `${monster.dataValues.traits}`)
 				}
 				if (monster.dataValues.actions != null){
-					monsterEmbed.addField('Actions', `${monster.dataValues.actions}`, false)
+					checkLength(monsterEmbed, '\u200b\nActions', `${monster.dataValues.actions}`)
 				}
 				if (monster.dataValues.reactions != null){
-					monsterEmbed.addField('Reactions', `${monster.dataValues.reactions}`, false)
+					checkLength(monsterEmbed, '\u200b\nReactions', `${monster.dataValues.reactions}`)
 				}
 				if (monster.dataValues.legendary_actions != null){
-					monsterEmbed.addField('Legendary Actions', `${monster.dataValues.legendary_actions}`, false)
+					checkLength(monsterEmbed, '\u200b\nLegendary Actions', `${monster.dataValues.legendary_actions}`)
 				}
 				
 				message.channel.send({ embed: monsterEmbed });
@@ -69,4 +69,16 @@ module.exports = {
 			})
 		}); 
 	},
+};
+
+const checkLength = function(monsterEmbed, name, content) {
+	if(content.length<=1024){
+		monsterEmbed.addField(name, content, false)
+	}
+	else{
+		let splitContent = content.split("\n")
+		for (i in splitContent){
+			monsterEmbed.addField(`${i == 0 ? name : "\u200b"}`, `${splitContent[i]}`, false)
+		}
+	}
 };
