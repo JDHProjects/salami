@@ -12,11 +12,9 @@ module.exports = {
 	example: '0.25',
 	execute(message, args) {
     const { fiveEMonsters } = require('../db/dbSetup.js')
-		message.channel.startTyping();
 		let searchTerm = {order: sequelize.random()}
 		if(args.includes("list")){
 			message.channel.send(names.join("\n"), { split: true })
-			message.channel.stopTyping();
 			return
 		}
 		if(args.length > 0){
@@ -35,9 +33,9 @@ module.exports = {
 		.then((monster) => {
 			if(monster == null){
 				message.channel.send("No monster found matching your criteria!");
-				message.channel.stopTyping();
 				return
 			}
+			message.channel.startTyping();
 			searchForImage(`dnd 5e ${monster.dataValues.name} image`, 0)
 			.then(url => {
 				const monsterEmbed = new MessageEmbed()
