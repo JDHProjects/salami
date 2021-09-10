@@ -2,18 +2,42 @@ const { sequelize } = require('../db/dbSetup.js')
 const { MessageEmbed } = require('discord.js');
 const { searchForImage } = require('../functions/searchForImage.js')
 const { parseAndRollDice } = require('../functions/parseAndRollDice')
+const { Op } = require('sequelize');
+const names = require('../assets/monster-names/names.json');
 
 module.exports = {
 	name: 'monstergen',
-	description: '',
-	usage: '',
-    example: '',
+	description: 'Generates a monster statblock for DND',
+	usage: 'Supply no args for a random monster. Use a monster name as an arg for a monster matching that name. Use a number as an arg for a monster matching that challenge rating',
+	example: '0.25',
 	execute(message, args) {
     const { fiveEMonsters } = require('../db/dbSetup.js')
-		let msg = ""
 		message.channel.startTyping();
-		fiveEMonsters.findOne({order: sequelize.random() })
+		let searchTerm = {order: sequelize.random()}
+		if(args.includes("list")){
+			message.channel.send(names.join("\n"), { split: true })
+			message.channel.stopTyping();
+			return
+		}
+		if(args.length > 0){
+			let joinedArgs = args.join(" ")
+			searchTerm = {
+				order: sequelize.random(),
+				where: { 
+					[Op.or]: [ 
+						{name: { [Op.like]: joinedArgs }},
+						{challenge_rating: joinedArgs }
+					]
+				}
+			}
+		}
+		fiveEMonsters.findOne(searchTerm)
 		.then((monster) => {
+			if(monster == null){
+				message.channel.send("No monster found matching your criteria!");
+				message.channel.stopTyping();
+				return
+			}
 			searchForImage(`dnd 5e ${monster.dataValues.name} image`, 0)
 			.then(url => {
 				const monsterEmbed = new MessageEmbed()
