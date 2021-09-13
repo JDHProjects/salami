@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const { runEachCommand, upOrDown } = require('./db/dbSetup.js')
+const { runEachCommand, upOrDown, syncDB } = require('./db/dbSetup.js')
 const stringSimilarity = require("string-similarity");
 
 const fs = require('fs');
@@ -103,4 +103,8 @@ client.on('message', message => {
     })
 });
 
-client.login()
+syncDB()
+.then(resp => {
+    console.log(resp)
+    client.login()
+})

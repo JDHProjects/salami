@@ -2,10 +2,25 @@ var request = require("request")
 const names = require('../assets/monster-names/names.json');
 
 const addMonsters = function() {
-	const { fiveEMonsters } = require('../db/dbSetup.js')
-	let count = 0
-	for(i in names){
-		request({url:`https://roll20.net/compendium/dnd5e/Monsters:${names[i]}.json`}, function (error, response, body) {
+	return new Promise(function(resolve, reject) {
+		const { fiveEMonsters } = require('../db/dbSetup.js')
+		let monsterPromises = []
+		names.forEach(name => {
+			monsterPromises.push(getMonsterAndAddToDB(name, fiveEMonsters))
+		});
+		Promise.all(monsterPromises)
+		.then(resp => {
+			resolve(`${resp.length} Monsters added to DB`)
+		})
+		.catch(err => {
+			console.log(err)
+		})
+	})
+};
+
+function getMonsterAndAddToDB(name, fiveEMonsters) {
+	return new Promise(function(resolve, reject) {
+		request({url:`https://roll20.net/compendium/dnd5e/Monsters:${name}.json`}, function (error, response, body) {
 			let monsterJson = JSON.parse(body)
 
 			if(monsterJson.data.Category == "Monsters")
@@ -106,11 +121,18 @@ const addMonsters = function() {
 				}
 
 				fiveEMonsters.upsert(monster)
+				.then(monster => {
+					if(monster != null){
+						resolve(`${name} added to DB`)
+					}
+					else {
+						reject(`${name} not added to DB`)
+					}
+				})
 			}
 		});
-	}
-	
-};
+	});
+}
 
 function fractionToDecimal(stringNum){
 	let num = 0

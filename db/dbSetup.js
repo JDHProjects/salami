@@ -107,8 +107,9 @@ const refreshBank = function() {
 				.then( bank => {
 					if (total != 1000000000){
 						bank[0].increment( 'money', { by: 1000000000 - total} )
-						resolve("bank refreshed")
+						resolve("Bank refreshed")
 					}
+					resolve("Bank refreshed")
 				})
 			})
 		})
@@ -131,20 +132,31 @@ const upOrDown = function(up) {
 	})
 };
 
-sequelize.sync()
-.then(_ => {
-	botValues.findOrCreate({ where: { variable: "botConnected" } })
-	.then(_ => {
-		refreshBank()
+const syncDB = function() {
+	return new Promise(function(resolve, reject) {
+		sequelize.sync()
 		.then(_ => {
-			fiveEMonsters.count().then(c => {
-				if(c == 0){
-					addMonsters()
-					console.log("monsters added to DB")
-				}
+			botValues.findOrCreate({ where: { variable: "botConnected" } })
+			.then(_ => {
+				refreshBank()
+				.then(bankResp => {
+					console.log(bankResp)
+					fiveEMonsters.count().then(c => {
+						if(c == 0){
+							addMonsters()
+							.then(monsterResp =>{
+								console.log(monsterResp)
+								resolve("Database synced")
+							})
+						}
+						else{
+							resolve("Database synced")
+						}
+					})
+				})
 			})
-		})
+		});
 	})
-});
+}
 
-module.exports = { fiveEMonsters, runEachCommand, stocks, commandStats, bankAccounts, hookAKeys, upOrDown, sequelize, lossWithTax, sendFromBank, transfer, refreshBank };
+module.exports = { syncDB, fiveEMonsters, runEachCommand, stocks, commandStats, bankAccounts, hookAKeys, upOrDown, sequelize, lossWithTax, sendFromBank, transfer, refreshBank };
