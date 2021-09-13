@@ -1,3 +1,5 @@
+const { addMonsters } = require('../functions/add5EMonstersToDB.js')
+
 const { time } = require('cron');
 const Sequelize = require('sequelize');
 
@@ -13,6 +15,7 @@ const commandStats = require('../models/command_stats')(sequelize, Sequelize.Dat
 const bankAccounts = require('../models/bank_accounts')(sequelize, Sequelize.DataTypes);
 const hookAKeys = require('../models/hook_a_keys')(sequelize, Sequelize.DataTypes);
 const botValues = require('../models/bot_values')(sequelize, Sequelize.DataTypes);
+const fiveEMonsters = require('../models/5e_monsters')(sequelize, Sequelize.DataTypes);
 
 const runEachCommand = function(commandName, userID) {
 	return new Promise(function(resolve, reject) {
@@ -97,14 +100,16 @@ const transfer = function(sender, reciever, amount) {
 const refreshBank = function() {
 	return new Promise(function(resolve, reject) {
 		bankAccounts.findOrCreate({ where: { user_id: "637400095821660180" } })
-		bankAccounts.sum('money')
-		.then(total => {
-			bankAccounts.findOrCreate({ where: { user_id: "0" } })
-			.then( bank => {
-				if (total != 1000000000){
-					bank[0].increment( 'money', { by: 1000000000 - total} )
-					resolve("bank refreshed")
-				}
+		.then(_ => {
+			bankAccounts.sum('money')
+			.then(total => {
+				bankAccounts.findOrCreate({ where: { user_id: "0" } })
+				.then( bank => {
+					if (total != 1000000000){
+						bank[0].increment( 'money', { by: 1000000000 - total} )
+						resolve("bank refreshed")
+					}
+				})
 			})
 		})
 	})
@@ -126,11 +131,20 @@ const upOrDown = function(up) {
 	})
 };
 
+sequelize.sync()
+.then(_ => {
+	botValues.findOrCreate({ where: { variable: "botConnected" } })
+	.then(_ => {
+		refreshBank()
+		.then(_ => {
+			fiveEMonsters.count().then(c => {
+				if(c == 0){
+					addMonsters()
+					console.log("monsters added to DB")
+				}
+			})
+		})
+	})
+});
 
-
-sequelize.sync();
-
-botValues.findOrCreate({ where: { variable: "botConnected" } })
-refreshBank();
-
-module.exports = { runEachCommand, stocks, commandStats, bankAccounts, hookAKeys, upOrDown, sequelize, lossWithTax, sendFromBank, transfer, refreshBank };
+module.exports = { fiveEMonsters, runEachCommand, stocks, commandStats, bankAccounts, hookAKeys, upOrDown, sequelize, lossWithTax, sendFromBank, transfer, refreshBank };
