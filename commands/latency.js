@@ -8,7 +8,7 @@ module.exports = {
         message.channel.send("Latency check!")
         .then(respMessage => {
             messageTime = respMessage.createdTimestamp - message.createdTimestamp
-            respMessage.delete()
+            respMessage.delete().catch(_ => {})
             message.channel.send("Response Latency: " + messageTime)
         })
     }

@@ -36,8 +36,9 @@ module.exports = {
 
             collector.on('collect', m => {
                 if(m.content.toLowerCase() == "done"){
-                    currentMessage.delete()
-                    m.delete() 
+                    currentMessage.delete().catch(_ => {})
+                    m.delete().catch(_ => {})
+                    .catch()
                     collector.stop({reason: "user ended"});
                 }
                 else if (counter < questions.length) {
@@ -47,8 +48,9 @@ module.exports = {
                     else {
                         msg += questions[counter] + " : " + m.content + "\n\n";
                     }
-                    currentMessage.delete()
-                    m.delete() 
+                    currentMessage.delete().catch(_ => {})
+                    m.delete().catch(_ => {})
+                    .catch()
                     message.channel.send("Please input poll option "+(counter+2)+":\n(or \"done\" if finished) ")
                     .then(message => {
                         currentMessage = message;

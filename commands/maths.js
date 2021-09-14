@@ -37,7 +37,7 @@ module.exports = {
 
             collector.on('end',  (collector, reason) => {
                 if (reason == "time"){
-                    replyMessage.delete()
+                    replyMessage.delete().catch(_ => {})
                     message.reply("you forgot to answer!")
                 }
                 else if (isNaN(response)){
