@@ -7,7 +7,7 @@ module.exports = {
     usage: 'add user mention as an arg to get stats for that user. add arg "full" to get full stats',
     example: '@Salami',
 	execute(message, args) {
-    const { commandStats } = require('../db/dbSetup.js')
+    const { commandStats } = require('../db/db.js')
 
     if (message.mentions.users.size > 0){
       user = message.mentions.users.first()

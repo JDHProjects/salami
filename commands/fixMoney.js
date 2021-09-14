@@ -5,7 +5,9 @@ module.exports = {
     example: '',
     admin: true,
 	execute(message, args) {
-        const { bankAccounts, refreshBank } = require('../db/dbSetup.js')
+        const { bankAccounts } = require('../db/db.js')
+        const { refreshBank } = require('../db/functions/refreshBank.js')
+        
         if (message.mentions.users.size > 0){
             targetUser = message.mentions.users.first()
         }

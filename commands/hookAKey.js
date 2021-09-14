@@ -8,7 +8,8 @@ module.exports = {
 	execute(message, args) {
     var fetchUrl = require("fetch").fetchUrl;
     let fs = require('fs');
-    const { bankAccounts, hookAKeys, lossWithTax, sequelize } = require('../db/dbSetup.js')
+    const { bankAccounts, hookAKeys, sequelize } = require('../db/db.js')
+    const { lossWithTax } = require('../db/functions/lossWithTax.js')
     if(message.attachments.size == 1){
       if(process.env.OWNER == message.author.id){
         if(message.attachments.first().name.slice(-3) == "txt"){

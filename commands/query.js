@@ -5,7 +5,7 @@ module.exports = {
     example: '',
     admin: true,
 	execute(message, args) {
-        const { sequelize } = require('../db/dbSetup.js')
+        const { sequelize } = require('../db/db.js')
 
         querystring = ""
         for (i in args){
@@ -17,7 +17,7 @@ module.exports = {
         message.author.send("DB backup file", { files: ["./database.sqlite"] });
         sequelize.query(querystring)
         .then( resp => {
-            message.channel.send(`query: ${querystring} is complete`)
+            message.channel.send(`Response:\n${JSON.stringify(resp)}\nResponse complete`, { split: true })
         })
 	},
 };

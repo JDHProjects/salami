@@ -4,11 +4,11 @@ module.exports = {
     usage: `Just send server, theres really not much to this`,
     example: '',
 	execute(message, args) {
-		if (message.guild.available){
-            message.channel.send(`Server name: ${message.guild.name}\nTotal members: ${message.guild.memberCount}\nServer Owner: ${message.guild.owner}\nCurrent Host Region: ${message.guild.region}\nEstablished: ${message.guild.createdAt}`)
+		if (message.guild != null){
+            message.channel.send(`Server name: ${message.guild.name}\nTotal members: ${message.guild.memberCount}\nServer Owner: <@${message.guild.ownerID}>\nCurrent Host Region: ${message.guild.region}\nEstablished: ${message.guild.createdAt}`)
         }
         else{
-            message.channel.send('Hmmm, I can\'t find the server, is it down?')
+            message.channel.send(`You're not in a server!`)
         }
 	},
 };

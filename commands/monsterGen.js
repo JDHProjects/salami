@@ -1,4 +1,3 @@
-const { sequelize } = require('../db/dbSetup.js')
 const { MessageEmbed } = require('discord.js');
 const { searchForImage } = require('../functions/searchForImage.js')
 const { parseAndRollDice } = require('../functions/parseAndRollDice')
@@ -11,7 +10,8 @@ module.exports = {
 	usage: 'Supply no args for a random monster. Use a monster name as an arg for a monster matching that name. Use a number as an arg for a monster matching that challenge rating',
 	example: '0.25',
 	execute(message, args) {
-    const { fiveEMonsters } = require('../db/dbSetup.js')
+		const { fiveEMonsters, sequelize } = require('../db/db.js')
+
 		let searchTerm = {order: sequelize.random()}
 		if(args.includes("list")){
 			message.channel.send(names.join("\n"), { split: true })

@@ -1,5 +1,8 @@
 const Discord = require('discord.js')
-const { runEachCommand, upOrDown, syncDB } = require('./db/dbSetup.js')
+const { syncDB } = require('./db/db.js')
+const { runEachCommand } = require('./db/functions/runEachCommand.js')
+const { downDetector } = require('./functions/downDetector.js')
+
 const stringSimilarity = require("string-similarity");
 
 const fs = require('fs');
@@ -12,23 +15,6 @@ const cooldowns = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 const commandNames = []
 
-const CronJob = require('cron').CronJob;
-var ping = require('ping');
-
-const job = new CronJob('0 * * * * *', function() {
-    ping.promise.probe("8.8.8.8")
-    .then(function (res) {
-        upOrDown(res.alive ? "true" : "false")
-        .then(resp => {
-            if (resp != 0) {
-                client.users.fetch(process.env.OWNER, false).then((admin) => {
-                    admin.send(`Salami was down for: ${Math.round(resp/5)*5} seconds`);
-                });
-            }
-        })
-    })
-});
-
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command);
@@ -37,11 +23,7 @@ for (const file of commandFiles) {
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
-
-    if(process.env.DOWN_DETECTION == "TRUE"){
-        job.start();
-        console.log("Down detection started")
-    }
+    downDetector();
 })
 
 client.on('message', message => {
@@ -103,8 +85,15 @@ client.on('message', message => {
     })
 });
 
-syncDB()
-.then(resp => {
-    console.log(resp)
+if(fs.existsSync('./database.sqlite')) {
     client.login()
-})
+}
+else {
+    syncDB()
+    .then(resp => {
+        console.log(resp)
+        client.login()
+    })
+}
+
+module.exports = { client }

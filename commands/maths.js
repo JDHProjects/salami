@@ -4,7 +4,8 @@ module.exports = {
     usage: 'just send maths, then send your response as a normal message',
     example: '',
 	execute(message, args) {
-        const { bankAccounts, sendFromBank } = require('../db/dbSetup.js')
+        const { bankAccounts } = require('../db/db.js')
+        const { sendFromBank } = require('../db/functions/sendFromBank.js')
 
         // `m` is a message object that will be passed through the filter function
         const filter = m => m.author.id === message.author.id;

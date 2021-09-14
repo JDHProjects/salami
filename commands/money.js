@@ -4,7 +4,8 @@ module.exports = {
   usage: `With no args it returns your balance, or with args you can send to others`,
   example: 'send @Salami 10',
 	execute(message, args) {
-    const { bankAccounts, transfer } = require('../db/dbSetup.js')
+    const { bankAccounts } = require('../db/db.js')
+    const { transfer } = require('../db/functions/transfer.js')
 
     if (message.mentions.users.size > 0){
      transferUser = message.mentions.users.first()

@@ -12,7 +12,7 @@ const bulkSend = function(message, messageText) {
 		channelMessage.set(message.channel, messageText);
 		setTimeout(() => {
 			message.channel.stopTyping();
-			message.channel.send(channelMessage.get(message.channel));
+			message.channel.send(channelMessage.get(message.channel), { split: true });
 			channelMessage.delete(message.channel);
 		}, 1000);
 	}

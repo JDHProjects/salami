@@ -6,13 +6,16 @@ module.exports = {
   usage: `just send jackpot`,
   example: '',
 	execute(message, args) {
-    const { bankAccounts, transfer } = require('../db/dbSetup.js')
+    const { bankAccounts } = require('../db/db.js')
+    const { transfer } = require('../db/functions/transfer.js')
+
     const spotPrizes = [1,2,3,4,5,6,7,8,9,10,
                         1111,2222,3333,4444,
                         1234,2345,3456,4567,
                         2468,1357,
                         1000,2000,3000,4000,
                       ]
+
     bankAccounts.findByPk(message.author.id)
     .then(user => {
       if(user.dataValues.money >= 2){
