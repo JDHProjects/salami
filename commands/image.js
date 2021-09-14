@@ -26,7 +26,7 @@ module.exports = {
             })
             .catch(err => {
                 message.channel.send(err) 
-            })            
+            })
         }
 	},
 };

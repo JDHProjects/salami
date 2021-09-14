@@ -6,8 +6,7 @@ module.exports = {
     usage: '\n\`stocks price <STOCK SYMBOL>\` to see current stock market prices\n\`stocks portfolio\` to list all your stocks\n\`stocks buy <STOCK SYMBOL> <SALAMI AMOUNT>\` to buy some stock with salami\n\`stocks sell <STOCK SYMBOL> <SALAMI AMOUNT>\` to sell some stock for salami',
     example: 'buy GME 10000',
 	execute(message, args) {
-    const { bankAccounts } = require('../db/dbSetup.js')
-    const { stocks } = require('../db/functions/stocks.js')
+    const { bankAccounts, stocks } = require('../db/db.js')
     const { transfer } = require('../db/functions/transfer.js')
 
 
