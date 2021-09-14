@@ -1,7 +1,7 @@
 {
     "name": "salami",
-    "version": "1.0.0",
-    "description": "GPIO currently",
+    "version": "2.0.0",
+    "description": "discord bot with various features including currency and trading",
     "main": "index.js",
     "author": "Joshua Purdy",
     "scripts": {
