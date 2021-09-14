@@ -2,7 +2,7 @@ const { MessageEmbed } = require('discord.js');
 const { searchForImage } = require('../functions/searchForImage.js')
 const { parseAndRollDice } = require('../functions/parseAndRollDice')
 const { Op } = require('sequelize');
-const names = require('../assets/monster-names/names.json');
+const names = require('../assets/monsters/names/names.json');
 
 module.exports = {
 	name: 'monstergen',
