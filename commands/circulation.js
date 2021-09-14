@@ -6,7 +6,7 @@ module.exports = {
   usage: `just send circulation`,
   example: '',
 	execute(message, args) {
-    const { bankAccounts } = require('../db/dbSetup.js')
+    const { bankAccounts } = require('../db/db.js')
 
     bankAccounts.sum('money', { where: { user_id: { [Op.ne]: "0" } } } )
     .then(total => {

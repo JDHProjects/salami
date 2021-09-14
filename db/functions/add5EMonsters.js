@@ -1,9 +1,9 @@
-var request = require("request")
-const names = require('../assets/monster-names/names.json');
+const request = require("request")
+const names = require('../../assets/monster-names/names.json');
 
-const addMonsters = function() {
+const add5EMonsters = function() {
 	return new Promise(function(resolve, reject) {
-		const { fiveEMonsters } = require('../db/dbSetup.js')
+		const { fiveEMonsters } = require('../db.js')
 		let monsterPromises = []
 		names.forEach(name => {
 			monsterPromises.push(getMonsterAndAddToDB(name, fiveEMonsters))
@@ -153,4 +153,4 @@ function fractionToDecimal(stringNum){
 }
 
 
-module.exports = { addMonsters };
+module.exports = { add5EMonsters };

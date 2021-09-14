@@ -5,7 +5,9 @@ module.exports = {
     cooldown: 86400,
     example: 'daily',
 	execute(message, args) {
-        const { bankAccounts, sendFromBank } = require('../db/dbSetup.js')
+        const { bankAccounts } = require('../db/db.js')
+        const { sendFromBank } = require('../db/functions/sendFromBank.js')
+        
         bankAccounts.findByPk(message.author.id)
         .then(user => {
             sendFromBank(user, 1000)

@@ -7,7 +7,7 @@ module.exports = {
     usage: 'add command name as an arg to get top three users for that command. add arg "full" to get full user list',
     example: 'ping',
 	execute(message, args) {
-    const { commandStats} = require('../db/dbSetup.js')
+    const { commandStats } = require('../db/db.js')
     
     commandArray = []
     countArray = []

@@ -5,7 +5,9 @@ module.exports = {
   cooldown: 2,
   example: 'heads 100',
 	execute(message, args) {
-    const { bankAccounts, lossWithTax, sendFromBank } = require('../db/dbSetup.js')
+    const { bankAccounts } = require('../db/db.js')
+    const { lossWithTax } = require('../db/functions/lossWithTax.js')
+    const { sendFromBank } = require('../db/functions/sendFromBank.js')
 
     amount = 0
     guess = -1
@@ -43,7 +45,5 @@ module.exports = {
     else{
       message.channel.send(`You forgot to pick heads or tails!`)
     }
-
-		
 	},
 };

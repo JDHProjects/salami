@@ -4,7 +4,7 @@ module.exports = {
   usage: `just send bank, theres really not much to this`,
   example: '',
 	execute(message, args) {
-    const { bankAccounts } = require('../db/dbSetup.js')
+    const { bankAccounts } = require('../db/db.js')
 
 		bankAccounts.findByPk("0")
     .then(bank => {

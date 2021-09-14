@@ -5,7 +5,7 @@ module.exports = {
     example: '',
     admin: true,
 	execute(message, args) {
-        const { sequelize } = require('../db/dbSetup.js')
+        const { sequelize } = require('../db/db.js')
 
         querystring = ""
         for (i in args){

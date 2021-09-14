@@ -1,5 +1,8 @@
 const Discord = require('discord.js')
-const { runEachCommand, upOrDown, syncDB } = require('./db/dbSetup.js')
+const { syncDB } = require('./db/db.js')
+const { runEachCommand } = require('./db/functions/runEachCommand.js')
+const { upOrDown } = require('./db/functions/upOrDown.js')
+
 const stringSimilarity = require("string-similarity");
 
 const fs = require('fs');
@@ -103,8 +106,13 @@ client.on('message', message => {
     })
 });
 
-syncDB()
-.then(resp => {
-    console.log(resp)
+if(fs.existsSync('./database.sqlite')) {
     client.login()
-})
+}
+else {
+    syncDB()
+    .then(resp => {
+        console.log(resp)
+        client.login()
+    })
+}

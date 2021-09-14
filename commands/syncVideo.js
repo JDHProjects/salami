@@ -6,14 +6,14 @@ module.exports = {
 	usage: 'Just send syncvideo, theres really not much to this',
     example: '',
 	execute(message, args) {
-            request({url:'http://www.sync-video.com/random',followAllRedirects :false}, function (error, response, body) {
-                try{
-                    message.channel.send(response.request.uri.href) 
-                }
-                catch (e) {
-                    message.channel.send('Something went wrong, please try again!') 
-                }
-            });
+        request({url:'http://www.sync-video.com/random',followAllRedirects :false}, function (error, response, body) {
+            try{
+                message.channel.send(response.request.uri.href) 
+            }
+            catch (e) {
+                message.channel.send('Something went wrong, please try again!') 
+            }
+        });
        
 	},
 };
