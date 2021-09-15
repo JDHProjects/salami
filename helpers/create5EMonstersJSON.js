@@ -10,7 +10,7 @@ const create5EMonstersJSON = function() {
 		Promise.all(monsterPromises)
 		.then(resp => {
 			const fs = require('fs');
-			fs.writeFile('./assets/monsters/data/data.json', JSON.stringify(resp), err => {
+			fs.writeFile('./assets/monsters/data/data.json', JSON.stringify(resp, null, 2), err => {
 				if (err) {
 					console.log(err)
 				}

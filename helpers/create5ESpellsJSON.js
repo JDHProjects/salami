@@ -47,7 +47,7 @@ function getSpellData(name) {
 				let spell = {
 					id: spellJson.id,
 					name: spellJson.name,
-					level: spellJson.data.Level,
+					level: parseInt(spellJson.data.Level),
 					school: spellJson.data.School,
 					casting_time: spellJson.data["Casting Time"],
 					range: spellJson.data.Range,
