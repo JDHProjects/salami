@@ -1,6 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const { searchForImage } = require('../functions/searchForImage.js')
-const { parseAndRollDice } = require('../functions/parseAndRollDice')
+const { parseAndRollDice } = require('../functions/parseAndRollDice.js')
+const { checkEmbedLength } = require('../functions/checkEmbedLength.js')
 const { Op } = require('sequelize');
 const names = require('../assets/monsters/names/names.json');
 
@@ -74,16 +75,16 @@ module.exports = {
 				monsterEmbed.addField('\u200b\nStats', misc_info)
 
 				if (monster.dataValues.traits != null){
-					checkLength(monsterEmbed, '\u200b\nTraits', `${monster.dataValues.traits}`)
+					checkEmbedLength(monsterEmbed, '\u200b\nTraits', `${monster.dataValues.traits}`)
 				}
 				if (monster.dataValues.actions != null){
-					checkLength(monsterEmbed, '\u200b\nActions', `${monster.dataValues.actions}`)
+					checkEmbedLength(monsterEmbed, '\u200b\nActions', `${monster.dataValues.actions}`)
 				}
 				if (monster.dataValues.reactions != null){
-					checkLength(monsterEmbed, '\u200b\nReactions', `${monster.dataValues.reactions}`)
+					checkEmbedLength(monsterEmbed, '\u200b\nReactions', `${monster.dataValues.reactions}`)
 				}
 				if (monster.dataValues.legendary_actions != null){
-					checkLength(monsterEmbed, '\u200b\nLegendary Actions', `${monster.dataValues.legendary_actions}`)
+					checkEmbedLength(monsterEmbed, '\u200b\nLegendary Actions', `${monster.dataValues.legendary_actions}`)
 				}
 				
 				message.channel.send({ embed: monsterEmbed });
