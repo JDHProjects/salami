@@ -5,12 +5,12 @@ const create5EMonstersJSON = function() {
 	return new Promise(function(resolve, reject) {
 		let monsterPromises = []
 		names.forEach(name => {
-			monsterPromises.push(getMonsterAndAddToDB(name))
+			monsterPromises.push(getMonsterData(name))
 		});
 		Promise.all(monsterPromises)
 		.then(resp => {
 			const fs = require('fs');
-			fs.writeFile('./assets/monsters/data/data.json', JSON.stringify(resp), err => {
+			fs.writeFile('./assets/monsters/data/data.json', JSON.stringify(resp, null, 2), err => {
 				if (err) {
 					console.log(err)
 				}
@@ -23,7 +23,7 @@ const create5EMonstersJSON = function() {
 	})
 };
 
-function getMonsterAndAddToDB(name) {
+function getMonsterData(name) {
 	return new Promise(function(resolve, reject) {
 		request({url:`https://roll20.net/compendium/dnd5e/Monsters:${name}.json`}, function (error, response, body) {
 			let monsterJson = JSON.parse(body)

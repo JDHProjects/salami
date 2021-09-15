@@ -85,15 +85,10 @@ client.on('message', message => {
     })
 });
 
-if(fs.existsSync('./database.sqlite')) {
+syncDB()
+.then(resp => {
+    console.log(resp)
     client.login()
-}
-else {
-    syncDB()
-    .then(resp => {
-        console.log(resp)
-        client.login()
-    })
-}
+})
 
 module.exports = { client }
