@@ -1,16 +1,17 @@
 let parseString = ``
 
-let dataLocation = ""
-let re = /\"n\":\"([a-zA-Z ]+)\"/g;
-let matches = parseString.matchAll(re)
-let names = Array.from(matches).map(match => match[1])
+let dataLocation = "monsters/"
+
+let cleanString = parseString.replaceAll("\\\"","\"").replaceAll("\"[","[").replaceAll("]\"","]")
+let dataObject = JSON.parse(cleanString)
+let nameArray = dataObject.listResults.map(itemName => itemName.n)
 const fs = require('fs');
 
 if (dataLocation != ""){
-  fs.writeFile(`./assets/${dataLocation}names.json`, JSON.stringify(names, null, "\t"), err => {
+  fs.writeFile(`./assets/${dataLocation}names/names.json`, JSON.stringify(nameArray, null, "\t"), err => {
     if (err) {
       console.log(err)
     }
-    console.log(`${names.length} Names written to JSON`)
+    console.log(`${nameArray.length} Names written to JSON`)
   })
 }
