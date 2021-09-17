@@ -5,7 +5,7 @@ const add5EItems = function() {
 
 		fiveEItems.count()
 		.then(c => {
-			fiveEItems.bulkCreate(items)
+			fiveEItems.bulkCreate(items, {ignoreDuplicates: true})
 			.then(resp => {
 				fiveEItems.count()
 				.then(c2 => {
