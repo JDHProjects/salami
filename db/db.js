@@ -14,9 +14,11 @@ const hookAKeys = require('./models/hook_a_keys')(sequelize, Sequelize.DataTypes
 const botValues = require('./models/bot_values')(sequelize, Sequelize.DataTypes);
 const fiveEMonsters = require('./models/5e_monsters')(sequelize, Sequelize.DataTypes);
 const fiveESpells = require('./models/5e_spells')(sequelize, Sequelize.DataTypes);
+const fiveEItems = require('./models/5e_items')(sequelize, Sequelize.DataTypes);
 
 const { add5EMonsters } = require('./functions/add5EMonsters.js')
 const { add5ESpells } = require('./functions/add5ESpells.js')
+const { add5EItems } = require('./functions/add5EItems.js')
 const { refreshBank } = require('./functions/refreshBank.js')
 
 const syncDB = function() {
@@ -34,7 +36,11 @@ const syncDB = function() {
 						add5ESpells()
 						.then(spellResp =>{
 							console.log(spellResp)
-            	resolve("Database synced")
+							add5EItems()
+							.then(itemResp =>{
+								console.log(itemResp)
+								resolve("Database synced")
+							})
 						})
           })
 				})
@@ -43,4 +49,4 @@ const syncDB = function() {
 	})
 }
 
-module.exports = {sequelize, stocks, commandStats, bankAccounts, hookAKeys, botValues, fiveEMonsters, fiveESpells, syncDB };
+module.exports = {sequelize, stocks, commandStats, bankAccounts, hookAKeys, botValues, fiveEMonsters, fiveEItems, fiveESpells, syncDB };
