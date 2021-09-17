@@ -93,15 +93,3 @@ module.exports = {
 		}); 
 	},
 };
-
-const checkLength = function(monsterEmbed, name, content) {
-	if(content.length<=1024){
-		monsterEmbed.addField(name, content, false)
-	}
-	else{
-		let splitContent = content.split("\n")
-		for (i in splitContent){
-			monsterEmbed.addField(`${i == 0 ? name : "\u200b"}`, `${splitContent[i]}`, false)
-		}
-	}
-};
