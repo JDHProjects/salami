@@ -11,8 +11,8 @@ module.exports = {
       let bank = await bankAccounts.findByPk("0")
       let total = await bankAccounts.sum('money')
       
-      let message = sendMessage({}, `The bank currently holds:\n**${bank.dataValues.money} salami**\nWhich is ${Math.floor((bank.dataValues.money/total)*100)}% of the total market`)
-      resolve(message)
+      let messageText = sendMessage(message, `The bank currently holds:\n**${bank.dataValues.money} salami**\nWhich is ${Math.floor((bank.dataValues.money/total)*100)}% of the total market`)
+      resolve(messageText)
     })
   },
 };
