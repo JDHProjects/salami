@@ -1,5 +1,7 @@
+const { sequelize, models } = require('./db/db.js')
+
 const Discord = require('discord.js')
-const { syncDB } = require('./db/db.js')
+const { syncDB } = require('./db/functions/syncDB.js')
 const { runEachCommand } = require('./db/functions/runEachCommand.js')
 const { downDetector } = require('./functions/downDetector.js')
 

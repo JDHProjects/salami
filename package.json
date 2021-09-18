@@ -8,7 +8,7 @@
         "start": "nodemon index.js",
         "development": "PREFIX=. DOWN_DETECTION=FALSE nodemon index.js",
         "production": "PREFIX=\\> DOWN_DETECTION=TRUE nodemon index.js",
-        "test": "mocha --reporter list"
+        "test": "TEST=TRUE mocha --reporter list"
     },
     "dependencies": {
         "cron": "^1.8.2",
