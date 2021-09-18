@@ -4,7 +4,7 @@ const { execute } = require('../../commands/bank.js')
 
 describe('The bank command', function() {
   
-  before(async function() {
+  beforeEach(async function() {
     const { refreshBank } = require('../../db/functions/refreshBank.js')
     const { clearDb } = require('../functions/clearDb.js')
 
@@ -13,7 +13,7 @@ describe('The bank command', function() {
     await refreshBank()
   })
 
-  it('should respond ', async function() {
+  it('should respond correctly', async function() {
     let idealMessage = 'The bank currently holds:\n**1000000000 salami**\nWhich is 100% of the total market'
     let actualMessage = (await execute({}, []))[0]
     assert.equal(actualMessage, idealMessage)
