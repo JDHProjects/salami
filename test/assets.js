@@ -42,5 +42,5 @@ const checkExistsAndOutput = function(path){
   else {
     console.log(`File does not exist: ${path}`)
   }
-  assert.equal(fileExists, true);
+  assert.ok(fileExists);
 }

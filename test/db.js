@@ -1,17 +1,11 @@
 const assert = require('assert');
-const map = require('lodash/map');
 
 describe('The database', function() {
   beforeEach(async function() {
+    const { clearDb } = require('./functions/clearDb.js')
+    
     //sync db and clear tables before each test
-    const { sequelize, models } = require('../db/db.js')
-
-    await sequelize.sync();
-    return await Promise.all(
-      map(models, model => {
-        return model.destroy({ where: {}, force: true });
-      })
-    );
+    await clearDb()
   });
 
   it('should successfully set up', function() {
@@ -32,7 +26,7 @@ describe('The database', function() {
     return add5EMonsters()
     .then(resp =>{
       console.log(resp)
-      assert.equal(resp.includes('monsters added to database'), true);
+      assert.ok(resp.includes('monsters added to database'));
     })
   })
 
@@ -43,7 +37,7 @@ describe('The database', function() {
     return add5ESpells()
     .then(resp =>{
       console.log(resp)
-      assert.equal(resp.includes('spells added to database'), true);
+      assert.ok(resp.includes('spells added to database'));
     })
   })
 
@@ -54,7 +48,7 @@ describe('The database', function() {
     return add5EItems()
     .then(resp =>{
       console.log(resp)
-      assert.equal(resp.includes('items added to database'), true);
+      assert.ok(resp.includes('items added to database'));
     })
   })
 })
