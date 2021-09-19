@@ -6,7 +6,7 @@ describe('The circulation command', function() {
   
   before(async function() {
     const { refreshBank } = require('../../db/functions/refreshBank.js')
-    const { clearDb } = require('../functions/clearDb.js')
+    const { clearDb } = require('../setup-functions/clearDb.js')
 
     //sync db and clear tables before each test
     await clearDb()

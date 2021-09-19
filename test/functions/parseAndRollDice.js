@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const { parseAndRollDice } = require('../../functions/parseAndRollDice')
 
-describe('The dice command', function() {
+describe('The parseAndRollDice function', function() {
 
   it('should return 0 with no input', function() {
     console.log('\n')

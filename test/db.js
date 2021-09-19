@@ -2,7 +2,7 @@ const assert = require('assert');
 
 describe('The database', function() {
   beforeEach(async function() {
-    const { clearDb } = require('./functions/clearDb.js')
+    const { clearDb } = require('./setup-functions/clearDb.js')
     
     //sync db and clear tables before each test
     await clearDb()
