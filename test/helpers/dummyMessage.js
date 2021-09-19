@@ -1,0 +1,1 @@
+module.exports = { dummyMessage: { author: { id: 12345 } } }
