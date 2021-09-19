@@ -3,8 +3,7 @@
     "id": 9685,
     "name": "Abacus",
     "type": "Adventuring Gear",
-    "weight": 2,
-    "description": ""
+    "weight": 2
   },
   {
     "id": 12503,
@@ -268,8 +267,7 @@
     "weight": 4,
     "damage": "1d8",
     "damage_type": "Slashing",
-    "properties": "Versatile",
-    "description": ""
+    "properties": "Versatile"
   },
   {
     "id": 9705,
@@ -317,14 +315,12 @@
     "id": 9710,
     "name": "Bedroll",
     "type": "Adventuring Gear",
-    "weight": 7,
-    "description": ""
+    "weight": 7
   },
   {
     "id": 9711,
     "name": "Bell",
-    "type": "Adventuring Gear",
-    "description": ""
+    "type": "Adventuring Gear"
   },
   {
     "id": 9712,
@@ -354,8 +350,7 @@
     "id": 9713,
     "name": "Blanket",
     "type": "Adventuring Gear",
-    "weight": 3,
-    "description": ""
+    "weight": 3
   },
   {
     "id": 12510,
@@ -999,8 +994,7 @@
     "id": 12515,
     "name": "Chalk",
     "type": "Adventuring Gear",
-    "rarity": "Standard",
-    "description": ""
+    "rarity": "Standard"
   },
   {
     "id": 9784,
@@ -1093,8 +1087,7 @@
     "weight": 2,
     "damage": "1d4",
     "damage_type": "Bludgeoning",
-    "properties": "Light",
-    "description": ""
+    "properties": "Light"
   },
   {
     "id": 9793,
@@ -1144,8 +1137,7 @@
     "type": "Adventuring Gear",
     "subtype": "Clothing",
     "rarity": "Standard",
-    "weight": 3,
-    "description": ""
+    "weight": 3
   },
   {
     "id": 12520,
@@ -1161,8 +1153,7 @@
     "type": "Adventuring Gear",
     "subtype": "Artisan's Tools",
     "rarity": "Standard",
-    "weight": 8,
-    "description": ""
+    "weight": 8
   },
   {
     "id": 12517,
@@ -1170,8 +1161,7 @@
     "type": "Adventuring Gear",
     "subtype": "Clothing",
     "rarity": "Standard",
-    "weight": 4,
-    "description": ""
+    "weight": 4
   },
   {
     "id": 12512,
@@ -1242,8 +1232,7 @@
     "damage": "1d4",
     "damage_type": "Piercing",
     "properties": "Finesse, Light, Range, Thrown",
-    "range": "20/60",
-    "description": ""
+    "range": "20/60"
   },
   {
     "id": 9803,
@@ -1313,8 +1302,7 @@
     "damage": "1d4",
     "damage_type": "Piercing",
     "properties": "Finesse, Range, Thrown",
-    "range": "20/60",
-    "description": ""
+    "range": "20/60"
   },
   {
     "id": 9808,
@@ -1402,8 +1390,7 @@
     "name": "Dice set",
     "type": "Adventuring Gear",
     "subtype": "Gaming Set",
-    "rarity": "Standard",
-    "description": ""
+    "rarity": "Standard"
   },
   {
     "id": 9816,
@@ -1558,8 +1545,7 @@
   {
     "id": 12502,
     "name": "Emblem",
-    "type": "Adventuring Gear",
-    "description": ""
+    "type": "Adventuring Gear"
   },
   {
     "id": 9828,
@@ -1627,8 +1613,7 @@
     "type": "Adventuring Gear",
     "subtype": "Clothing",
     "rarity": "Standard",
-    "weight": 6,
-    "description": ""
+    "weight": 6
   },
   {
     "id": 12525,
@@ -1646,8 +1631,7 @@
     "rarity": "Standard",
     "weight": 2,
     "damage": "1d8",
-    "damage_type": "Bludgeoning",
-    "description": ""
+    "damage_type": "Bludgeoning"
   },
   {
     "id": 9834,
@@ -1768,8 +1752,7 @@
     "weight": 6,
     "damage": "1d10",
     "damage_type": "Slashing",
-    "properties": "Heavy, Reach, Two-Handed",
-    "description": ""
+    "properties": "Heavy, Reach, Two-Handed"
   },
   {
     "id": 9844,
@@ -1861,8 +1844,7 @@
     "name": "Grappling hook",
     "type": "Adventuring Gear",
     "rarity": "Standard",
-    "weight": 4,
-    "description": ""
+    "weight": 4
   },
   {
     "id": 9856,
@@ -1873,8 +1855,7 @@
     "weight": 7,
     "damage": "1d12",
     "damage_type": "Slashing",
-    "properties": "Heavy, Two-Handed",
-    "description": ""
+    "properties": "Heavy, Two-Handed"
   },
   {
     "id": 9853,
@@ -1918,8 +1899,7 @@
     "weight": 10,
     "damage": "1d8",
     "damage_type": "Bludgeoning",
-    "properties": "Two-Handed",
-    "description": ""
+    "properties": "Two-Handed"
   },
   {
     "id": 9857,
@@ -1963,8 +1943,7 @@
     "weight": 6,
     "damage": "2d6",
     "damage_type": "Slashing",
-    "properties": "Heavy, Two-Handed",
-    "description": ""
+    "properties": "Heavy, Two-Handed"
   },
   {
     "id": 9861,
@@ -2008,8 +1987,7 @@
     "weight": 6,
     "damage": "1d10",
     "damage_type": "Slashing",
-    "properties": "Reach, Two-Handed",
-    "description": ""
+    "properties": "Reach, Two-Handed"
   },
   {
     "id": 9865,
@@ -2180,8 +2158,7 @@
     "name": "Hammer",
     "type": "Adventuring Gear",
     "rarity": "Standard",
-    "weight": 3,
-    "description": ""
+    "weight": 3
   },
   {
     "id": 9883,
@@ -2255,8 +2232,7 @@
     "damage": "1d6",
     "damage_type": "Slashing",
     "properties": "Light, Range, Thrown",
-    "range": "20/60",
-    "description": ""
+    "range": "20/60"
   },
   {
     "id": 9889,
@@ -2332,8 +2308,7 @@
     "name": "Heartstone",
     "type": "Adventuring Gear",
     "subtype": "Wondrous Item",
-    "rarity": "Standard",
-    "description": ""
+    "rarity": "Standard"
   },
   {
     "id": 9898,
@@ -2624,8 +2599,7 @@
     "name": "Hourglass",
     "type": "Adventuring Gear",
     "rarity": "Standard",
-    "weight": 1,
-    "description": ""
+    "weight": 1
   },
   {
     "id": 12529,
@@ -2650,15 +2624,13 @@
     "id": 12530,
     "name": "Ink",
     "type": "Adventuring Gear",
-    "rarity": "Standard",
-    "description": ""
+    "rarity": "Standard"
   },
   {
     "id": 12531,
     "name": "Ink pen",
     "type": "Adventuring Gear",
-    "rarity": "Standard",
-    "description": ""
+    "rarity": "Standard"
   },
   {
     "id": 12284,
@@ -2704,8 +2676,7 @@
     "name": "Iron spikes",
     "type": "Adventuring Gear",
     "rarity": "Standard",
-    "weight": 0.5,
-    "description": ""
+    "weight": 0.5
   },
   {
     "id": 9928,
@@ -2717,8 +2688,7 @@
     "damage": "1d6",
     "damage_type": "Piercing",
     "properties": "Range, Thrown",
-    "range": "30/120",
-    "description": ""
+    "range": "30/120"
   },
   {
     "id": 9924,
@@ -2791,8 +2761,7 @@
     "name": "Ladder",
     "type": "Adventuring Gear",
     "rarity": "Standard",
-    "weight": 25,
-    "description": ""
+    "weight": 25
   },
   {
     "id": 9931,
@@ -3043,8 +3012,7 @@
     "damage": "1d4",
     "damage_type": "Bludgeoning",
     "properties": "Light, Thrown",
-    "range": "20/60",
-    "description": ""
+    "range": "20/60"
   },
   {
     "id": 23934,
@@ -3054,8 +3022,7 @@
     "damage": "1d4",
     "damage_type": "Bludgeoning",
     "properties": "Light, Thrown",
-    "range": "20/60",
-    "description": ""
+    "range": "20/60"
   },
   {
     "id": 23936,
@@ -3065,8 +3032,7 @@
     "damage": "1d4",
     "damage_type": "Bludgeoning",
     "properties": "Light, Thrown",
-    "range": "20/60",
-    "description": ""
+    "range": "20/60"
   },
   {
     "id": 23937,
@@ -3076,8 +3042,7 @@
     "damage": "1d4",
     "damage_type": "Bludgeoning",
     "properties": "Light, Thrown",
-    "range": "20/60",
-    "description": ""
+    "range": "20/60"
   },
   {
     "id": 9956,
@@ -3097,8 +3062,7 @@
     "damage": "1d8",
     "damage_type": "Piercing",
     "properties": "Ammunition, Heavy, Range, Two-Handed",
-    "range": "150/600",
-    "description": ""
+    "range": "150/600"
   },
   {
     "id": 9957,
@@ -3145,8 +3109,7 @@
     "weight": 3,
     "damage": "1d8",
     "damage_type": "Slashing",
-    "properties": "Versatile",
-    "description": ""
+    "properties": "Versatile"
   },
   {
     "id": 9961,
@@ -3213,8 +3176,7 @@
     "rarity": "Standard",
     "weight": 4,
     "damage": "1d6",
-    "damage_type": "Bludgeoning",
-    "description": ""
+    "damage_type": "Bludgeoning"
   },
   {
     "id": 9967,
@@ -3372,8 +3334,7 @@
     "weight": 10,
     "damage": "2d6",
     "damage_type": "Bludgeoning",
-    "properties": "Heavy, Two-Handed",
-    "description": ""
+    "properties": "Heavy, Two-Handed"
   },
   {
     "id": 9980,
@@ -3438,8 +3399,7 @@
     "name": "Miner's pick",
     "type": "Adventuring Gear",
     "rarity": "Standard",
-    "weight": 10,
-    "description": ""
+    "weight": 10
   },
   {
     "id": 9985,
@@ -3463,8 +3423,7 @@
     "subtype": "Martial, Morningstar",
     "weight": 4,
     "damage": "1d8",
-    "damage_type": "Piercing",
-    "description": ""
+    "damage_type": "Piercing"
   },
   {
     "id": 9986,
@@ -3804,15 +3763,13 @@
     "id": 12544,
     "name": "Paper",
     "type": "Adventuring Gear",
-    "rarity": "Standard",
-    "description": ""
+    "rarity": "Standard"
   },
   {
     "id": 12545,
     "name": "Parchment",
     "type": "Adventuring Gear",
-    "rarity": "Standard",
-    "description": ""
+    "rarity": "Standard"
   },
   {
     "id": 10019,
@@ -3826,8 +3783,7 @@
     "id": 12546,
     "name": "Perfume",
     "type": "Adventuring Gear",
-    "rarity": "Standard",
-    "description": ""
+    "rarity": "Standard"
   },
   {
     "id": 10020,
@@ -3873,8 +3829,7 @@
     "weight": 18,
     "damage": "1d10",
     "damage_type": "Piercing",
-    "properties": "Heavy, Reach, Two-Handed",
-    "description": ""
+    "properties": "Heavy, Reach, Two-Handed"
   },
   {
     "id": 10023,
@@ -3932,8 +3887,7 @@
     "name": "Piton",
     "type": "Adventuring Gear",
     "rarity": "Standard",
-    "weight": 0.25,
-    "description": ""
+    "weight": 0.25
   },
   {
     "id": 10045,
@@ -4082,8 +4036,7 @@
     "name": "Playing card set",
     "type": "Adventuring Gear",
     "subtype": "Gaming Set",
-    "rarity": "Standard",
-    "description": ""
+    "rarity": "Standard"
   },
   {
     "id": 12537,
@@ -4098,8 +4051,7 @@
     "name": "Pole",
     "type": "Adventuring Gear",
     "rarity": "Standard",
-    "weight": 7,
-    "description": ""
+    "weight": 7
   },
   {
     "id": 10046,
@@ -4362,8 +4314,7 @@
     "weight": 4,
     "damage": "1d6",
     "damage_type": "Bludgeoning",
-    "properties": "Versatile",
-    "description": ""
+    "properties": "Versatile"
   },
   {
     "id": 10075,
@@ -4415,8 +4366,7 @@
     "weight": 2,
     "damage": "1d8",
     "damage_type": "Piercing",
-    "properties": "Finesse",
-    "description": ""
+    "properties": "Finesse"
   },
   {
     "id": 10080,
@@ -4882,8 +4832,7 @@
     "type": "Adventuring Gear",
     "subtype": "Robe",
     "rarity": "Standard",
-    "weight": 4,
-    "description": ""
+    "weight": 4
   },
   {
     "id": 10139,
@@ -5118,8 +5067,7 @@
     "weight": 3,
     "damage": "1d6",
     "damage_type": "Slashing",
-    "properties": "Finesse, Light",
-    "description": ""
+    "properties": "Finesse, Light"
   },
   {
     "id": 10159,
@@ -5171,8 +5119,7 @@
     "id": 12556,
     "name": "Sealing wax",
     "type": "Adventuring Gear",
-    "rarity": "Standard",
-    "description": ""
+    "rarity": "Standard"
   },
   {
     "id": 10164,
@@ -5288,8 +5235,7 @@
     "weight": 2,
     "damage": "1d6",
     "damage_type": "Piercing",
-    "properties": "Finesse, Light",
-    "description": ""
+    "properties": "Finesse, Light"
   },
   {
     "id": 10174,
@@ -5329,8 +5275,7 @@
     "name": "Shovel",
     "type": "Adventuring Gear",
     "rarity": "Standard",
-    "weight": 5,
-    "description": ""
+    "weight": 5
   },
   {
     "id": 10182,
@@ -5341,8 +5286,7 @@
     "weight": 2,
     "damage": "1d4",
     "damage_type": "Slashing",
-    "properties": "Light",
-    "description": ""
+    "properties": "Light"
   },
   {
     "id": 10179,
@@ -5381,15 +5325,13 @@
     "id": 12557,
     "name": "Signal whistle",
     "type": "Adventuring Gear",
-    "rarity": "Standard",
-    "description": ""
+    "rarity": "Standard"
   },
   {
     "id": 12558,
     "name": "Signet ring",
     "type": "Adventuring Gear",
-    "rarity": "Standard",
-    "description": ""
+    "rarity": "Standard"
   },
   {
     "id": 12554,
@@ -5404,8 +5346,7 @@
     "name": "Sledge hammer",
     "type": "Adventuring Gear",
     "rarity": "Standard",
-    "weight": 10,
-    "description": ""
+    "weight": 10
   },
   {
     "id": 10186,
@@ -5485,8 +5426,7 @@
     "id": 10189,
     "name": "Soap",
     "type": "Adventuring Gear",
-    "rarity": "Standard",
-    "description": ""
+    "rarity": "Standard"
   },
   {
     "id": 10190,
@@ -5506,8 +5446,7 @@
     "damage": "1d6",
     "damage_type": "Piercing",
     "properties": "Range, Thrown, Versatile",
-    "range": "20/60",
-    "description": ""
+    "range": "20/60"
   },
   {
     "id": 10191,
@@ -5940,8 +5879,7 @@
     "name": "Steel mirror",
     "type": "Adventuring Gear",
     "rarity": "Standard",
-    "weight": 0.5,
-    "description": ""
+    "weight": 0.5
   },
   {
     "id": 10236,
@@ -6222,8 +6160,7 @@
     "type": "Adventuring Gear",
     "subtype": "Clothing",
     "rarity": "Standard",
-    "weight": 4,
-    "description": ""
+    "weight": 4
   },
   {
     "id": 10268,
@@ -6235,8 +6172,7 @@
     "damage": "1d6",
     "damage_type": "Piercing",
     "properties": "Range, Thrown, Versatile",
-    "range": "20/60",
-    "description": ""
+    "range": "20/60"
   },
   {
     "id": 10264,
@@ -6899,8 +6835,7 @@
     "rarity": "Standard",
     "weight": 2,
     "damage": "1d8",
-    "damage_type": "Piercing",
-    "description": ""
+    "damage_type": "Piercing"
   },
   {
     "id": 10327,
@@ -6941,8 +6876,7 @@
     "weight": 2,
     "damage": "1d8",
     "damage_type": "Bludgeoning",
-    "properties": "Versatile",
-    "description": ""
+    "properties": "Versatile"
   },
   {
     "id": 10331,
@@ -7007,8 +6941,7 @@
     "name": "Whetstone",
     "type": "Adventuring Gear",
     "rarity": "Standard",
-    "weight": 1,
-    "description": ""
+    "weight": 1
   },
   {
     "id": 10344,
@@ -7019,8 +6952,7 @@
     "weight": 3,
     "damage": "1d4",
     "damage_type": "Slashing",
-    "properties": "Finesse, Reach",
-    "description": ""
+    "properties": "Finesse, Reach"
   },
   {
     "id": 10341,
@@ -7095,8 +7027,7 @@
     "subtype": "Shield",
     "rarity": "Standard",
     "weight": 6,
-    "ac": 2,
-    "description": ""
+    "ac": 2
   },
   {
     "id": 12522,
