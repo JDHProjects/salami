@@ -51,7 +51,7 @@ function getItemData(name) {
 					duration: itemJson.data.Duration,
 					ac: itemJson.data["AC"] == undefined ? undefined : parseInt(itemJson.data["AC"]),
 					stealth: itemJson.data.Stealth,
-					description: description == undefined ? undefined : description.trim(),
+					description: description == undefined || description == "" ? undefined : description.trim(),
 				}
 				resolve(item)
 			}
