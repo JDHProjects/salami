@@ -31,7 +31,7 @@ describe('The coinflip command', function() {
     let actualMessage = (await execute(dummyMessage, ["heads"]))[0]
     let matches = actualMessage.match(idealMessage)
     if (matches == null) {
-      matches = -1
+      matches = []
     }
     
     assert.equal(1, matches.length)
@@ -44,7 +44,7 @@ describe('The coinflip command', function() {
     let actualMessage = (await execute(dummyMessage, ["tails"]))[0]
     let matches = actualMessage.match(idealMessage)
     if (matches == null) {
-      matches = -1
+      matches = []
     }
 
     assert.equal(1, matches.length)
@@ -57,7 +57,7 @@ describe('The coinflip command', function() {
     let actualMessage = (await execute(dummyMessage, ["tails", "100"]))[0]
     let matches = actualMessage.match(idealMessage)
     if (matches == null) {
-      matches = -1
+      matches = []
     }
 
     assert.equal(1, matches.length)
