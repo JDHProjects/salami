@@ -20,7 +20,7 @@ describe('The circulation command', function() {
     let actualMessage = (await execute({}, []))[0]
     let matches = actualMessage.match(idealMessage)
     if (matches == null) {
-      matches = -1
+      matches = []
     }
     
     assert.equal(1, matches.length)

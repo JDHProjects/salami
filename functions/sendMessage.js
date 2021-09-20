@@ -8,7 +8,6 @@ const sendMessage = {
     return[text, options]
   },
   reply(message, text, options={}){
-    console.log("hello")
     if(process.env.TEST != "TRUE"){
       message.reply(text, options)
     }

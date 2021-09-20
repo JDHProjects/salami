@@ -5,30 +5,16 @@ const { refreshBank } = require('./refreshBank.js')
 const { sequelize, botValues } = require('../db.js')
 
 const syncDB = function() {
-	return new Promise(function(resolve, reject) {
-		sequelize.sync()
-		.then(_ => {
-			botValues.findOrCreate({ where: { variable: "botConnected" } })
-			.then(_ => {
-				refreshBank()
-				.then(bankResp => {
-					console.log(bankResp)
-          add5EMonsters()
-          .then(monsterResp =>{
-            console.log(monsterResp)
-						add5ESpells()
-						.then(spellResp =>{
-							console.log(spellResp)
-							add5EItems()
-							.then(itemResp =>{
-								console.log(itemResp)
-								resolve("Database synced")
-							})
-						})
-          })
-				})
-			})
-		});
+	return new Promise(async function(resolve, reject) {
+		let resolveMsg = ""
+		await sequelize.sync()
+		await botValues.findOrCreate({ where: { variable: "botConnected" } })
+		resolveMsg += `${await refreshBank()}\n`
+    resolveMsg += `${await add5EMonsters()}\n`
+    resolveMsg += `${await add5ESpells()}\n`
+		resolveMsg += `${await add5EItems()}\n`
+
+		resolve(`${resolveMsg}Database synced`)
 	})
 }
 
