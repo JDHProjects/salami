@@ -1,15 +1,15 @@
-const assert = require('assert');
+const assert = require("assert")
 
-const { execute } = require('../../commands/dicegame.js')
+const { execute } = require("../../commands/dicegame.js")
 
-const { dummyMessage } = require('../helpers/dummyMessage.js')
-const { setUserMoney } = require('../helpers/setUserMoney.js')
+const { dummyMessage } = require("../helpers/dummyMessage.js")
+const { setUserMoney } = require("../helpers/setUserMoney.js")
 
-describe('The dicegame command', function() {
+describe("The dicegame command", function() {
   
   beforeEach(async function() {
-    const { refreshBank } = require('../../db/functions/refreshBank.js')
-    const { clearDb } = require('../helpers/clearDb.js')
+    const { refreshBank } = require("../../db/functions/refreshBank.js")
+    const { clearDb } = require("../helpers/clearDb.js")
 
     //sync db and clear tables before each test
     await clearDb()
@@ -17,14 +17,14 @@ describe('The dicegame command', function() {
   })
 
   
-  it('should respond correctly with no guess', async function() {
+  it("should respond correctly with no guess", async function() {
     let idealMessage = "you forgot to make a guess!"
     let actualMessage = (await execute({}, []))[0]
     
     assert.equal(idealMessage, actualMessage)
   })
 
-  it('should respond correctly with a one guess', async function() {
+  it("should respond correctly with a one guess", async function() {
     await setUserMoney(0)
 
     let idealMessage = /(one|two|three|four|five|six)! <@12345>, (you lose|you win!)/g
@@ -37,7 +37,7 @@ describe('The dicegame command', function() {
     assert.equal(1, matches.length)
   })
 
-  it('should respond correctly when user has insufficient money', async function() {
+  it("should respond correctly when user has insufficient money", async function() {
     await setUserMoney(0)
 
     let idealMessage = "you don't have enough salami to make that bet"
