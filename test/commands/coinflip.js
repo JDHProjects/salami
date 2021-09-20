@@ -1,10 +1,9 @@
 const assert = require('assert');
 
-const { setUserMoney } = require('../helpers/setUserMoney.js')
-
 const { execute } = require('../../commands/coinflip.js')
 
 const { dummyMessage } = require('../helpers/dummyMessage.js')
+const { setUserMoney } = require('../helpers/setUserMoney.js')
 
 describe('The coinflip command', function() {
   
@@ -26,7 +25,7 @@ describe('The coinflip command', function() {
   })
 
   it('should respond correctly with a heads guess', async function() {
-    await setUserMoney(0,12345)
+    await setUserMoney(0)
 
     let idealMessage = /tails! <@12345>, you lose|heads! <@12345>, you win!/g
     let actualMessage = (await execute(dummyMessage, ["heads"]))[0]
@@ -39,7 +38,7 @@ describe('The coinflip command', function() {
   })
 
   it('should respond correctly with a tails guess', async function() {
-    await setUserMoney(0,12345)
+    await setUserMoney(0)
 
     let idealMessage = /heads! <@12345>, you lose|tails! <@12345>, you win!/g
     let actualMessage = (await execute(dummyMessage, ["tails"]))[0]
@@ -52,7 +51,7 @@ describe('The coinflip command', function() {
   })
 
   it('should respond correctly when user has insufficient money', async function() {
-    await setUserMoney(0,12345)
+    await setUserMoney(0)
 
     let idealMessage = /<@12345>, you don't have enough salami to make that bet/g
     let actualMessage = (await execute(dummyMessage, ["tails", "100"]))[0]
