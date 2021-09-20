@@ -58,7 +58,7 @@ module.exports = {
       target.update({money:amount})
     }
     refreshBank()
-    messageText = sendMessage.send(`<@${targetUser.id}>'s money has been updated`)
+    messageText = sendMessage.send(message, `<@${targetUser.id}>'s money has been updated`)
     return messageText
   },
 }
