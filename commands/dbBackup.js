@@ -8,7 +8,7 @@ module.exports = {
 	admin: true,
 	execute(message, args) {
 		return new Promise(async function(resolve, reject) {
-			let messageText = sendMessage(message, "DB backup file", { files: ["./database.sqlite"] }, "author");
+			let messageText = sendMessage.author(message, "DB backup file", { files: ["./database.sqlite"] });
 			resolve(messageText)
 		})
 	}

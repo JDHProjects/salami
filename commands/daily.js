@@ -14,7 +14,7 @@ module.exports = {
 			let user = await bankAccounts.findByPk(message.author.id)
 
 			sendFromBank(user, 1000)
-			let messageText = sendMessage(message, "your 1000 salami have been transferred to your bank account!", reply=true)
+			let messageText = sendMessage.reply(message, "your 1000 salami have been transferred to your bank account!")
 			resolve(messageText)
 		})
 }

@@ -1,18 +1,25 @@
 require('dotenv').config();
 
-const sendMessage = function(message, text, options={}, type="normal"){
-  if(process.env.TEST != "TRUE"){
-    if (type == "reply") {
-      message.reply(text, options)
-    }
-    else if (type == "author"){
-      message.author.send(text, options)
-    }
-    else {
+const sendMessage = {
+  send(message, text, options={}){
+    if(process.env.TEST != "TRUE"){
       message.channel.send(text, options)
     }
-  }
-  return[text, options]
+    return[text, options]
+  },
+  reply(message, text, options={}){
+    console.log("hello")
+    if(process.env.TEST != "TRUE"){
+      message.reply(text, options)
+    }
+    return[text, options]
+  },
+  author(message, text, options={}){
+    if(process.env.TEST != "TRUE"){
+      message.author.send(text, options)
+    }
+    return[text, options]
+  },
 }
 
 module.exports = { sendMessage }
