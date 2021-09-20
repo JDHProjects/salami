@@ -1,11 +1,11 @@
 const assert = require('assert');
 
-const { execute } = require('../../commands/coinflip.js')
+const { execute } = require('../../commands/dicegame.js')
 
 const { dummyMessage } = require('../helpers/dummyMessage.js')
 const { setUserMoney } = require('../helpers/setUserMoney.js')
 
-describe('The coinflip command', function() {
+describe('The dicegame command', function() {
   
   beforeEach(async function() {
     const { refreshBank } = require('../../db/functions/refreshBank.js')
@@ -18,44 +18,31 @@ describe('The coinflip command', function() {
 
   
   it('should respond correctly with no guess', async function() {
-    let idealMessage = "You forgot to pick heads or tails!"
+    let idealMessage = "you forgot to make a guess!"
     let actualMessage = (await execute({}, []))[0]
     
     assert.equal(idealMessage, actualMessage)
   })
 
-  it('should respond correctly with a heads guess', async function() {
+  it('should respond correctly with a one guess', async function() {
     await setUserMoney(0)
 
-    let idealMessage = /tails! <@12345>, you lose|heads! <@12345>, you win!/g
-    let actualMessage = (await execute(dummyMessage, ["heads"]))[0]
+    let idealMessage = /(one|two|three|four|five|six)! <@12345>, (you lose|you win!)/g
+    let actualMessage = (await execute(dummyMessage, ["one"]))[0]
     let matches = actualMessage.match(idealMessage)
     if (matches == null) {
       matches = []
     }
     
-    assert.equal(1, matches.length)
-  })
-
-  it('should respond correctly with a tails guess', async function() {
-    await setUserMoney(0)
-
-    let idealMessage = /heads! <@12345>, you lose|tails! <@12345>, you win!/g
-    let actualMessage = (await execute(dummyMessage, ["tails"]))[0]
-    let matches = actualMessage.match(idealMessage)
-    if (matches == null) {
-      matches = []
-    }
-
     assert.equal(1, matches.length)
   })
 
   it('should respond correctly when user has insufficient money', async function() {
     await setUserMoney(0)
 
-    let idealMessage = "<@12345>, you don't have enough salami to make that bet"
-    let actualMessage = (await execute(dummyMessage, ["tails", "100"]))[0]
-
+    let idealMessage = "you don't have enough salami to make that bet"
+    let actualMessage = (await execute(dummyMessage, ["one", "100"]))[0]
+    
     assert.equal(idealMessage, actualMessage)
   })
 })
