@@ -6,8 +6,7 @@ module.exports = {
 	description: 'Run this command to see the total amount of salami in circulation',
 	usage: `just send circulation`,
 	example: '',
-	execute(message, args) {
-		return new Promise(async function(resolve, reject) {
+	execute: async function(message, args) {
 			const { bankAccounts } = require('../db/db.js')
 
 			let total = await bankAccounts.sum('money', { where: { user_id: { [Op.ne]: "0" } } } )
@@ -19,7 +18,6 @@ module.exports = {
 			let salami = await bankAccounts.findByPk( "637400095821660180" )
 			botMoney = salami.dataValues.money
 			let messageText = sendMessage.send(message,`The current amount of salami in user circulation on ${date.toLocaleTimeString("en-us", options)} is:\n**${total} salami**\n<@637400095821660180> owns ${botMoney != 0 ? Math.floor((botMoney/total)*100) : 0}% of the salami in circulation`)
-			resolve(messageText)
-		})
+			return messageText
 	},
 };

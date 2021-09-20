@@ -6,8 +6,7 @@ module.exports = {
 	usage: `requires either "heads" or "tails", bet by providing a number as an additional arg`,
 	cooldown: 2,
 	example: 'heads 100',
-	execute(message, args) {
-		return new Promise(async function(resolve, reject) {
+	execute: async function(message, args) {
 			const { bankAccounts } = require('../db/db.js')
 			const { lossWithTax } = require('../db/functions/lossWithTax.js')
 			const { sendFromBank } = require('../db/functions/sendFromBank.js')
@@ -48,7 +47,6 @@ module.exports = {
 			else{
 				messageText = sendMessage.send(message,`You forgot to pick heads or tails!`)
 			}
-			resolve(messageText)
-		})
+			return messageText
 	},
 };

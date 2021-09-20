@@ -6,8 +6,7 @@ module.exports = {
 	usage: `fixmoney`,
 	example: '',
 	admin: true,
-	execute(message, args) {
-		return new Promise(async function(resolve, reject) {
+	execute: async function(message, args) {
 			const { bankAccounts } = require('../db/db.js')
 			const { refreshBank } = require('../db/functions/refreshBank.js')
 
@@ -60,7 +59,6 @@ module.exports = {
 			}
 			refreshBank()
 			messageText = sendMessage.send(`<@${targetUser.id}>'s money has been updated`)
-			resolve(messageText)
-		})
+			return messageText
 	},
 };

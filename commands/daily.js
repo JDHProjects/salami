@@ -6,8 +6,7 @@ module.exports = {
 	usage: 'Just send daily, theres really not much to this',
 	cooldown: 86400,
 	example: 'daily',
-	execute(message, args) {
-		return new Promise(async function(resolve, reject) {
+	execute: async function(message, args) {
 			const { bankAccounts } = require('../db/db.js')
 			const { sendFromBank } = require('../db/functions/sendFromBank.js')
 			
@@ -15,7 +14,6 @@ module.exports = {
 
 			sendFromBank(user, 1000)
 			let messageText = sendMessage.reply(message, "your 1000 salami have been transferred to your bank account!")
-			resolve(messageText)
-		})
-}
+			return messageText
+	}
 };

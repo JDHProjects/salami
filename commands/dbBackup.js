@@ -6,10 +6,8 @@ module.exports = {
 	usage: `just send dbbackup, theres really not much to this`,
 	example: 'dbbackup',
 	admin: true,
-	execute(message, args) {
-		return new Promise(async function(resolve, reject) {
+	execute: async function(message, args) {
 			let messageText = sendMessage.author(message, "DB backup file", { files: ["./database.sqlite"] });
-			resolve(messageText)
-		})
+			return messageText
 	}
 };
