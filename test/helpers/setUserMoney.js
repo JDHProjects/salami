@@ -1,4 +1,4 @@
-const setUserMoney = function(userMoney, user=1) {
+const setUserMoney = function(userMoney, user=12345) {
   return new Promise(async function(resolve, reject) {
     const { sequelize, bankAccounts } = require('../../db/db.js')
 
@@ -7,5 +7,5 @@ const setUserMoney = function(userMoney, user=1) {
     resolve("money set")
   })
 }
-setUserMoney()
+
 module.exports = { setUserMoney }
