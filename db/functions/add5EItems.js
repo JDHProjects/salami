@@ -1,22 +1,11 @@
-const add5EItems = function() {
-	return new Promise(function(resolve, reject) {
-		const { fiveEItems } = require('../db.js')
-		const items = require('../../assets/items/data/data.json');
+const add5EItems = async function() {
+  const { fiveEItems } = require("../db.js")
+  const items = require("../../assets/items/data/data.json")
 
-		fiveEItems.count()
-		.then(c => {
-			fiveEItems.bulkCreate(items, {ignoreDuplicates: true})
-			.then(resp => {
-				fiveEItems.count()
-				.then(c2 => {
-					resolve(`${c2-c} items added to database`)
-				})
-			})
-			.catch(err => {
-				reject("error adding items")
-			})
-		})
-	})
-};
+  let c = await fiveEItems.count()
+  await fiveEItems.bulkCreate(items, {ignoreDuplicates: true})
+  let c2 = await fiveEItems.count()
+  return `${c2-c} items added to database`
+}
 
 module.exports = { add5EItems }

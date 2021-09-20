@@ -1,4 +1,4 @@
 node_modules
 salami.code-workspace
-database.sqlite
+*database.sqlite
 .env

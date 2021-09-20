@@ -1,19 +1,15 @@
-const upOrDown = function(up) {
-	return new Promise(function(resolve, reject) {
-		const { botValues } = require('../db.js')
+const upOrDown = async function(up) {
+  const { botValues } = require("../db.js")
 
-		botValues.findByPk("botConnected")
-		.then(values => {
-			let timeDown = 0
-			if(values.dataValues.value == "false" && up == "true"){
-					timeDown = (Date.now() - Date.parse(values.dataValues.updatedAt)) / 1000
-			}
-			if (values.dataValues.value != up){
-				values.update({value:up})
-			}
-			resolve(timeDown)
-		})
-	})
-};
+  let values = await botValues.findByPk("botConnected")
+  let timeDown = 0
+  if(values.dataValues.value == "false" && up == "true"){
+    timeDown = (Date.now() - Date.parse(values.dataValues.updatedAt)) / 1000
+  }
+  if (values.dataValues.value != up){
+    values.update({value:up})
+  }
+  return timeDown
+}
 
 module.exports = { upOrDown }
