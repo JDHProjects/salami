@@ -2,7 +2,7 @@ const assert = require("assert")
 
 const { execute } = require("../../commands/help.js")
 
-const { dummyMessageWithCommands, dummyMessageAsAdmin, dummyMessageWithCommandsAsAdmin } = require("../helpers/dummyMessages.js")
+const { dummyMessageWithCommands, dummyMessageWithCommandsAsAdmin } = require("../helpers/dummyMessages.js")
 
 describe("The heist command", function() {
 

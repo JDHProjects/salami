@@ -26,7 +26,7 @@ describe("The heist command", function() {
     assert.equal(idealMessage, actualMessage)
   })
 
-  it("should respond correctly with not enough money", async function() {
+  it("should respond correctly with enough money", async function() {
     await setUserMoney(1000)
 
     let idealMessage = /you were caught!|you escaped with [0-9]+ salami!/g
