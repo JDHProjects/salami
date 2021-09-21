@@ -17,7 +17,7 @@ module.exports = {
     }
     else{
       messageText = sendMessage.reply(message, "No user specified")
-      return
+      return messageText
     }
     let plus = false
     let minus = false
@@ -40,12 +40,12 @@ module.exports = {
     if(!(plus || minus || setTo))
     {
       messageText = sendMessage.reply(message, "No amount modifier specified")
-      return
+      return messageText
     }
     if(amount < 0)
     {
       messageText = sendMessage.reply(message, "No amount specified")
-      return
+      return messageText
     }
     let target = await bankAccounts.findByPk(targetUser.id)
     if (plus){

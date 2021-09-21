@@ -2,7 +2,7 @@ const assert = require("assert")
 
 const { execute } = require("../../commands/dicegame.js")
 
-const { dummyMessage } = require("../helpers/dummyMessage.js")
+const { dummyMessage } = require("../helpers/dummyMessages.js")
 const { setUserMoney } = require("../helpers/setUserMoney.js")
 
 describe("The dicegame command", function() {

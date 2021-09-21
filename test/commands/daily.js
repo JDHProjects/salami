@@ -2,7 +2,7 @@ const assert = require("assert")
 
 const { execute } = require("../../commands/daily.js")
 
-const { dummyMessage } = require("../helpers/dummyMessage.js")
+const { dummyMessage } = require("../helpers/dummyMessages.js")
 const { getUserMoney } = require("../helpers/getUserMoney.js")
 const { setUserMoney } = require("../helpers/setUserMoney.js")
 
