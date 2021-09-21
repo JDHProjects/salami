@@ -10,7 +10,7 @@
         "localhost": "PREFIX=, DOWN_DETECTION=FALSE nodemon index.js",
         "development": "PREFIX=. DOWN_DETECTION=FALSE nodemon index.js",
         "production": "PREFIX=\\> DOWN_DETECTION=TRUE nodemon index.js",
-        "test": "TEST=TRUE mocha --reporter list --recursive",
+        "test": "TEST=TRUE OWNER=1 PREFIX=\\> mocha --reporter list --recursive",
         "check-format": "eslint ./",
         "format": "eslint ./ --fix"
     },
