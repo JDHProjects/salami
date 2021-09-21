@@ -1,12 +1,12 @@
 const assert = require("assert")
 
-const { execute } = require("../../commands/fixmoney.js")
+const { execute } = require("../../commands/fixMoney.js")
 
 const { dummyMessage, dummyMessageWithMention } = require("../helpers/dummyMessages.js")
 const { setUserMoney } = require("../helpers/setUserMoney.js")
 const { getUserMoney } = require("../helpers/getUserMoney.js")
 
-describe("The fixmoney command", function() {
+describe("The fixMoney command", function() {
   
   beforeEach(async function() {
     const { refreshBank } = require("../../db/functions/refreshBank.js")
