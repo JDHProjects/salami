@@ -12,6 +12,14 @@ module.exports = {
       commands: new Discord.Collection(),
     },
     attachments: new Discord.Collection(),
+    channel: {
+      startTyping() {
+        return
+      },
+      stopTyping() {
+        return
+      }
+    }
   },
   dummyMessageWithMention: { 
     author: {
