@@ -6,10 +6,10 @@
     "author": "Joshua Purdy",
     "scripts": {
         "start": "nodemon index.js",
-        "unit-test-env": "TEST=TRUE PREFIX=, DOWN_DETECTION=FALSE nodemon index.js",
-        "localhost": "PREFIX=, DOWN_DETECTION=FALSE nodemon index.js",
-        "development": "PREFIX=. DOWN_DETECTION=FALSE nodemon index.js",
-        "production": "PREFIX=\\> DOWN_DETECTION=TRUE nodemon index.js",
+        "unit-test-env": "ENVIRONMENT=localhost TEST=TRUE PREFIX=, DOWN_DETECTION=FALSE nodemon index.js",
+        "localhost": "ENVIRONMENT=localhost PREFIX=, DOWN_DETECTION=FALSE nodemon index.js",
+        "development": "ENVIRONMENT=development PREFIX=. DOWN_DETECTION=FALSE nodemon index.js",
+        "production": "ENVIRONMENT=production PREFIX=\\> DOWN_DETECTION=TRUE nodemon index.js",
         "test": "TEST=TRUE OWNER=1 PREFIX=\\> mocha --reporter list --recursive",
         "check-format": "eslint ./",
         "format": "eslint ./ --fix"

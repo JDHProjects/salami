@@ -47,7 +47,7 @@ client.on("message", async message => {
       id: `${message.author.id}`,
       username: `${message.author.username}`
     }
-  );
+  )
 
   if (!client.commands.has(commandName)){
 
