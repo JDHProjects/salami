@@ -6,6 +6,7 @@ module.exports = {
   usage: "just send heist, theres really not much to this",
   cooldown: 30,
   example: "",
+  tested: true,
   execute: async function(message, args) {
     const { bankAccounts } = require("../db/db.js")
     const { lossWithTax } = require("../db/functions/lossWithTax.js")

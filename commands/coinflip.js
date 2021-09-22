@@ -6,6 +6,7 @@ module.exports = {
   usage: "requires either \"heads\" or \"tails\", bet by providing a number as an additional arg",
   cooldown: 2,
   example: "heads 100",
+  tested: true,
   execute: async function(message, args) {
     const { bankAccounts } = require("../db/db.js")
     const { lossWithTax } = require("../db/functions/lossWithTax.js")

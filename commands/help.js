@@ -8,6 +8,7 @@ module.exports = {
   description: "List all of my commands or info about a specific command.",
   usage: `You can send \`${prefix}help [command name]\` to get info on a specific command!`,
   example: "d",
+  tested: true,
   execute(message, args) {
     const data = []
     const { commands } = message.client

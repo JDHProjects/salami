@@ -6,6 +6,7 @@ module.exports = {
   usage: "fixmoney",
   example: "",
   admin: true,
+  tested: true,
   execute: async function(message, args) {
     const { bankAccounts } = require("../db/db.js")
     const { refreshBank } = require("../db/functions/refreshBank.js")

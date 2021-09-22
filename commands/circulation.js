@@ -6,6 +6,7 @@ module.exports = {
   description: "Run this command to see the total amount of salami in circulation",
   usage: "just send circulation",
   example: "",
+  tested: true,
   execute: async function(message, args) {
     const { bankAccounts } = require("../db/db.js")
 

@@ -5,6 +5,7 @@ module.exports = {
   description: "Check the amount the central bank has",
   usage: "just send bank, theres really not much to this",
   example: "",
+  tested: true,
   execute: async function(message, args) {
     const { bankAccounts } = require("../db/db.js")
     let bank = await bankAccounts.findByPk("0")

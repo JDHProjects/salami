@@ -4,6 +4,7 @@ module.exports = {
   usage: "just call latency",
   cooldown: 1,
   example: "latency",
+  tested: false,
   execute(message, args) {
     message.channel.send("Latency check!")
       .then(respMessage => {

@@ -7,6 +7,7 @@ module.exports = {
   description: "Returns the first google image result of your choice.\nALL IMAGES FROM GOOGLE, I TAKE NO RESPONSIBILITY FOR THE IMAGES RETURNED",
   usage: "The word or phrase you want to search is the command argument",
   example: "nature landscape",
+  tested: true,
   execute: async function(message, args) {
     let messageText = ""
     if(args.length == 0){

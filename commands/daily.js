@@ -6,6 +6,7 @@ module.exports = {
   usage: "Just send daily, theres really not much to this",
   cooldown: 86400,
   example: "daily",
+  tested: true,
   execute: async function(message, args) {
     const { bankAccounts } = require("../db/db.js")
     const { sendFromBank } = require("../db/functions/sendFromBank.js")

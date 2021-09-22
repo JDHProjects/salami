@@ -6,6 +6,7 @@ module.exports = {
   usage: "requires from \"one\" to \"six\" in words, bet by providing a number as an additional arg",
   cooldown: 2,
   example: "\"one\" 100",
+  tested: true,
   execute: async function(message, args) {
     const { bankAccounts } = require("../db/db.js")
     const { lossWithTax } = require("../db/functions/lossWithTax.js")

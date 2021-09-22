@@ -7,6 +7,7 @@ module.exports = {
   description: "Spend 50k salami for a steam game key",
   usage: "Just send hook-a-key, theres not much to this",
   example: "",
+  tested: true,
   execute: async function(message, args) {
     const { bankAccounts, hookAKeys, sequelize } = require("../db/db.js")
     const { lossWithTax } = require("../db/functions/lossWithTax.js")
