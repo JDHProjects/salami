@@ -4,7 +4,7 @@ const { execute } = require("../../commands/help.js")
 
 const { dummyMessageWithCommands, dummyMessageWithCommandsAsAdmin } = require("../helpers/dummyMessages.js")
 
-describe("The heist command", function() {
+describe("The help command", function() {
 
   it("should respond correctly to an invalid command", function() {
     let idealMessage = "that's not a valid command!"
