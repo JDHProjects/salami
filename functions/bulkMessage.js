@@ -3,7 +3,7 @@ const channelMessage = new Discord.Collection()
 
 const bulkReply = function(message, messageText) {
   let replyText = `<@${message.author.id}>, ` + messageText
-  bulkSend(message, replyText)
+  return bulkSend(message, replyText)
 }
 
 const bulkSend = function(message, messageText) {
@@ -19,6 +19,7 @@ const bulkSend = function(message, messageText) {
   else{
     channelMessage.set(message.channel, channelMessage.get(message.channel) + "\n" + messageText)
   }
+  return messageText
 }
 
 module.exports = { bulkReply, bulkSend }
