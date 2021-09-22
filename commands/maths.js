@@ -3,6 +3,7 @@ module.exports = {
   description: "solve a basic maths question to make some money",
   usage: "just send maths, then send your response as a normal message",
   example: "",
+  tested: false,
   execute(message, args) {
     const { bankAccounts } = require("../db/db.js")
     const { sendFromBank } = require("../db/functions/sendFromBank.js")

@@ -11,15 +11,15 @@ describe("The dbBackup command", function() {
     await clearDb()
   })
 
-  it("should respond correctly", async function() {
+  it("should respond correctly", function() {
     let idealMessage = "DB backup file"
-    let actualMessage = (await execute({}, []))[0]
+    let actualMessage = execute({}, [])[0]
     assert.equal(idealMessage, actualMessage)
   })
 
-  it("should send the database file", async function() {
+  it("should send the database file", function() {
     let idealFile = "./database.sqlite"
-    let actualFile = (await execute({}, []))[1].files[0]
+    let actualFile = execute({}, [])[1].files[0]
     assert.equal(idealFile, actualFile)
   })
 })
