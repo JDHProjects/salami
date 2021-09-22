@@ -15,6 +15,7 @@
         "format": "eslint ./ --fix"
     },
     "dependencies": {
+        "@sentry/node": "^6.13.2",
         "cron": "^1.8.2",
         "discord.js": "^12.2.0",
         "dotenv": "^10.0.0",

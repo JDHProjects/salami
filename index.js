@@ -3,11 +3,20 @@ const { syncDB } = require("./db/functions/syncDB.js")
 const { runEachCommand } = require("./db/functions/runEachCommand.js")
 const { downDetector } = require("./functions/downDetector.js")
 
-const stringSimilarity = require("string-similarity")
-
 const fs = require("fs")
 require("dotenv").config()
 const prefix = process.env.PREFIX
+
+const stringSimilarity = require("string-similarity")
+
+const Sentry = require("@sentry/node")
+
+Sentry.init({
+  dsn: process.env.SENTRY_KEY,
+  tracesSampleRate: 1.0,
+  environment: process.env.ENVIRONMENT
+})
+
 
 const client = new Discord.Client()
 client.commands = new Discord.Collection()
@@ -26,14 +35,27 @@ client.on("ready", () => {
   downDetector()
 })
 
-client.on("message", message => {
+client.on("message", async message => {
   if (!message.content.startsWith(prefix) || message.author.bot) return
 
   const args = message.content.slice(prefix.length).split(/ +/).map(arg => arg.toLowerCase())
     
   const commandName = args.shift()
 
+  Sentry.setUser(
+    { 
+      id: `${message.author.id}`,
+      username: `${message.author.username}`
+    }
+  );
+
   if (!client.commands.has(commandName)){
+
+    const transaction = Sentry.startTransaction({
+      op: "invalid_command",
+      name: "invalid command",
+    })
+
     let similar = stringSimilarity.findBestMatch(commandName, commandNames).bestMatch
     if (similar.rating < 0.3){
       message.channel.send("Sorry, I don't know that command!")
@@ -41,13 +63,20 @@ client.on("message", message => {
     else{
       message.channel.send(`Sorry, I don't know that command!\nDid you mean:\n       \`${prefix}${similar.target}\``)
     }
+    transaction.finish()
     return
   }
+
+  const transaction = Sentry.startTransaction({
+    op: commandName,
+    name: commandName,
+  })
 
   const command = client.commands.get(commandName)
 
   if (command.admin === true && process.env.OWNER != message.author.id){
     message.channel.send("You're not an admin!")
+    transaction.finish()
     return
   }
 
@@ -67,22 +96,24 @@ client.on("message", message => {
       let mins = Math.floor((timeLeft % 3600) / 60)
       let secs = Math.floor((timeLeft % 3600) % 60)
 
-      return message.reply(`please wait ${hours}:${mins}:${secs} before reusing the \`${command.name}\` command.`)
+      message.reply(`please wait ${hours}:${mins}:${secs} before reusing the \`${command.name}\` command.`)
+      transaction.finish()
+      return
     }
   }
 
   timestamps.set(message.author.id, now)
   setTimeout(() => timestamps.delete(message.author.id), cooldownAmount)
 
-  runEachCommand(commandName, message.author.id.toString())
-    .then(resp =>{
-      try {
-        command.execute(message, args)
-      } catch (error) {
-        console.error(error)
-        message.channel.send("there was an error trying to execute that command!")
-      }
-    })
+  await runEachCommand(commandName, message.author.id.toString())
+  try {
+    await command.execute(message, args)
+  } catch (error) {
+    Sentry.captureException(error)
+    message.channel.send("there was an error trying to execute that command!")
+  } finally {
+    transaction.finish()
+  }
 })
 
 syncDB()
