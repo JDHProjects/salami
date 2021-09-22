@@ -15,24 +15,20 @@ module.exports = {
     }
     let imageIndex = 0
     let allArgs = ""
-    for (let i in args){
-      if (i > 0){
-        allArgs+=" "
-      }
-      if (i < args.length - 1 || isNaN(args[i])){
-        allArgs+=args[i]
-      }
-      else{
-        imageIndex = args[args.length-1]
-      }
-      try{
-        let url = await searchForImage(allArgs,imageIndex)
-        messageText = sendMessage.send(message, url)
-      }
-      catch(err){
-        messageText = sendMessage.send(message, err) 
-      }
-      return messageText
+    if(isNaN(args[args.length-1])){
+      allArgs = args.join(" ")
     }
+    else{
+      imageIndex = args[args.length-1]
+      allArgs = args.slice(0,args.length-1).join(" ")
+    }
+    try{
+      let url = await searchForImage(allArgs,imageIndex)
+      messageText = sendMessage.send(message, url)
+    }
+    catch(err){
+      messageText = sendMessage.send(message, err) 
+    }
+    return messageText
   },
 }

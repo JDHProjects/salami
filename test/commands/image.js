@@ -12,6 +12,7 @@ describe("The image command", function() {
   })
 
   it("should respond correctly to a user searching for an image", async function() {
+    this.timeout(5000);
     let idealMessage = "https://"
     let actualMessage = (await execute({}, ["test"]))[0]
     
@@ -19,9 +20,10 @@ describe("The image command", function() {
   })
 
   it("should respond correctly to a user searching for an image with a different index", async function() {
+    this.timeout(5000);
     let messageOne = (await execute({}, ["test"]))[0]
     let messageTwo = (await execute({}, ["test","1"]))[0]
     
-    assert.equal(messageOne, messageTwo)
+    assert.notEqual(messageOne, messageTwo)
   })
 })
