@@ -46,6 +46,24 @@ module.exports = {
     },
     attachments: new Discord.Collection( [ [ "test.txt", { name: "test.txt" } ] ] ),
   },
+  dummyMessageWithNoKeysAttachmentAsAdmin: { 
+    author: {
+      id: 1
+    },
+    mentions: {
+      users: new Discord.Collection(),
+    },
+    attachments: new Discord.Collection( [ [ "test.txt", { name: "test.txt", url: "no_keys" } ] ] ),
+  },
+  dummyMessageWithKeysAttachmentAsAdmin: { 
+    author: {
+      id: 1
+    },
+    mentions: {
+      users: new Discord.Collection(),
+    },
+    attachments: new Discord.Collection( [ [ "test.txt", { name: "test.txt", url: "keys" } ] ] ),
+  },
   dummyMessageWithJPEGAttachmentAsAdmin: { 
     author: {
       id: 1

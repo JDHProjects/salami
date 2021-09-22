@@ -8,32 +8,29 @@ module.exports = {
   usage: "Just send hook-a-key, theres not much to this",
   example: "",
   execute: async function(message, args) {
-    const fetchUrl = require("fetch").fetchUrl
     const { bankAccounts, hookAKeys, sequelize } = require("../db/db.js")
     const { lossWithTax } = require("../db/functions/lossWithTax.js")
     let messageText = ""
     if(message.attachments.size == 1){
       if(process.env.OWNER == message.author.id){
         if(message.attachments.first().name.slice(-3) == "txt"){
-          //careful, nothing within the below callback is regression tested
-          fetchUrl(message.attachments.first().url, async function(error, meta, body){
-            let re = /[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]-[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]-[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]/g
-            let allKeys = body.toString().match(re)
-            let bulkCreator = []
-            if (allKeys != null){
-              sendMessage.reply(message, `${allKeys.length} key(s) found in sent file`)
-              for (let i in allKeys){
-                bulkCreator.push({
-                  key: allKeys[i]
-                })
-              }
-              await hookAKeys.bulkCreate(bulkCreator, {ignoreDuplicates: true})
-              sendMessage.reply(message, "any non-duplicate keys have been added!")[0]
+          let fileContents = await getContentsOfUrl(message.attachments.first().url)
+          let re = /[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]-[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]-[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]/g
+          let allKeys = fileContents.match(re)
+          let bulkCreator = []
+          if (allKeys != null){
+            messageText = sendMessage.reply(message, `${allKeys.length} key(s) found in sent file`)
+            for (let i in allKeys){
+              bulkCreator.push({
+                key: allKeys[i]
+              })
             }
-            else{
-              sendMessage.reply(message, "no keys found in sent file")
-            }
-          })
+            await hookAKeys.bulkCreate(bulkCreator, {ignoreDuplicates: true})
+            messageText[0] += sendMessage.reply(message, "any non-duplicate keys have been added!")[0]
+          }
+          else{
+            messageText = sendMessage.reply(message, "no keys found in sent file")
+          }
         }
         else{
           messageText = sendMessage.reply(message, "A new key file must be a .txt file")
@@ -62,4 +59,29 @@ module.exports = {
     }
     return messageText
   },
+}
+
+const getContentsOfUrl = function(url) {
+  return new Promise(function(resolve, reject) {
+    if (process.env.TEST == "TRUE"){
+      if (url == "no_keys"){
+        resolve("")
+      }
+      else if (url == "keys"){
+        resolve("AAAAA-AAAAA-AAAAA")
+      }
+    }
+    else {
+      const fetchUrl = require("fetch").fetchUrl
+
+      fetchUrl(url, async function(error, meta, body){
+        if (!error && body != undefined) {
+          resolve(body.toString())
+        }
+        else {
+          reject("Something went wrong, please try again!")
+        }
+      })
+    }
+  })
 }

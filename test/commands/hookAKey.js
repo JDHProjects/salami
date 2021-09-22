@@ -2,7 +2,7 @@ const assert = require("assert")
 
 const { execute } = require("../../commands/hookAKey.js")
 
-const { dummyMessage, dummyMessageWithAttachment, dummyMessageWithJPEGAttachmentAsAdmin } = require("../helpers/dummyMessages.js")
+const { dummyMessage, dummyMessageWithAttachment, dummyMessageWithJPEGAttachmentAsAdmin, dummyMessageWithNoKeysAttachmentAsAdmin, dummyMessageWithKeysAttachmentAsAdmin } = require("../helpers/dummyMessages.js")
 
 const { setUserMoney } = require("../helpers/setUserMoney.js")
 
@@ -27,6 +27,20 @@ describe("The hookAKey command", function() {
   it("should respond correctly to an admin trying to send a non .txt file", async function() {
     let idealMessage = "A new key file must be a .txt file"
     let actualMessage = (await execute(dummyMessageWithJPEGAttachmentAsAdmin, []))[0]
+    
+    assert.equal(idealMessage, actualMessage)
+  })
+
+  it("should respond correctly to an admin trying to send a .txt file with no keys", async function() {
+    let idealMessage = "no keys found in sent file"
+    let actualMessage = (await execute(dummyMessageWithNoKeysAttachmentAsAdmin, []))[0]
+    
+    assert.equal(idealMessage, actualMessage)
+  })
+
+  it("should respond correctly to an admin adding a key from a .txt file", async function() {
+    let idealMessage = "1 key(s) found in sent fileany non-duplicate keys have been added!"
+    let actualMessage = (await execute(dummyMessageWithKeysAttachmentAsAdmin, []))[0]
     
     assert.equal(idealMessage, actualMessage)
   })
