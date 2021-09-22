@@ -5,6 +5,7 @@ module.exports = {
   description: "Run this command to try and win the jackpot, currently there's a 1 in 5000 chance of winning. You could also win a spot prize. Roll 0 to win",
   usage: "just send jackpot",
   example: "",
+  tested: true,
   execute: async function(message, args) {
     const { bankAccounts } = require("../db/db.js")
     const { transfer } = require("../db/functions/transfer.js")
@@ -25,14 +26,13 @@ module.exports = {
       if(result == 0){
         let amount = salami.dataValues.money
         messageText = bulkReply(message, `**YOU WIN!!!!**\nTransferring ${amount} salami to your account!`)
-        transfer(salami,user,amount)
+        await transfer(salami,user,amount)
       }
       else if(spotPrizes.includes(result)){
         let amount = (5000-result)*10 + Math.floor(Math.random() * 50)
         amount = salami.dataValues.money < amount ? salami.dataValues.money : amount
         messageText = bulkReply(message, `**SPOT PRIZE!!!!**\nYou rolled ${result}\nTransferring ${amount} salami to your account!`)
         transfer(salami,user,amount)
-
       }
       else {
         transfer(user,salami,2)

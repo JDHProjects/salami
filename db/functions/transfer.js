@@ -3,8 +3,8 @@ const transfer = async function(sender, reciever, amount) {
   if (sender.dataValues.money < absAmount){
     absAmount = sender.dataValues.money
   }
-  reciever.increment("money", {by: absAmount})
-  sender.decrement("money", {by: absAmount})
+  await reciever.increment("money", {by: absAmount})
+  await sender.decrement("money", {by: absAmount})
   return "money transferred"
 }
 
