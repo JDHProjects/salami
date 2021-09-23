@@ -19,6 +19,13 @@ module.exports = {
       stopTyping() {
         return
       }
+    },
+    guild: {
+      name: "valid_guild",
+      memberCount: 0,
+      ownerID: 12345,
+      region: "valid_region",
+      createdAt: "valid_time"
     }
   },
   dummyMessageWithMention: { 

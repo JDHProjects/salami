@@ -16,13 +16,13 @@ describe("The query command", function() {
     await refreshBank()
   })
 
-  it("should respond correctly", async function() {
+  it("should respond correctly to a query", async function() {
     let idealMessage = "Response:\n[[{\"user_id\":\"12345\",\"money\":0},{\"user_id\":\"637400095821660180\",\"money\":0},{\"user_id\":\"0\",\"money\":1000000000}],{\"sql\":\"SELECT * FROM bank_accounts\"}]\nResponse complete"
     let actualMessage = (await execute({}, ["SELECT", "*", "FROM", "bank_accounts"]))[1][0]
     assert.equal(idealMessage, actualMessage)
   })
 
-  it("should back up the database", async function() {
+  it("should back up the database before running a query", async function() {
     let idealMessage = "DB backup file"
     let actualMessage = (await execute({}, ["SELECT", "*", "FROM", "bank_accounts"]))
     assert.equal(idealMessage, actualMessage[0][0])
