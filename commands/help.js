@@ -9,7 +9,7 @@ module.exports = {
   usage: `You can send \`${prefix}help [command name]\` to get info on a specific command!`,
   example: "d",
   tested: true,
-  execute(message, args) {
+  execute: async function(message, args) {
     const data = []
     const { commands } = message.client
 
@@ -40,7 +40,7 @@ module.exports = {
       data.push(`\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`)
     }
 
-    let messageText = sendMessage.send(message, data.join("\n"), { split: true })
+    let messageText = await sendMessage.send(message, data.join("\n"), { split: true })
     return messageText
   },
 }

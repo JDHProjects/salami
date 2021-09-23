@@ -19,6 +19,16 @@ module.exports = {
       stopTyping() {
         return
       }
+    },
+    guild: {
+      name: "valid_guild",
+      memberCount: 0,
+      ownerID: 12345,
+      region: "valid_region",
+      createdAt: "valid_time"
+    },
+    delete: async function() {
+      return
     }
   },
   dummyMessageWithMention: { 
@@ -27,6 +37,14 @@ module.exports = {
     },
     mentions: {
       users: new Discord.Collection( [ [ 12345, { id: 12345 } ] ] ),
+    }
+  },
+  dummyMessageWithOtherUserMention: { 
+    author: {
+      id: 12345
+    },
+    mentions: {
+      users: new Discord.Collection( [ [ 2, { id: 2 } ] ] ),
     }
   },
   dummyMessageWithCommands: { 

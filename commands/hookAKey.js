@@ -11,7 +11,9 @@ module.exports = {
   execute: async function(message, args) {
     const { bankAccounts, hookAKeys, sequelize } = require("../db/db.js")
     const { lossWithTax } = require("../db/functions/lossWithTax.js")
-    let messageText = ""
+
+    let messages = []
+
     if(message.attachments.size == 1){
       if(process.env.OWNER == message.author.id){
         if(message.attachments.first().name.slice(-3) == "txt"){
@@ -20,27 +22,27 @@ module.exports = {
           let allKeys = fileContents.match(re)
           let bulkCreator = []
           if (allKeys != null){
-            messageText = sendMessage.reply(message, `${allKeys.length} key(s) found in sent file`)
+            messages.push(await sendMessage.reply(message, `${allKeys.length} key(s) found in sent file`))
             for (let i in allKeys){
               bulkCreator.push({
                 key: allKeys[i]
               })
             }
             await hookAKeys.bulkCreate(bulkCreator, {ignoreDuplicates: true})
-            messageText[0] += sendMessage.reply(message, "any non-duplicate keys have been added!")[0]
+            messages.push(await sendMessage.reply(message, "any non-duplicate keys have been added!"))
           }
           else{
-            messageText = sendMessage.reply(message, "no keys found in sent file")
+            messages.push(await sendMessage.reply(message, "no keys found in sent file"))
           }
         }
         else{
-          messageText = sendMessage.reply(message, "A new key file must be a .txt file")
+          messages.push(await sendMessage.reply(message, "A new key file must be a .txt file"))
         }
       }
       else {
-        messageText = sendMessage.reply(message, "Sorry, only admins can add new keys")
+        messages.push(await sendMessage.reply(message, "Sorry, only admins can add new keys"))
       }
-      return messageText
+      return messages
     }
     let user = await bankAccounts.findByPk(message.author.id)
     if (user.dataValues.money >= 50000){
@@ -48,17 +50,17 @@ module.exports = {
       if(key != null){
         lossWithTax(user, 50000)
         key.update({claimed:message.author.id})
-        messageText = sendMessage.author(message, `Enjoy your new game!\nSteam key: ${key.dataValues.key}`)
-        messageText[0] += sendMessage.reply(message, "key has been sent via DM")[0]
+        messages.push(await sendMessage.author(message, `Enjoy your new game!\nSteam key: ${key.dataValues.key}`))
+        messages.push(await sendMessage.reply(message, "key has been sent via DM"))
       }
       else{
-        messageText = sendMessage.reply(message, "sorry, I'm all out of keys!")
+        messages.push(await sendMessage.reply(message, "sorry, I'm all out of keys!"))
       }
     }
     else{
-      messageText = sendMessage.reply(message, "you can't afford a new game")
+      messages.push(await sendMessage.reply(message, "you can't afford a new game"))
     }
-    return messageText
+    return messages
   },
 }
 

@@ -11,7 +11,7 @@ module.exports = {
   execute: async function(message, args) {
     let messageText = ""
     if(args.length == 0){
-      messageText = sendMessage.send(message, "No search term provided!")
+      messageText = await sendMessage.send(message, "No search term provided!")
       return messageText
     }
     let imageIndex = 0
@@ -25,10 +25,10 @@ module.exports = {
     }
     try{
       let url = await searchForImage(allArgs,imageIndex)
-      messageText = sendMessage.send(message, url)
+      messageText = await sendMessage.send(message, url)
     }
     catch(err){
-      messageText = sendMessage.send(message, err) 
+      messageText = await sendMessage.send(message, err) 
     }
     return messageText
   },

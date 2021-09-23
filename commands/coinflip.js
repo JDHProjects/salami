@@ -33,20 +33,20 @@ module.exports = {
       if (amount <= user.dataValues.money){
         let flip = Math.floor(Math.random() * 2) 
         if(flip == guess){
-          messageText = sendMessage.send(message,`${flip == 1 ? "heads" : "tails"}! <@${message.author.id}>, you win!`)
+          messageText = await sendMessage.send(message,`${flip == 1 ? "heads" : "tails"}! <@${message.author.id}>, you win!`)
           sendFromBank(user, amount)
         }
         else{
-          messageText = sendMessage.send(message,`${flip == 1 ? "heads" : "tails"}! <@${message.author.id}>, you lose`)
+          messageText = await sendMessage.send(message,`${flip == 1 ? "heads" : "tails"}! <@${message.author.id}>, you lose`)
           lossWithTax(user, amount)
         }
       }
       else{
-        messageText = sendMessage.send(message,`<@${message.author.id}>, you don't have enough salami to make that bet`)
+        messageText = await sendMessage.send(message,`<@${message.author.id}>, you don't have enough salami to make that bet`)
       }
     }
     else{
-      messageText = sendMessage.send(message,"You forgot to pick heads or tails!")
+      messageText = await sendMessage.send(message,"You forgot to pick heads or tails!")
     }
     return messageText
   },

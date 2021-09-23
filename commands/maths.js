@@ -1,18 +1,15 @@
+const { sendMessage } = require("../functions/sendMessage.js")
+
 module.exports = {
   name: "maths",
   description: "solve a basic maths question to make some money",
   usage: "just send maths, then send your response as a normal message",
   example: "",
   tested: false,
-  execute(message, args) {
+  execute: async function(message, args) {
     const { bankAccounts } = require("../db/db.js")
     const { sendFromBank } = require("../db/functions/sendFromBank.js")
 
-    // `m` is a message object that will be passed through the filter function
-    const filter = m => m.author.id === message.author.id
-
-    const collector = message.channel.createMessageCollector(filter, { time: 15000 })
-        
     let operator = Math.floor(Math.random() * 3)
     let operandOne = Math.floor(Math.random() * 20)
     let operandTwo = Math.floor(Math.random() * 20)
@@ -27,36 +24,29 @@ module.exports = {
     else if(operator == 2){
       answer = operandOne - operandTwo
     }
-    let response = null
 
-    message.reply(`Question: ${operandOne} ${operatorArray[operator]} ${operandTwo}`)
-      .then(replyMessage => {
-        collector.on("collect", m => { 
-          response = parseInt(m.content)
-          collector.stop({reason: "user ended"})
-        })
+    sendMessage.reply(message, `Question: ${operandOne} ${operatorArray[operator]} ${operandTwo}`)
 
-        collector.on("end",  (collector, reason) => {
-          if (reason == "time"){
-            replyMessage.delete().catch(_ => {})
-            message.reply("you forgot to answer!")
-          }
-          else if (isNaN(response)){
-            message.reply("answer not a number")
-          }
-          else if (response != answer){
-            message.reply(`wrong, the answer was ${answer}`)
-          }
-          else{
-            let winnings = Math.floor(Math.random() * 29) + 1
-            bankAccounts.findByPk(message.author.id)
-              .then(user => {
-                message.reply(`correct! You win ${winnings} salami!`)
-                sendFromBank(user, winnings)
-              })
-
-          }
-        })
-      })       
+    const filter = (m) => m.author.id === message.author.id
+    try{
+      let userReply = await message.channel.awaitMessages( filter, { max: 1, time: 15000, errors: ["time"] })
+      let userAnswer = parseInt(userReply.first().content)
+      if (isNaN(userAnswer)){
+        sendMessage.reply(message, "answer not a number")
+      }
+      else if (userAnswer != answer){
+        sendMessage.reply(message, `wrong, the answer was ${answer}`)
+      }
+      else{
+        let winnings = Math.floor(Math.random() * 29) + 1
+        let user = await bankAccounts.findByPk(message.author.id)
+        sendMessage.reply(message, `correct! You win ${winnings} salami!`)
+        sendFromBank(user, winnings)
+      }
+    }
+    catch{
+      sendMessage.reply(message, "you forgot to answer!")
+    }
+    return
   },
 }

@@ -17,7 +17,7 @@ module.exports = {
       targetUser = message.mentions.users.first()
     }
     else{
-      messageText = sendMessage.reply(message, "No user specified")
+      messageText = await sendMessage.reply(message, "No user specified")
       return messageText
     }
     let plus = false
@@ -40,12 +40,12 @@ module.exports = {
     }
     if(!(plus || minus || setTo))
     {
-      messageText = sendMessage.reply(message, "No amount modifier specified")
+      messageText = await sendMessage.reply(message, "No amount modifier specified")
       return messageText
     }
     if(amount < 0)
     {
-      messageText = sendMessage.reply(message, "No amount specified")
+      messageText = await sendMessage.reply(message, "No amount specified")
       return messageText
     }
     let target = await bankAccounts.findByPk(targetUser.id)
@@ -59,7 +59,7 @@ module.exports = {
       target.update({money:amount})
     }
     refreshBank()
-    messageText = sendMessage.send(message, `<@${targetUser.id}>'s money has been updated`)
+    messageText = await sendMessage.send(message, `<@${targetUser.id}>'s money has been updated`)
     return messageText
   },
 }
