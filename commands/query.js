@@ -1,11 +1,15 @@
+const { sendMessage } = require("../functions/sendMessage.js")
+
 module.exports = {
   name: "query",
   description: "Sends a query to the database",
   usage: "query with sql query after",
   example: "",
   admin: true,
-  execute(message, args) {
+  execute: async function(message, args) {
     const { sequelize } = require("../db/db.js")
+
+    let messages = []
 
     let querystring = ""
     for (let i in args){
@@ -14,10 +18,9 @@ module.exports = {
         querystring += " "
       }
     }
-    message.author.send("DB backup file", { files: ["./database.sqlite"] })
-    sequelize.query(querystring)
-      .then( resp => {
-        message.channel.send(`Response:\n${JSON.stringify(resp)}\nResponse complete`, { split: true })
-      })
+    messages.push(await sendMessage.author(message, "DB backup file", { files: ["./database.sqlite"] }))
+    let resp = await sequelize.query(querystring)
+    messages.push(await sendMessage.send(message, `Response:\n${JSON.stringify(resp)}\nResponse complete`, { split: true }))
+    return messages
   },
 }
