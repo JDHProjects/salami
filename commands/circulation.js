@@ -18,7 +18,7 @@ module.exports = {
     }  
     let salami = await bankAccounts.findByPk( "637400095821660180" )
     let botMoney = salami.dataValues.money
-    let messageText = sendMessage.send(message,`The current amount of salami in user circulation on ${date.toLocaleTimeString("en-us", options)} is:\n**${total} salami**\n<@637400095821660180> owns ${botMoney != 0 ? Math.floor((botMoney/total)*100) : 0}% of the salami in circulation`)
+    let messageText = await sendMessage.send(message,`The current amount of salami in user circulation on ${date.toLocaleTimeString("en-us", options)} is:\n**${total} salami**\n<@637400095821660180> owns ${botMoney != 0 ? Math.floor((botMoney/total)*100) : 0}% of the salami in circulation`)
     return messageText
   },
 }

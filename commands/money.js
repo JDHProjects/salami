@@ -39,7 +39,7 @@ module.exports = {
         buildMsg+=`${parseInt(i)+1}) ${bankUsers[i].dataValues.user_id != "0" ? "<@"+bankUsers[i].dataValues.user_id+">" : "The Bank"} : ${bankUsers[i].dataValues.money} salami\n`
         total += bankUsers[i].dataValues.money
       }
-      messageText = sendMessage.send(message, buildMsg+`\n**Total salami: ${total}**`)
+      messageText = await sendMessage.send(message, buildMsg+`\n**Total salami: ${total}**`)
     }
     else{
       let sender = await bankAccounts.findByPk(message.author.id)
@@ -49,22 +49,22 @@ module.exports = {
           if(receiver != undefined){
             if(send){
               await transfer(sender,receiver,amount)
-              messageText = sendMessage.send(message, `${Math.abs(amount)} salami transferred from <@${message.author.id}> to <@${transferUser.id}>`)
+              messageText = await sendMessage.send(message, `${Math.abs(amount)} salami transferred from <@${message.author.id}> to <@${transferUser.id}>`)
             }
             else{
-              messageText = sendMessage.send(message, `<@${transferUser.id}> has ${receiver.dataValues.money} salami`)
+              messageText = await sendMessage.send(message, `<@${transferUser.id}> has ${receiver.dataValues.money} salami`)
             }
           }
           else{
-            messageText = sendMessage.send(message, `<@${transferUser.id}> doesn't have a bank account, the first time they use the bot, one will be generated for them`)
+            messageText = await sendMessage.send(message, `<@${transferUser.id}> doesn't have a bank account, the first time they use the bot, one will be generated for them`)
           }
         }
         else{
-          messageText = sendMessage.reply(message, "you don't have enough salami")
+          messageText = await sendMessage.reply(message, "you don't have enough salami")
         }
       }
       else{
-        messageText = sendMessage.reply(message, `you have: ${sender.dataValues.money} salami`)
+        messageText = await sendMessage.reply(message, `you have: ${sender.dataValues.money} salami`)
       }
     }
     return messageText

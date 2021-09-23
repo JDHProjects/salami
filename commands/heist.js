@@ -37,16 +37,16 @@ module.exports = {
         }
         let scaledWinnings = Math.floor(winnings * 1000)
         sendFromBank(user, scaledWinnings)
-        messageText = sendMessage.reply(message, `you escaped with ${scaledWinnings} salami!`)
+        messageText = await sendMessage.reply(message, `you escaped with ${scaledWinnings} salami!`)
 
       }
       else {
-        messageText = sendMessage.reply(message, "you were caught!")
+        messageText = await sendMessage.reply(message, "you were caught!")
       }
 
     }
     else {
-      messageText = sendMessage.reply(message, "you need 1000 salami to buy the heist equipment!")
+      messageText = await sendMessage.reply(message, "you need 1000 salami to buy the heist equipment!")
     }
     return messageText
   },

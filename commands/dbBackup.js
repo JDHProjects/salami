@@ -7,8 +7,8 @@ module.exports = {
   example: "dbbackup",
   admin: true,
   tested: true,
-  execute(message, args) {
-    let messageText = sendMessage.author(message, "DB backup file", { files: ["./database.sqlite"] })
+  execute: async function(message, args) {
+    let messageText = await sendMessage.author(message, "DB backup file", { files: ["./database.sqlite"] })
     return messageText
   }
 }

@@ -22,25 +22,25 @@ module.exports = {
           let allKeys = fileContents.match(re)
           let bulkCreator = []
           if (allKeys != null){
-            messages.push(sendMessage.reply(message, `${allKeys.length} key(s) found in sent file`))
+            messages.push(await sendMessage.reply(message, `${allKeys.length} key(s) found in sent file`))
             for (let i in allKeys){
               bulkCreator.push({
                 key: allKeys[i]
               })
             }
             await hookAKeys.bulkCreate(bulkCreator, {ignoreDuplicates: true})
-            messages.push(sendMessage.reply(message, "any non-duplicate keys have been added!"))
+            messages.push(await sendMessage.reply(message, "any non-duplicate keys have been added!"))
           }
           else{
-            messages.push(sendMessage.reply(message, "no keys found in sent file"))
+            messages.push(await sendMessage.reply(message, "no keys found in sent file"))
           }
         }
         else{
-          messages.push(sendMessage.reply(message, "A new key file must be a .txt file"))
+          messages.push(await sendMessage.reply(message, "A new key file must be a .txt file"))
         }
       }
       else {
-        messages.push(sendMessage.reply(message, "Sorry, only admins can add new keys"))
+        messages.push(await sendMessage.reply(message, "Sorry, only admins can add new keys"))
       }
       return messages
     }
@@ -50,15 +50,15 @@ module.exports = {
       if(key != null){
         lossWithTax(user, 50000)
         key.update({claimed:message.author.id})
-        messages.push(sendMessage.author(message, `Enjoy your new game!\nSteam key: ${key.dataValues.key}`))
-        messages.push(sendMessage.reply(message, "key has been sent via DM"))
+        messages.push(await sendMessage.author(message, `Enjoy your new game!\nSteam key: ${key.dataValues.key}`))
+        messages.push(await sendMessage.reply(message, "key has been sent via DM"))
       }
       else{
-        messages.push(sendMessage.reply(message, "sorry, I'm all out of keys!"))
+        messages.push(await sendMessage.reply(message, "sorry, I'm all out of keys!"))
       }
     }
     else{
-      messages.push(sendMessage.reply(message, "you can't afford a new game"))
+      messages.push(await sendMessage.reply(message, "you can't afford a new game"))
     }
     return messages
   },

@@ -47,20 +47,20 @@ module.exports = {
       if (amount <= user.dataValues.money){
         let result = Math.floor(Math.random() * 6) + 1 
         if(result == guess){
-          messageText = sendMessage.send(message, `${numToWords[result]}! <@${message.author.id}>, you win!`)
+          messageText = await sendMessage.send(message, `${numToWords[result]}! <@${message.author.id}>, you win!`)
           sendFromBank(user, amount*5)
         }
         else{
-          messageText = sendMessage.send(message, `${numToWords[result]}! <@${message.author.id}>, you lose`)
+          messageText = await sendMessage.send(message, `${numToWords[result]}! <@${message.author.id}>, you lose`)
           lossWithTax(user, amount)
         }
       }
       else{
-        messageText = sendMessage.reply(message, "you don't have enough salami to make that bet")
+        messageText = await sendMessage.reply(message, "you don't have enough salami to make that bet")
       }
     }
     else{
-      messageText = sendMessage.reply(message, "you forgot to make a guess!")
+      messageText = await sendMessage.reply(message, "you forgot to make a guess!")
     }
     return(messageText)
   },

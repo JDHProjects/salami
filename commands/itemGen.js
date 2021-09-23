@@ -19,7 +19,7 @@ module.exports = {
 
     let searchTerm = {order: sequelize.random()}
     if(args.includes("list")){
-      messageText = sendMessage.send(message, names.join("\n"), { split: true })
+      messageText = await sendMessage.send(message, names.join("\n"), { split: true })
       return messageText
     }
     if(args.length > 0){
@@ -31,7 +31,7 @@ module.exports = {
     }
     let item = await fiveEItems.findOne(searchTerm)
     if(item == null){
-      messageText = sendMessage.send(message, "No item found matching your criteria!")
+      messageText = await sendMessage.send(message, "No item found matching your criteria!")
       return messageText
     }
     message.channel.startTyping()
@@ -73,7 +73,7 @@ module.exports = {
       checkEmbedLength(itemEmbed, "\u200b\nDescription", `${item.dataValues.description}`)
     }
 
-    messageText = sendMessage.send(message, "", { embed: itemEmbed })
+    messageText = await sendMessage.send(message, "", { embed: itemEmbed })
     message.channel.stopTyping()
     return messageText
   },
