@@ -6,6 +6,7 @@ module.exports = {
   usage: "query with sql query after",
   example: "",
   admin: true,
+  tested: true,
   execute: async function(message, args) {
     const { sequelize } = require("../db/db.js")
 
