@@ -7,6 +7,6 @@ module.exports = {
   example: "",
   tested: true,
   execute: async function(message, args) {
-     return await sendMessage.send(message, "Pong!")
+    return await sendMessage.send(message, "Pong!")
   },
 }
