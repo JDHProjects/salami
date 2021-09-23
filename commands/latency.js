@@ -1,3 +1,5 @@
+const { sendMessage } = require("../functions/sendMessage.js")
+
 module.exports = {
   name: "latency",
   description: "time taken for the bot to see a message and deliver its response to it",
@@ -5,11 +7,10 @@ module.exports = {
   cooldown: 1,
   example: "latency",
   tested: false,
-  execute(message, args) {
-    message.channel.send("Latency check!")
-      .then(respMessage => {
-        let messageTime = respMessage.createdTimestamp - message.createdTimestamp
-        respMessage.edit("Response Latency: " + messageTime).catch(_ => {})
-      })
+  execute: async function(message, args) {
+    let respMessage = await sendMessage.send(message, "Latency check!")
+    let messageTime = respMessage.createdTimestamp - message.createdTimestamp
+    await sendMessage.edit(respMessage, "Response Latency: " + messageTime)
+    return
   }
 }
