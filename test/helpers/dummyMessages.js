@@ -26,6 +26,9 @@ module.exports = {
       ownerID: 12345,
       region: "valid_region",
       createdAt: "valid_time"
+    },
+    delete: async function() {
+      return
     }
   },
   dummyMessageWithMention: { 
