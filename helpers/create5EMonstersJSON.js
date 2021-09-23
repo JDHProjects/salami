@@ -38,7 +38,7 @@ function getMonsterData(name) {
 
         //needed as roll20 have ONE monster that is formatted with <h3> instead of <h2> (Medusa)
         if (monsterJson.htmlcontent.includes("<h3>")){
-          let cleanContent = monsterJson.htmlcontent.replaceAll("\n", "").replaceAll("\t", "").replaceAll("<b>", "**").replaceAll(": </b>", "**: ").replaceAll("<p>", "").replaceAll("</p>", "\n").replaceAll("\n\n", "\n").replaceAll("  ", " ")
+          let cleanContent = monsterJson.htmlcontent.replaceAll(/<table>.*<\/table>/g, "Table cannot be displayed, refer to roll20").replaceAll("\n", "").replaceAll("\t", "").replaceAll("<strong>", "**").replaceAll("</strong>", "**").replaceAll("<br>", "\n").replaceAll("\n\n", "\n").replaceAll("  ", " ").replaceAll("<em>", "").replaceAll("</em>", "").replaceAll("&nbsp;", " ").replaceAll("<p>", "").replaceAll("</p>", "\n").replaceAll("<b>", "**").replaceAll("</b>", "**").replaceAll("<i>", "").replaceAll("</i>", "").replaceAll("<span>", "").replaceAll("</span>", "").replaceAll("<ul>", "").replaceAll("</ul>", "").replaceAll("<li>", "•").replaceAll("</li>", "\n").replaceAll("<div>", "").replaceAll("</div>", "")
           let contentSplit = cleanContent.split("<h3")
 
           for (let j in contentSplit){
@@ -60,7 +60,7 @@ function getMonsterData(name) {
           }
         }
         else{
-          let cleanContent = monsterJson.htmlcontent.replaceAll("\n", "").replaceAll("\t", "").replaceAll("<strong>", "**").replaceAll("</strong>", "**").replaceAll("<br>", "\n").replaceAll("\n\n", "\n").replaceAll("  ", " ")
+          let cleanContent = monsterJson.htmlcontent.replaceAll(/<table>.*<\/table>/g, "Table cannot be displayed, refer to roll20").replaceAll("\n", "").replaceAll("\t", "").replaceAll("<strong>", "**").replaceAll("</strong>", "**").replaceAll("<br>", "\n").replaceAll("\n\n", "\n").replaceAll("  ", " ").replaceAll("<em>", "").replaceAll("</em>", "").replaceAll("&nbsp;", " ").replaceAll("<p>", "").replaceAll("</p>", "\n").replaceAll("<b>", "**").replaceAll("</b>", "**").replaceAll("<i>", "").replaceAll("</i>", "").replaceAll("<span>", "").replaceAll("</span>", "").replaceAll("<ul>", "").replaceAll("</ul>", "").replaceAll("<li>", "•").replaceAll("</li>", "\n").replaceAll("<div>", "").replaceAll("</div>", "")
           let contentSplit = cleanContent.split("<h2")
 
           for (let j in contentSplit){

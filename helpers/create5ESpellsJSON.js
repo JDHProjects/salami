@@ -34,7 +34,7 @@ function getSpellData(name) {
         let description = undefined
         let higher_level = undefined
 
-        let cleanContent = spellJson.htmlcontent.replaceAll("\n", "").replaceAll("\t", "").replaceAll("<strong>", "**").replaceAll("</strong>", "**").replaceAll("<br>", "\n").replaceAll("\n\n", "\n").replaceAll("  ", " ")
+        let cleanContent = spellJson.htmlcontent.replaceAll(/<table>.*<\/table>/g, "Table cannot be displayed, refer to roll20").replaceAll("\n", "").replaceAll("\t", "").replaceAll("<strong>", "**").replaceAll("</strong>", "**").replaceAll("<br>", "\n").replaceAll("\n\n", "\n").replaceAll("  ", " ").replaceAll("<em>", "").replaceAll("</em>", "").replaceAll("&nbsp;", " ").replaceAll("<p>", "").replaceAll("</p>", "\n").replaceAll("<b>", "**").replaceAll("</b>", "**").replaceAll("<i>", "").replaceAll("</i>", "").replaceAll("<span>", "").replaceAll("</span>", "").replaceAll("<ul>", "").replaceAll("</ul>", "").replaceAll("<li>", "•").replaceAll("</li>", "\n").replaceAll("<div>", "").replaceAll("</div>", "")
         if(cleanContent.includes("At Higher Levels: ")){
           let contentSplit = cleanContent.split("At Higher Levels: ")
           description = contentSplit[0]
