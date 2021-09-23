@@ -29,6 +29,14 @@ module.exports = {
       users: new Discord.Collection( [ [ 12345, { id: 12345 } ] ] ),
     }
   },
+  dummyMessageWithOtherUserMention: { 
+    author: {
+      id: 12345
+    },
+    mentions: {
+      users: new Discord.Collection( [ [ 2, { id: 2 } ] ] ),
+    }
+  },
   dummyMessageWithCommands: { 
     author: {
       id: 12345

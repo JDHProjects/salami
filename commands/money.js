@@ -1,11 +1,16 @@
+const { sendMessage } = require("../functions/sendMessage.js")
+
 module.exports = {
   name: "money",
   description: "Main way to interface with your bank account balance",
   usage: "With no args it returns your balance, or with args you can send to others",
   example: "send @Salami 10",
-  execute(message, args) {
+  tested: true,
+  execute: async function(message, args) {
     const { bankAccounts } = require("../db/db.js")
     const { transfer } = require("../db/functions/transfer.js")
+
+    let messageText = ""
 
     let transferUser = null
     if (message.mentions.users.size > 0){
@@ -27,46 +32,41 @@ module.exports = {
       }
     }
     if (list){
-      bankAccounts.findAll( { order: [["money", "DESC"]] } )
-        .then(bankUsers => {
-          let total=0
-          let buildMsg="**Money distribution:**\n"
-          for (let i in bankUsers) {
-            buildMsg+=`${parseInt(i)+1}) ${bankUsers[i].dataValues.user_id != "0" ? "<@"+bankUsers[i].dataValues.user_id+">" : "The Bank"} : ${bankUsers[i].dataValues.money} salami\n`
-            total += bankUsers[i].dataValues.money
-          }
-          message.channel.send(buildMsg+`\n**Total salami: ${total}**`)
-        })
+      let bankUsers = await bankAccounts.findAll( { order: [["money", "DESC"]] } )
+      let total=0
+      let buildMsg="**Money distribution:**\n"
+      for (let i in bankUsers) {
+        buildMsg+=`${parseInt(i)+1}) ${bankUsers[i].dataValues.user_id != "0" ? "<@"+bankUsers[i].dataValues.user_id+">" : "The Bank"} : ${bankUsers[i].dataValues.money} salami\n`
+        total += bankUsers[i].dataValues.money
+      }
+      messageText = sendMessage.send(message, buildMsg+`\n**Total salami: ${total}**`)
     }
     else{
-      bankAccounts.findByPk(message.author.id)
-        .then(sender => {
-          if (transferUser != null){
-            if (amount <= sender.dataValues.money){
-              bankAccounts.findByPk(transferUser.id)
-                .then(receiver => {
-                  if(receiver != undefined){
-                    if(send){
-                      transfer(sender,receiver,amount)
-                      message.channel.send(`${Math.abs(amount)} salami transferred from <@${message.author.id}> to <@${transferUser.id}>`)
-                    }
-                    else{
-                      message.channel.send(`<@${transferUser.id}> has ${receiver.dataValues.money} salami`)
-                    }
-                  }
-                  else{
-                    message.channel.send(`<@${transferUser.id}> doesn't have a bank account, the first time they use the bot, one will be generated for them`)
-                  }
-                })
+      let sender = await bankAccounts.findByPk(message.author.id)
+      if (transferUser != null){
+        if (amount <= sender.dataValues.money){
+          let receiver = await bankAccounts.findByPk(transferUser.id)
+          if(receiver != undefined){
+            if(send){
+              await transfer(sender,receiver,amount)
+              messageText = sendMessage.send(message, `${Math.abs(amount)} salami transferred from <@${message.author.id}> to <@${transferUser.id}>`)
             }
             else{
-              message.channel.send(`<@${message.author.id}>, you don't have enough salami`)
+              messageText = sendMessage.send(message, `<@${transferUser.id}> has ${receiver.dataValues.money} salami`)
             }
           }
           else{
-            message.channel.send(`<@${message.author.id}>, you have: ${sender.dataValues.money} salami`)
+            messageText = sendMessage.send(message, `<@${transferUser.id}> doesn't have a bank account, the first time they use the bot, one will be generated for them`)
           }
-        })
+        }
+        else{
+          messageText = sendMessage.reply(message, "you don't have enough salami")
+        }
+      }
+      else{
+        messageText = sendMessage.reply(message, `you have: ${sender.dataValues.money} salami`)
+      }
     }
+    return messageText
   },
 }
