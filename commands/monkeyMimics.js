@@ -21,11 +21,19 @@ module.exports = {
     messages.push(sendMessage.send(message, "Lets play Monkey Mimics!", {
       files: [
         "./assets/monkey-mimics/"+monkeyNums[0]+".jpeg",
-        "./assets/monkey-mimics/"+monkeyNums[1]+".jpeg",
-        "./assets/monkey-mimics/"+monkeyNums[2]+".jpeg"
       ]
     }))
-    messages.push(sendMessage.send(message, "Heres your monkey to imitate!", {
+    messages.push(sendMessage.send(message, "", {
+      files: [
+        "./assets/monkey-mimics/"+monkeyNums[1]+".jpeg",
+      ]
+    }))
+    messages.push(sendMessage.send(message, "", {
+      files: [
+        "./assets/monkey-mimics/"+monkeyNums[2]+".jpeg",
+      ]
+    }))
+    messages.push(sendMessage.author(message, "Heres your monkey to imitate!", {
       files: [
         "./assets/monkey-mimics/"+monkeyNums[Math.floor(Math.random() * monkeyNums.length)]+".jpeg"
       ]
