@@ -10,6 +10,7 @@ module.exports = {
   description: "Generates a spell statblock for DND",
   usage: "Supply no args for a random spell. Use a spell name as an arg for a spell matching that name. Use a number as an arg for a spell matching that level",
   example: "2",
+  tested: true,
   execute: async function(message, args) {
     const { fiveESpells, sequelize } = require("../db/db.js")
 
