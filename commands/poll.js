@@ -15,7 +15,7 @@ module.exports = {
   name: "poll",
   description: "create a poll that users can react to in order to vote",
   usage: "poll create to create a poll (optional extra argument for poll duration in seconds, max 30 minutes)",
-  example: "poll create 120",
+  example: "create 120",
   tested: false,
   execute: async function(message, args) {
     if (args[0] != undefined && args[0].toLowerCase() == "create"){
