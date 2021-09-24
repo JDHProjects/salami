@@ -243,7 +243,7 @@ describe("The stocks command", function() {
   it("should respond correctly when using portfolio subcommand with one stock", async function() {
     await stocks.create({user_id: "12345", stock: "^FTSE", quantity: 10, average_cost: 0})
 
-    let idealMessage = /<@12345> you own:\nStock {23}: {3}\^FTSE\nQuantity {17}: {3}10\.000\nValue {22}: {3}[0-9]+ salami\nAverage Cost {8}: {3}0\nPercentage Gain {3}: {3}.+%\nTotal Salami Gain :   [0-9]+ salami\n/g
+    let idealMessage = /<@12345> you own:\nStock {23}: {3}\^FTSE\nQuantity {17}: {3}10\.000\nValue {22}: {3}[0-9]+ salami\nAverage Cost {8}: {3}0\nPercentage Gain {3}: {3}.+%\nTotal Salami Gain : {3}[0-9]+ salami\n/g
     let actualMessage = (await execute(dummyMessage, ["portfolio"]))[0]
     let matches = actualMessage.match(idealMessage)
     if (matches == null) {
@@ -259,7 +259,7 @@ describe("The stocks command", function() {
       {user_id: "12345", stock: "^FTMC", quantity: 10, average_cost: 0},
     ])
 
-    let idealMessage = /<@12345> you own:\nStock {23}: {3}\^FTSE\nQuantity {17}: {3}10\.000\nValue {22}: {3}[0-9]+ salami\nAverage Cost {8}: {3}0\nPercentage Gain {3}: {3}.+%\nTotal Salami Gain :   [0-9]+ salami\n\nStock                       :   \^FTMC\nQuantity                 :   10\.000\nValue                      :   [0-9]+ salami\nAverage Cost        :   0\nPercentage Gain   :   .+%\nTotal Salami Gain :   [0-9]+ salami\n/g
+    let idealMessage = /<@12345> you own:\nStock {23}: {3}\^FTSE\nQuantity {17}: {3}10\.000\nValue {22}: {3}[0-9]+ salami\nAverage Cost {8}: {3}0\nPercentage Gain {3}: {3}.+%\nTotal Salami Gain : {3}[0-9]+ salami\n\nStock {23}: {3}\^FTMC\nQuantity {17}: {3}10\.000\nValue {22}: {3}[0-9]+ salami\nAverage Cost {8}: {3}0\nPercentage Gain {3}: {3}.+%\nTotal Salami Gain : {3}[0-9]+ salami\n/g
     let actualMessage = (await execute(dummyMessage, ["portfolio"]))[0]
     let matches = actualMessage.match(idealMessage)
     if (matches == null) {
@@ -277,7 +277,7 @@ describe("The stocks command", function() {
       {user_id: "54321", stock: "^FTMC", quantity: 10, average_cost: 0},
     ])
 
-    let idealMessage = /<@12345> you own:\nStock {23}: {3}\^FTSE\nQuantity {17}: {3}10\.000\nValue {22}: {3}[0-9]+ salami\nAverage Cost {8}: {3}0\nPercentage Gain {3}: {3}.+%\nTotal Salami Gain :   [0-9]+ salami\n\nStock                       :   \^FTMC\nQuantity                 :   10\.000\nValue                      :   [0-9]+ salami\nAverage Cost        :   0\nPercentage Gain   :   .+%\nTotal Salami Gain :   [0-9]+ salami\n/g
+    let idealMessage = /<@12345> you own:\nStock {23}: {3}\^FTSE\nQuantity {17}: {3}10\.000\nValue {22}: {3}[0-9]+ salami\nAverage Cost {8}: {3}0\nPercentage Gain {3}: {3}.+%\nTotal Salami Gain : {3}[0-9]+ salami\n\nStock {23}: {3}\^FTMC\nQuantity {17}: {3}10\.000\nValue {22}: {3}[0-9]+ salami\nAverage Cost {8}: {3}0\nPercentage Gain {3}: {3}.+%\nTotal Salami Gain : {3}[0-9]+ salami\n/g
     let actualMessage = (await execute(dummyMessage, ["portfolio"]))[0]
     let matches = actualMessage.match(idealMessage)
     if (matches == null) {
