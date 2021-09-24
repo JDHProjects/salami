@@ -110,6 +110,7 @@ client.on("message", async message => {
     await command.execute(message, args)
   } catch (error) {
     Sentry.captureException(error)
+    console.log(error)
     message.channel.send("there was an error trying to execute that command!")
   } finally {
     transaction.finish()
