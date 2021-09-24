@@ -1,23 +1,27 @@
-module.exports = {
-	name: 'query',
-    description: 'Sends a query to the database',
-    usage: `query with sql query after`,
-    example: '',
-    admin: true,
-	execute(message, args) {
-        const { sequelize } = require('../db/dbSetup.js')
+const { sendMessage } = require("../functions/sendMessage.js")
 
-        querystring = ""
-        for (i in args){
-            querystring += args[i]
-            if (i < args.length -1){
-                querystring += " "
-            }
-        }
-        message.author.send("DB backup file", { files: ["./database.sqlite"] });
-        sequelize.query(querystring)
-        .then( resp => {
-            message.channel.send(`query: ${querystring} is complete`)
-        })
-	},
-};
+module.exports = {
+  name: "query",
+  description: "Sends a query to the database",
+  usage: "query with sql query after",
+  example: "",
+  admin: true,
+  tested: true,
+  execute: async function(message, args) {
+    const { sequelize } = require("../db/db.js")
+
+    let messages = []
+
+    let querystring = ""
+    for (let i in args){
+      querystring += args[i]
+      if (i < args.length -1){
+        querystring += " "
+      }
+    }
+    messages.push(await sendMessage.author(message, "DB backup file", { files: ["./database.sqlite"] }))
+    let resp = await sequelize.query(querystring)
+    messages.push(await sendMessage.send(message, `Response:\n${JSON.stringify(resp)}\nResponse complete`, { split: true }))
+    return messages
+  },
+}
