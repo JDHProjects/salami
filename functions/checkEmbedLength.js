@@ -3,7 +3,7 @@ const checkEmbedLength = function(embed, name, content) {
     embed.addField(name, content, false)
   }
   else{
-    let splitContent = content.split("\n")
+    let splitContent = content.split("\n").filter(text => text != "")
     for (let i in splitContent){
       embed.addField(`${i == 0 ? name : "\u200b"}`, `${splitContent[i]}`, false)
     }
