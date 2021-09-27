@@ -46,7 +46,7 @@ module.exports = {
         }
       }
       else{
-        messageText = await sendMessage.reply(message,`you don't have enough salami to make that bet`)
+        messageText = await sendMessage.reply(message,"you don't have enough salami to make that bet")
       }
     }
     else{

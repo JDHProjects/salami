@@ -1,4 +1,4 @@
-const { MessageActionRow, MessageButton } = require('discord.js');
+const { MessageActionRow, MessageButton } = require("discord.js")
 
 const { sendMessage } = require("../functions/sendMessage.js")
 
@@ -16,10 +16,12 @@ module.exports = {
     const rps = ["rock", "Paper", "Scissors"]
     const winTable = [[2,1], [0,2], [1,0]]
 
+    let messageText = {}
+
     let amount = 0 
     if (args.length > 0){
-      if (!isNaN(parseInt(args[i]))){
-        amount = Math.abs(parseInt(args[i]))
+      if (!isNaN(parseInt(args[0]))){
+        amount = Math.abs(parseInt(args[0]))
       }
     }
 
@@ -32,93 +34,89 @@ module.exports = {
     try {
       let buttonResp = await question.awaitMessageComponent({ filter, time: 5000 })
     
-      if (buttonResp.customId === 'rock') {
-        await buttonResp.update({ content: 'Selection made!', components: [getButtonRow("rock")] });
+      if (buttonResp.customId === "rock") {
+        await buttonResp.update({ content: "Selection made!", components: [getButtonRow("rock")] })
         userGuess = 0
       }
-      if (buttonResp.customId === 'paper') {
-        await buttonResp.update({ content: 'Selection made!', components: [getButtonRow("paper")] });
+      if (buttonResp.customId === "paper") {
+        await buttonResp.update({ content: "Selection made!", components: [getButtonRow("paper")] })
         userGuess = 1
       }
-      if (buttonResp.customId === 'scissors') {
-        await buttonResp.update({ content: 'Selection made!', components: [getButtonRow("scissors")] });
+      if (buttonResp.customId === "scissors") {
+        await buttonResp.update({ content: "Selection made!", components: [getButtonRow("scissors")] })
         userGuess = 2
       }
     } catch {
-      return await sendMessage.edit(question, "You forgot to pick an option :(", { components: [getButtonRow("none")] });
+      return await sendMessage.edit(question, "You forgot to pick an option :(", { components: [getButtonRow("none")] })
     }
 
     let user = await bankAccounts.findByPk(message.author.id)
-      if (amount <= user.dataValues.money){
-        let result = Math.floor(Math.random() * 3)
-        if (winTable[result][1] == userGuess){
-          messageText = await sendMessage.reply(question, `Salami picked ${rps[result]}, you win!`)
-          if (amount > 0){
-            sendFromBank(user, amount*2)
-          }
-          return messageText
+    if (amount <= user.dataValues.money){
+      let result = Math.floor(Math.random() * 3)
+      if (winTable[result][1] == userGuess){
+        messageText = await sendMessage.reply(question, `Salami picked ${rps[result]}, you win!`)
+        if (amount > 0){
+          sendFromBank(user, amount*2)
         }
-        else if (result == userGuess){
-          return await sendMessage.reply(question, `Salami picked ${rps[result]}, you draw!`)
-        }
-        else {
-          messageText = await sendMessage.reply(question, `Salami picked ${rps[result]}, you lose!`)
-          if (amount > 0){
-            lossWithTax(user, amount)
-          }
-          return messageText
-        }
+        return messageText
+      }
+      else if (result == userGuess){
+        return await sendMessage.reply(question, `Salami picked ${rps[result]}, you draw!`)
       }
       else {
-        return await sendMessage.reply(message,`you don't have enough salami to make that bet`)
+        messageText = await sendMessage.reply(question, `Salami picked ${rps[result]}, you lose!`)
+        if (amount > 0){
+          lossWithTax(user, amount)
+        }
+        return messageText
       }
-
-
-
-
+    }
+    else {
+      return await sendMessage.reply(message,"you don't have enough salami to make that bet")
+    }
   },
 }
 
 const getButtonRow = function(pick=null){
   let row = new MessageActionRow()
   let rock = new MessageButton()
-    .setCustomId('rock')
-    .setLabel('Rock')
+    .setCustomId("rock")
+    .setLabel("Rock")
     .setDisabled(pick!=null)
   if (pick == "rock"){
-    rock.setStyle('SUCCESS')
+    rock.setStyle("SUCCESS")
   }
   else if (pick!=null) {
-    rock.setStyle('SECONDARY')
+    rock.setStyle("SECONDARY")
   }
   else {
-    rock.setStyle('PRIMARY')
+    rock.setStyle("PRIMARY")
   }
   let paper = new MessageButton()
-      .setCustomId('paper')
-      .setLabel('Paper')
-      .setDisabled(pick!=null)
+    .setCustomId("paper")
+    .setLabel("Paper")
+    .setDisabled(pick!=null)
   if (pick == "paper"){
-    paper.setStyle('SUCCESS')
+    paper.setStyle("SUCCESS")
   }
   else if (pick!=null) {
-    paper.setStyle('SECONDARY')
+    paper.setStyle("SECONDARY")
   }
   else {
-    paper.setStyle('PRIMARY')
+    paper.setStyle("PRIMARY")
   }
   let scissors =  new MessageButton()
-      .setCustomId('scissors')
-      .setLabel('Scissors')
-      .setDisabled(pick!=null)
+    .setCustomId("scissors")
+    .setLabel("Scissors")
+    .setDisabled(pick!=null)
   if (pick == "scissors"){
-    scissors.setStyle('SUCCESS')
+    scissors.setStyle("SUCCESS")
   }
   else if (pick!=null) {
-    scissors.setStyle('SECONDARY')
+    scissors.setStyle("SECONDARY")
   }
   else {
-    scissors.setStyle('PRIMARY')
+    scissors.setStyle("PRIMARY")
   }
   return row.addComponents(rock, paper, scissors)
 }
