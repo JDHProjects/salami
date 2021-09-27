@@ -4,8 +4,8 @@ const { sendMessage } = require("../functions/sendMessage.js")
 
 module.exports = {
   name: "rps",
-  description: "Rock paper scissors",
-  usage: "",
+  description: "play rock, paper, scissors against the bot, bet by providing an argument",
+  usage: "just send rps, add a number to bet on the result",
   example: "100",
   tested: false,
   execute: async function(message, args) {
