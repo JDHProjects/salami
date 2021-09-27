@@ -23,7 +23,7 @@ describe("The jackpot command", function() {
     await setUserMoney(0)
 
     let idealMessage = "<@12345>, you need at least 2 salami to play"
-    let actualMessage = (await execute(dummyMessage, []))[0]
+    let actualMessage = (await execute(dummyMessage, [])).content
     
     assert.equal(idealMessage, actualMessage)
   })
@@ -31,7 +31,7 @@ describe("The jackpot command", function() {
   it("should respond correctly with enough money", async function() {
     await setUserMoney(2)
 
-    let actualMessage = (await execute(dummyMessage, []))[0]
+    let actualMessage = (await execute(dummyMessage, [])).content
 
     let winMessage = /\*\*YOU WIN!!!!\*\*\nTransferring [0-9]+ salami to your account!/g
     let winMatches = actualMessage.match(winMessage)

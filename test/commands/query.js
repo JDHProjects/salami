@@ -18,16 +18,16 @@ describe("The query command", function() {
 
   it("should respond correctly to a query", async function() {
     let idealMessage = "Response:\n[[{\"user_id\":\"12345\",\"money\":0},{\"user_id\":\"637400095821660180\",\"money\":0},{\"user_id\":\"0\",\"money\":1000000000}],{\"sql\":\"SELECT * FROM bank_accounts\"}]\nResponse complete"
-    let actualMessage = (await execute({}, ["SELECT", "*", "FROM", "bank_accounts"]))[1][0]
+    let actualMessage = (await execute({}, ["SELECT", "*", "FROM", "bank_accounts"]))[1].content
     assert.equal(idealMessage, actualMessage)
   })
 
   it("should back up the database before running a query", async function() {
     let idealMessage = "DB backup file"
     let actualMessage = (await execute({}, ["SELECT", "*", "FROM", "bank_accounts"]))
-    assert.equal(idealMessage, actualMessage[0][0])
+    assert.equal(idealMessage, actualMessage[0].content)
 
     let idealFile = "./database.sqlite"
-    assert.equal(idealFile, actualMessage[0][1].files[0])
+    assert.equal(idealFile, actualMessage[0].files[0])
   })
 })

@@ -19,7 +19,7 @@ describe("The coinflip command", function() {
   
   it("should respond correctly with no guess", async function() {
     let idealMessage = "You forgot to pick heads or tails!"
-    let actualMessage = (await execute({}, []))[0]
+    let actualMessage = (await execute({}, [])).content
     
     assert.equal(idealMessage, actualMessage)
   })
@@ -28,7 +28,7 @@ describe("The coinflip command", function() {
     await setUserMoney(0)
 
     let idealMessage = /tails! <@12345>, you lose|heads! <@12345>, you win!/g
-    let actualMessage = (await execute(dummyMessage, ["heads"]))[0]
+    let actualMessage = (await execute(dummyMessage, ["heads"])).content
     let matches = actualMessage.match(idealMessage)
     if (matches == null) {
       matches = []
@@ -41,7 +41,7 @@ describe("The coinflip command", function() {
     await setUserMoney(0)
 
     let idealMessage = /heads! <@12345>, you lose|tails! <@12345>, you win!/g
-    let actualMessage = (await execute(dummyMessage, ["tails"]))[0]
+    let actualMessage = (await execute(dummyMessage, ["tails"])).content
     let matches = actualMessage.match(idealMessage)
     if (matches == null) {
       matches = []
@@ -54,7 +54,7 @@ describe("The coinflip command", function() {
     await setUserMoney(0)
 
     let idealMessage = "<@12345>, you don't have enough salami to make that bet"
-    let actualMessage = (await execute(dummyMessage, ["tails", "100"]))[0]
+    let actualMessage = (await execute(dummyMessage, ["tails", "100"])).content
 
     assert.equal(idealMessage, actualMessage)
   })

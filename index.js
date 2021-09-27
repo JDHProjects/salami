@@ -1,4 +1,4 @@
-const Discord = require("discord.js")
+const { Client, Collection } = require("discord.js")
 const { syncDB } = require("./db/functions/syncDB.js")
 const { runEachCommand } = require("./db/functions/runEachCommand.js")
 const { downDetector } = require("./functions/downDetector.js")
@@ -17,10 +17,12 @@ Sentry.init({
   environment: process.env.ENVIRONMENT
 })
 
+// Create a new client instance
+const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS", "DIRECT_MESSAGES", "DIRECT_MESSAGE_REACTIONS"], partials: ["CHANNEL"] })
 
-const client = new Discord.Client()
-client.commands = new Discord.Collection()
-const cooldowns = new Discord.Collection()
+
+client.commands = new Collection()
+const cooldowns = new Collection()
 const commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"))
 const commandNames = []
 
@@ -35,7 +37,7 @@ client.on("ready", () => {
   downDetector()
 })
 
-client.on("message", async message => {
+client.on("messageCreate", async message => {
   if (!message.content.startsWith(prefix) || message.author.bot) return
 
   const args = message.content.slice(prefix.length).split(/ +/).map(arg => arg.toLowerCase())
@@ -81,7 +83,7 @@ client.on("message", async message => {
   }
 
   if (!cooldowns.has(command.name)) {
-    cooldowns.set(command.name, new Discord.Collection())
+    cooldowns.set(command.name, new Collection())
   }
   const now = Date.now()
   const timestamps = cooldowns.get(command.name)

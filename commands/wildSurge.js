@@ -9,7 +9,6 @@ module.exports = {
   tested: true,
   execute: async function(message, args) {
     let randInt = Math.floor((Math.random() * wild_values.length))
-    message.delete().catch(_ => {})
     return await sendMessage.reply(message, `you rolled ${randInt}: ${wild_values[randInt]}`)
   },
 }

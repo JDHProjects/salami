@@ -5,7 +5,7 @@ const { execute } = require("../../commands/stop.js")
 describe("The stop command", function() {
   it("should respond correctly when used", async function() {
     let idealMessage = "Don't tell me what to do"
-    let actualMessage = (await execute({}, []))[0]
+    let actualMessage = (await execute({}, [])).content
     assert.equal(actualMessage, idealMessage)
   })
 })

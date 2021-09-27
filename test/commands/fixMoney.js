@@ -20,21 +20,21 @@ describe("The fixMoney command", function() {
   
   it("should respond correctly with no user", async function() {
     let idealMessage = "No user specified"
-    let actualMessage = (await execute(dummyMessage, []))[0]
+    let actualMessage = (await execute(dummyMessage, [])).content
     
     assert.equal(idealMessage, actualMessage)
   })
 
   it("should respond correctly with no operator", async function() {
     let idealMessage = "No amount modifier specified"
-    let actualMessage = (await execute(dummyMessageWithMention, []))[0]
+    let actualMessage = (await execute(dummyMessageWithMention, [])).content
     
     assert.equal(idealMessage, actualMessage)
   })
 
   it("should respond correctly with no amount", async function() {
     let idealMessage = "No amount specified"
-    let actualMessage = (await execute(dummyMessageWithMention, ["="]))[0]
+    let actualMessage = (await execute(dummyMessageWithMention, ["="])).content
     
     assert.equal(idealMessage, actualMessage)
   })
@@ -43,7 +43,7 @@ describe("The fixMoney command", function() {
     await setUserMoney(0)
     
     let idealMessage = "<@12345>'s money has been updated"
-    let actualMessage = (await execute(dummyMessageWithMention, ["=", "1000"]))[0]
+    let actualMessage = (await execute(dummyMessageWithMention, ["=", "1000"])).content
     
     assert.equal(idealMessage, actualMessage)
   })

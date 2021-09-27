@@ -24,7 +24,7 @@ describe("The money command", function() {
     await setUserMoney(0)
 
     let idealMessage = "**Money distribution:**\n1) The Bank : 1000000000 salami\n2) <@2> : 1 salami\n3) <@1> : 1 salami\n4) <@637400095821660180> : 0 salami\n5) <@12345> : 0 salami\n\n**Total salami: 1000000002**"
-    let actualMessage = (await execute(dummyMessage, ["list"]))[0]
+    let actualMessage = (await execute(dummyMessage, ["list"])).content
     
     assert.equal(actualMessage, idealMessage)
   })
@@ -33,7 +33,7 @@ describe("The money command", function() {
     await setUserMoney(5678)
 
     let idealMessage = "you have: 5678 salami"
-    let actualMessage = (await execute(dummyMessage, []))[0]
+    let actualMessage = (await execute(dummyMessage, [])).content
     
     assert.equal(actualMessage, idealMessage)
   })
@@ -42,7 +42,7 @@ describe("The money command", function() {
     await setUserMoney(0)
 
     let idealMessage = "you don't have enough salami"
-    let actualMessage = (await execute(dummyMessageWithOtherUserMention, ["send", "100"]))[0]
+    let actualMessage = (await execute(dummyMessageWithOtherUserMention, ["send", "100"])).content
     
     assert.equal(actualMessage, idealMessage)
   })
@@ -51,7 +51,7 @@ describe("The money command", function() {
     await setUserMoney(100)
 
     let idealMessage = "<@2> doesn't have a bank account, the first time they use the bot, one will be generated for them"
-    let actualMessage = (await execute(dummyMessageWithOtherUserMention, ["send", "100"]))[0]
+    let actualMessage = (await execute(dummyMessageWithOtherUserMention, ["send", "100"])).content
     
     assert.equal(actualMessage, idealMessage)
   })
@@ -61,7 +61,7 @@ describe("The money command", function() {
     await setUserMoney(0,2)
 
     let idealMessage = "<@2> has 0 salami"
-    let actualMessage = (await execute(dummyMessageWithOtherUserMention, []))[0]
+    let actualMessage = (await execute(dummyMessageWithOtherUserMention, [])).content
     
     assert.equal(actualMessage, idealMessage)
   })
@@ -71,7 +71,7 @@ describe("The money command", function() {
     await setUserMoney(0,2)
 
     let idealMessage = "100 salami transferred from <@12345> to <@2>"
-    let actualMessage = (await execute(dummyMessageWithOtherUserMention, ["send", "100"]))[0]
+    let actualMessage = (await execute(dummyMessageWithOtherUserMention, ["send", "100"])).content
     
     assert.equal(actualMessage, idealMessage)
 

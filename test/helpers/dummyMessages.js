@@ -13,17 +13,14 @@ module.exports = {
     },
     attachments: new Discord.Collection(),
     channel: {
-      startTyping() {
-        return
-      },
-      stopTyping() {
+      sendTyping() {
         return
       }
     },
     guild: {
       name: "valid_guild",
       memberCount: 0,
-      ownerID: 12345,
+      ownerId: 12345,
       region: "valid_region",
       createdAt: "valid_time"
     },
