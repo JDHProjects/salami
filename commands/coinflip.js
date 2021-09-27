@@ -34,15 +34,19 @@ module.exports = {
         let flip = Math.floor(Math.random() * 2) 
         if(flip == guess){
           messageText = await sendMessage.send(message,`${flip == 1 ? "heads" : "tails"}! <@${message.author.id}>, you win!`)
-          sendFromBank(user, amount)
+          if (amount > 0){
+            sendFromBank(user, amount)
+          }
         }
         else{
           messageText = await sendMessage.send(message,`${flip == 1 ? "heads" : "tails"}! <@${message.author.id}>, you lose`)
-          lossWithTax(user, amount)
+          if (amount > 0){
+            lossWithTax(user, amount)
+          }
         }
       }
       else{
-        messageText = await sendMessage.send(message,`<@${message.author.id}>, you don't have enough salami to make that bet`)
+        messageText = await sendMessage.reply(message,"you don't have enough salami to make that bet")
       }
     }
     else{

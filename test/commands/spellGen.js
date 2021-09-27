@@ -17,29 +17,29 @@ describe("The spellGen command", function() {
   })
 
   it("should respond correctly when a user requests a random spell", async function() {
-    let actualMessage = (await execute(dummyMessage, []))[1]
+    let actualMessage = (await execute(dummyMessage, []))
     
-    assert.ok(names.includes(actualMessage.embed.title))
+    assert.ok(names.includes(actualMessage.embeds[0].title))
   })
 
   it("should respond correctly when a user requests an spell that doesn't exist", async function() {
     let idealMessage = "No spell found matching your criteria!"
-    let actualMessage = (await execute(dummyMessage, ["invalid_spell"]))[0]
+    let actualMessage = (await execute(dummyMessage, ["invalid_spell"])).content
 
     assert.equal(idealMessage, actualMessage)
   })
 
   it("should respond correctly when a user requests a list of all spells", async function() {
     let idealMessage = names.join("\n")
-    let actualMessage = (await execute(dummyMessage, ["list"]))[0]
+    let actualMessage = (await execute(dummyMessage, ["list"])).content
 
     assert.equal(idealMessage, actualMessage)
   })
 
   it("should respond correctly when a user requests a specific spell", async function() {
     let idealTitle = "Acid Arrow"
-    let actualMessage = (await execute(dummyMessage, ["Acid Arrow"]))[1]
+    let actualMessage = (await execute(dummyMessage, ["Acid Arrow"]))
 
-    assert.equal(idealTitle, actualMessage.embed.title)
+    assert.equal(idealTitle, actualMessage.embeds[0].title)
   })
 })

@@ -9,7 +9,7 @@ module.exports = {
   tested: true,
   execute: async function(message, args) {
     let msg = parseAndRollDice(args.join(" "))[0]
-    let messageText = await sendMessage.send(message, msg, { split: true })
+    let messageText = await sendMessage.splitSend(message, msg)
     return messageText
   },
 }

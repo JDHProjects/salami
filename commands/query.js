@@ -21,7 +21,7 @@ module.exports = {
     }
     messages.push(await sendMessage.author(message, "DB backup file", { files: ["./database.sqlite"] }))
     let resp = await sequelize.query(querystring)
-    messages.push(await sendMessage.send(message, `Response:\n${JSON.stringify(resp)}\nResponse complete`, { split: true }))
+    messages.push(await sendMessage.splitSend(message, `Response:\n${JSON.stringify(resp)}\nResponse complete`))
     return messages
   },
 }

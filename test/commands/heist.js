@@ -21,7 +21,7 @@ describe("The heist command", function() {
     await setUserMoney(0)
 
     let idealMessage = "you need 1000 salami to buy the heist equipment!"
-    let actualMessage = (await execute(dummyMessage, []))[0]
+    let actualMessage = (await execute(dummyMessage, [])).content
     
     assert.equal(idealMessage, actualMessage)
   })
@@ -30,7 +30,7 @@ describe("The heist command", function() {
     await setUserMoney(1000)
 
     let idealMessage = /you were caught!|you escaped with [0-9]+ salami!/g
-    let actualMessage = (await execute(dummyMessage, []))[0]
+    let actualMessage = (await execute(dummyMessage, [])).content
     let matches = actualMessage.match(idealMessage)
     if (matches == null) {
       matches = []

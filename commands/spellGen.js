@@ -18,7 +18,7 @@ module.exports = {
 
     let searchTerm = {order: sequelize.random()}
     if(args.includes("list")){
-      messageText = await sendMessage.send(message, names.join("\n"), { split: true })
+      messageText = await sendMessage.splitSend(message, names.join("\n"))
       return messageText
     }
     if(args.length > 0){
@@ -38,7 +38,7 @@ module.exports = {
       messageText = await sendMessage.send(message, "No spell found matching your criteria!")
       return messageText
     }
-    message.channel.startTyping()
+    message.channel.sendTyping()
     const spellEmbed = new MessageEmbed()
       .setColor("#0099ff")
       .setTitle(spell.dataValues.name)
@@ -55,8 +55,7 @@ module.exports = {
       checkEmbedLength(spellEmbed, "\u200b\nHigher Level", `${spell.dataValues.higher_level}`)
     }
   
-    messageText = await sendMessage.send(message, "", { embed: spellEmbed })
-    message.channel.stopTyping()
+    messageText = await sendMessage.send(message, "", { embeds: [spellEmbed] })
     return messageText
   },
 }

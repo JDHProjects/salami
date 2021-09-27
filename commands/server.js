@@ -8,7 +8,7 @@ module.exports = {
   tested: true,
   execute: async function(message, args) {
     if (message.guild != null){
-      return await sendMessage.send(message, `Server name: ${message.guild.name}\nTotal members: ${message.guild.memberCount}\nServer Owner: <@${message.guild.ownerID}>\nCurrent Host Region: ${message.guild.region}\nEstablished: ${message.guild.createdAt}`)
+      return await sendMessage.send(message, `Server name: ${message.guild.name}\nTotal members: ${message.guild.memberCount}\nServer Owner: <@${message.guild.ownerId}>\nCurrent Host Region: ${message.guild.region}\nEstablished: ${message.guild.createdAt}`)
     }
     return await sendMessage.send(message, "You're not in a server!")
   },
