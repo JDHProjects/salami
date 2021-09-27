@@ -53,7 +53,7 @@ describe("The coinflip command", function() {
   it("should respond correctly when user has insufficient money", async function() {
     await setUserMoney(0)
 
-    let idealMessage = "<@12345>, you don't have enough salami to make that bet"
+    let idealMessage = "you don't have enough salami to make that bet"
     let actualMessage = (await execute(dummyMessage, ["tails", "100"])).content
 
     assert.equal(idealMessage, actualMessage)
