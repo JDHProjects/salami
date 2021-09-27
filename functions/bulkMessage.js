@@ -23,7 +23,7 @@ const bulkSend = function(message, messageText) {
     }
     return "message queued"
   }
-  return [messageText, {}]
+  return { content:messageText }
 }
 
 module.exports = { bulkReply, bulkSend }

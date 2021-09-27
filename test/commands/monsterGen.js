@@ -18,21 +18,21 @@ describe("The monsterGen command", function() {
 
   it("should respond correctly when a user requests a random monster", async function() {
     this.timeout(5000)
-    let actualMessage = (await execute(dummyMessage, []))[1]
+    let actualMessage = (await execute(dummyMessage, []))
     
-    assert.ok(names.includes(actualMessage.embed.title))
+    assert.ok(names.includes(actualMessage.embeds[0].title))
   })
 
   it("should respond correctly when a user requests an monster that doesn't exist", async function() {
     let idealMessage = "No monster found matching your criteria!"
-    let actualMessage = (await execute(dummyMessage, ["invalid_monster"]))[0]
+    let actualMessage = (await execute(dummyMessage, ["invalid_monster"])).content
 
     assert.equal(idealMessage, actualMessage)
   })
 
   it("should respond correctly when a user requests a list of all monsters", async function() {
     let idealMessage = names.join("\n")
-    let actualMessage = (await execute(dummyMessage, ["list"]))[0]
+    let actualMessage = (await execute(dummyMessage, ["list"])).content
 
     assert.equal(idealMessage, actualMessage)
   })
@@ -40,8 +40,8 @@ describe("The monsterGen command", function() {
   it("should respond correctly when a user requests a specific monster", async function() {
     this.timeout(5000)
     let idealTitle = "Aboleth"
-    let actualMessage = (await execute(dummyMessage, ["Aboleth"]))[1]
+    let actualMessage = (await execute(dummyMessage, ["Aboleth"]))
 
-    assert.equal(idealTitle, actualMessage.embed.title)
+    assert.equal(idealTitle, actualMessage.embeds[0].title)
   })
 })

@@ -20,7 +20,7 @@ describe("The daily command", function() {
   it("should respond correctly", async function() {
     await setUserMoney(0)
     let idealMessage = "your 1000 salami have been transferred to your bank account!"
-    let actualMessage = (await execute(dummyMessage, []))[0]
+    let actualMessage = (await execute(dummyMessage, [])).content
     assert.equal(actualMessage, idealMessage)
   })
 

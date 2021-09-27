@@ -73,7 +73,7 @@ module.exports = {
       checkEmbedLength(itemEmbed, "\u200b\nDescription", `${item.dataValues.description}`)
     }
 
-    messageText = await sendMessage.send(message, { embeds: [itemEmbed] })
+    messageText = await sendMessage.send(message, "", { embeds: [itemEmbed] })
     return messageText
   },
 }

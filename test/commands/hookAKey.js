@@ -19,21 +19,21 @@ describe("The hookAKey command", function() {
 
   it("should respond correctly to a non-admin trying to add keys", async function() {
     let idealMessage = "Sorry, only admins can add new keys"
-    let actualMessage = (await execute(dummyMessageWithAttachment, []))[0][0]
+    let actualMessage = (await execute(dummyMessageWithAttachment, []))[0].content
     
     assert.equal(idealMessage, actualMessage)
   })
 
   it("should respond correctly to an admin trying to send a non .txt file", async function() {
     let idealMessage = "A new key file must be a .txt file"
-    let actualMessage = (await execute(dummyMessageWithJPEGAttachmentAsAdmin, []))[0][0]
+    let actualMessage = (await execute(dummyMessageWithJPEGAttachmentAsAdmin, []))[0].content
     
     assert.equal(idealMessage, actualMessage)
   })
 
   it("should respond correctly to an admin trying to send a .txt file with no keys", async function() {
     let idealMessage = "no keys found in sent file"
-    let actualMessage = (await execute(dummyMessageWithNoKeysAttachmentAsAdmin, []))[0][0]
+    let actualMessage = (await execute(dummyMessageWithNoKeysAttachmentAsAdmin, []))[0].content
     
     assert.equal(idealMessage, actualMessage)
   })
@@ -42,15 +42,15 @@ describe("The hookAKey command", function() {
     let idealFirstMessage = "1 key(s) found in sent file"
     let idealSecondMessage = "any non-duplicate keys have been added!"
     let actualMessages = (await execute(dummyMessageWithKeysAttachmentAsAdmin, []))
-    assert.equal(idealFirstMessage, actualMessages[0][0])
-    assert.equal(idealSecondMessage, actualMessages[1][0])
+    assert.equal(idealFirstMessage, actualMessages[0].content)
+    assert.equal(idealSecondMessage, actualMessages[1].content)
   })
 
   it("should respond correctly to a user not having enough money for a game", async function() {
     await setUserMoney(0)
 
     let idealMessage = "you can't afford a new game"
-    let actualMessage = (await execute(dummyMessage, []))[0][0]
+    let actualMessage = (await execute(dummyMessage, []))[0].content
     
     assert.equal(idealMessage, actualMessage)
   })
@@ -59,7 +59,7 @@ describe("The hookAKey command", function() {
     await setUserMoney(50000)
 
     let idealMessage = "sorry, I'm all out of keys!"
-    let actualMessage = (await execute(dummyMessage, []))[0][0]
+    let actualMessage = (await execute(dummyMessage, []))[0].content
     
     assert.equal(idealMessage, actualMessage)
   })
@@ -70,7 +70,7 @@ describe("The hookAKey command", function() {
     await hookAKeys.create( { key: "AAAAA-AAAAA-AAAAA", claimed: 12345 } )
 
     let idealMessage = "sorry, I'm all out of keys!"
-    let actualMessage = (await execute(dummyMessage, []))[0][0]
+    let actualMessage = (await execute(dummyMessage, []))[0].content
     
     assert.equal(idealMessage, actualMessage)
   })
@@ -83,7 +83,7 @@ describe("The hookAKey command", function() {
     let idealFirstMessage = "Enjoy your new game!\nSteam key: AAAAA-AAAAA-AAAAA"
     let idealSecondMessage = "key has been sent via DM"
     let actualMessages = (await execute(dummyMessage, []))
-    assert.equal(idealFirstMessage, actualMessages[0][0])
-    assert.equal(idealSecondMessage, actualMessages[1][0])
+    assert.equal(idealFirstMessage, actualMessages[0].content)
+    assert.equal(idealSecondMessage, actualMessages[1].content)
   })
 })

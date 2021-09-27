@@ -18,22 +18,22 @@ module.exports = {
       monkeyNums[2] = Math.floor((Math.random() * photoCount) + 1)
     } while (monkeyNums[2] === monkeyNums[0] || monkeyNums[2] === monkeyNums[1])
 
-    messages.push(await sendMessage.send(message,{ content: "Lets play Monkey Mimics!",
+    messages.push(await sendMessage.send(message, "Lets play Monkey Mimics!", {
       files: [
         "./assets/monkey-mimics/"+monkeyNums[0]+".jpeg",
       ]
     }))
-    messages.push(await sendMessage.send(message, {
+    messages.push(await sendMessage.send(message, "", {
       files: [
         "./assets/monkey-mimics/"+monkeyNums[1]+".jpeg",
       ]
     }))
-    messages.push(await sendMessage.send(message, {
+    messages.push(await sendMessage.send(message, "", {
       files: [
         "./assets/monkey-mimics/"+monkeyNums[2]+".jpeg",
       ]
     }))
-    messages.push(await sendMessage.author(message, {content: "Heres your monkey to imitate!",
+    messages.push(await sendMessage.author(message, "Heres your monkey to imitate!", {
       files: [
         "./assets/monkey-mimics/"+monkeyNums[Math.floor(Math.random() * monkeyNums.length)]+".jpeg"
       ]

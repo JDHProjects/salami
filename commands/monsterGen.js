@@ -90,7 +90,7 @@ module.exports = {
       checkEmbedLength(monsterEmbed, "\u200b\nLegendary Actions", `${monster.dataValues.legendary_actions}`)
     }
 
-    messageText = await sendMessage.send(message, { embeds: [monsterEmbed] })
+    messageText = await sendMessage.send(message, "", { embeds: [monsterEmbed] })
     return messageText
   },
 }

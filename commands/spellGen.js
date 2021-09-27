@@ -55,7 +55,7 @@ module.exports = {
       checkEmbedLength(spellEmbed, "\u200b\nHigher Level", `${spell.dataValues.higher_level}`)
     }
   
-    messageText = await sendMessage.send(message, { embeds: [spellEmbed] })
+    messageText = await sendMessage.send(message, "", { embeds: [spellEmbed] })
     return messageText
   },
 }

@@ -7,8 +7,8 @@ describe("The monkeyMimics command", function() {
     let idealFirstMessage = "Lets play Monkey Mimics!"
     let idealSecondMessage = "Heres your monkey to imitate!"
     let actualMessages = (await execute({}, []))
-    assert.equal(idealFirstMessage, actualMessages[0][0])
-    assert.equal(idealSecondMessage, actualMessages[3][0])
+    assert.equal(idealFirstMessage, actualMessages[0].content)
+    assert.equal(idealSecondMessage, actualMessages[3].content)
   })
 
   it("should send the 3 monkey images", async function() {
@@ -16,7 +16,7 @@ describe("The monkeyMimics command", function() {
     let command = (await execute({}, []))
     assert.equal(4, command.length)
 
-    let filesString = `${command[0][1].files[0]}${command[1][1].files[0]}${command[2][1].files[0]}`
+    let filesString = `${command[0].files[0]}${command[1].files[0]}${command[2].files[0]}`
     let matches = filesString.match(fileName)
     if (matches == null) {
       matches = []
@@ -26,7 +26,7 @@ describe("The monkeyMimics command", function() {
 
   it("should send a single image privately", async function() {
     let fileName = /\.\/assets\/monkey-mimics\/[0-9]+.jpeg/g
-    let files = (await execute({}, []))[1][1].files
+    let files = (await execute({}, []))[1].files
 
     assert.equal(1, files.length)
 
@@ -39,9 +39,9 @@ describe("The monkeyMimics command", function() {
 
   it("should send an image privately that matches one of the three sent publicly", async function() {
     let messages = (await execute({}, []))
-    let files = messages.slice(0,3).map(message => message[1].files[0])
+    let files = messages.slice(0,3).map(message => message.files[0])
 
-    let privateFile = messages[3][1].files[0]
+    let privateFile = messages[3].files[0]
 
     assert.ok(files.includes(privateFile))
   })

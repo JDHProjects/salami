@@ -19,7 +19,7 @@ describe("The dicegame command", function() {
   
   it("should respond correctly with no guess", async function() {
     let idealMessage = "you forgot to make a guess!"
-    let actualMessage = (await execute({}, []))[0]
+    let actualMessage = (await execute({}, [])).content
     
     assert.equal(idealMessage, actualMessage)
   })
@@ -28,7 +28,7 @@ describe("The dicegame command", function() {
     await setUserMoney(0)
 
     let idealMessage = /(one|two|three|four|five|six)! <@12345>, (you lose|you win!)/g
-    let actualMessage = (await execute(dummyMessage, ["one"]))[0]
+    let actualMessage = (await execute(dummyMessage, ["one"])).content
     let matches = actualMessage.match(idealMessage)
     if (matches == null) {
       matches = []
@@ -41,7 +41,7 @@ describe("The dicegame command", function() {
     await setUserMoney(0)
 
     let idealMessage = "you don't have enough salami to make that bet"
-    let actualMessage = (await execute(dummyMessage, ["one", "100"]))[0]
+    let actualMessage = (await execute(dummyMessage, ["one", "100"])).content
     
     assert.equal(idealMessage, actualMessage)
   })
