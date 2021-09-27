@@ -20,7 +20,7 @@ module.exports = {
 
     let searchTerm = {order: sequelize.random()}
     if(args.includes("list")){
-      messageText = await sendMessage.send(message, names.join("\n"), { split: true })
+      messageText = await sendMessage.splitSend(message, names.join("\n"))
       return messageText
     }
     if(args.length > 0){
@@ -40,7 +40,7 @@ module.exports = {
       messageText = await sendMessage.send(message, "No monster found matching your criteria!")
       return messageText
     }
-    message.channel.startTyping()
+    message.channel.sendTyping()
     let url = await searchForImage(`dnd 5e ${monster.dataValues.name} image`, 0)
     const monsterEmbed = new MessageEmbed()
       .setColor("#0099ff")
@@ -90,8 +90,7 @@ module.exports = {
       checkEmbedLength(monsterEmbed, "\u200b\nLegendary Actions", `${monster.dataValues.legendary_actions}`)
     }
 
-    messageText = await sendMessage.send(message, "", { embed: monsterEmbed })
-    message.channel.stopTyping()
+    messageText = await sendMessage.send(message, { embeds: [monsterEmbed] })
     return messageText
   },
 }

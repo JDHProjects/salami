@@ -9,6 +9,7 @@ module.exports = {
   execute: async function(message, args) {
     const { bankAccounts } = require("../db/db.js")
     const { sendFromBank } = require("../db/functions/sendFromBank.js")
+    console.log("hello")
 
     let operator = Math.floor(Math.random() * 3)
     let operandOne = Math.floor(Math.random() * 20)
@@ -29,7 +30,7 @@ module.exports = {
 
     const filter = (m) => m.author.id === message.author.id
     try{
-      let userReply = await message.channel.awaitMessages( filter, { max: 1, time: 15000, errors: ["time"] })
+      let userReply = await message.channel.awaitMessages({ filter, max: 1, time: 15000, errors: ["time"] })
       let userAnswer = parseInt(userReply.first().content)
       if (isNaN(userAnswer)){
         sendMessage.reply(message, "answer not a number")

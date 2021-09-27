@@ -19,7 +19,7 @@ module.exports = {
 
     let searchTerm = {order: sequelize.random()}
     if(args.includes("list")){
-      messageText = await sendMessage.send(message, names.join("\n"), { split: true })
+      messageText = await sendMessage.splitSend(message, names.join("\n"))
       return messageText
     }
     if(args.length > 0){
@@ -34,7 +34,7 @@ module.exports = {
       messageText = await sendMessage.send(message, "No item found matching your criteria!")
       return messageText
     }
-    message.channel.startTyping()
+    message.channel.sendTyping()
     let url = await searchForImage(`dnd 5e ${item.dataValues.name} image`, 0)
     const itemEmbed = new MessageEmbed()
       .setColor("#0099ff")
@@ -73,8 +73,7 @@ module.exports = {
       checkEmbedLength(itemEmbed, "\u200b\nDescription", `${item.dataValues.description}`)
     }
 
-    messageText = await sendMessage.send(message, "", { embed: itemEmbed })
-    message.channel.stopTyping()
+    messageText = await sendMessage.send(message, { embeds: [itemEmbed] })
     return messageText
   },
 }

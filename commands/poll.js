@@ -32,7 +32,7 @@ module.exports = {
 
       while(collecting){
         try {
-          let userReply = (await message.channel.awaitMessages( filter, { max: 1, time: 15000, errors: ["time"] })).first()
+          let userReply = (await message.channel.awaitMessages({ filter, max: 1, time: 15000, errors: ["time"] })).first()
           if(userReply.content.toLowerCase() == "done" || counter > 8){
             collecting = false
             currentMessage.delete().catch(_ => {})
@@ -59,6 +59,7 @@ module.exports = {
           }
         }
         catch(err){
+          console.log(err)
           collecting = false
           currentMessage.delete().catch(_ => {})
           sendMessage.reply(message, "timeout!")
@@ -78,7 +79,7 @@ async function reactResults(message, timeLimit, counter){
   }
 
   try{
-    await message.awaitReactions(filter, { time: timeLimit + (counter * 250), errors: ["time"] })
+    await message.awaitReactions({ filter, time: timeLimit + (counter * 250), errors: ["time"] })
   } catch(collected) {
     let maxKey = 0
     let maxValue = 0

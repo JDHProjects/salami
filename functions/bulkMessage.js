@@ -1,6 +1,8 @@
 const Discord = require("discord.js")
 const channelMessage = new Discord.Collection()
 
+const { sendMessage } = require("../functions/sendMessage.js")
+
 const bulkReply = function(message, messageText) {
   let replyText = `<@${message.author.id}>, ` + messageText
   return bulkSend(message, replyText)
@@ -9,11 +11,10 @@ const bulkReply = function(message, messageText) {
 const bulkSend = function(message, messageText) {
   if(process.env.TEST != "TRUE"){
     if (!channelMessage.has(message.channel)) {
-      message.channel.startTyping()
+      message.channel.sendTyping()
       channelMessage.set(message.channel, messageText)
       setTimeout(() => {
-        message.channel.stopTyping()
-        message.channel.send(channelMessage.get(message.channel), { split: true })
+        sendMessage.splitSend(message, channelMessage.get(message.channel))
         channelMessage.delete(message.channel)
       }, 1000)
     }
@@ -22,7 +23,7 @@ const bulkSend = function(message, messageText) {
     }
     return "message queued"
   }
-  return [messageText, { split: true }]
+  return [messageText, {}]
 }
 
 module.exports = { bulkReply, bulkSend }

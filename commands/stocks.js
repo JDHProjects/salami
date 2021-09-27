@@ -120,7 +120,7 @@ module.exports = {
       else {
         msg += " you don't own any stocks"
       }
-      return await sendMessage.send(message, `<@${message.author.id}>`+msg, { split: true })
+      return await sendMessage.splitSend(message, `<@${message.author.id}>`+msg)
     }
     else {
       return await sendMessage.reply(message, "No valid args supplied with your message")
