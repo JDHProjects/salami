@@ -71,11 +71,15 @@ module.exports = {
     let result = Math.floor(Math.random() * 6) + 1 
     if(result == userGuess){
       messageText = await sendMessage.reply(message, `${numToText[result]}! <@${message.author.id}>, you win!`)
-      sendFromBank(user, amount*5)
+      if (amount > 0){
+        sendFromBank(user, amount*5)
+      }
     }
     else{
       messageText = await sendMessage.reply(message, `${numToText[result]}! <@${message.author.id}>, you lose`)
-      lossWithTax(user, amount)
+      if (amount > 0){
+        lossWithTax(user, amount)
+      }
     }
 
     return messageText
