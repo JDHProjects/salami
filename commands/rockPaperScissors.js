@@ -56,7 +56,7 @@ module.exports = {
       if (winTable[result][1] == userGuess){
         messageText = await sendMessage.reply(question, `Salami picked ${rps[result]}, you win!`)
         if (amount > 0){
-          sendFromBank(user, amount*2)
+          sendFromBank(user, amount)
         }
         return messageText
       }
