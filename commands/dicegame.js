@@ -68,7 +68,7 @@ module.exports = {
       return await sendMessage.edit(question, "You forgot to pick an option :(", { components: [ getButtonRow({ disabled:true, buttons: [{ name:"One", id:"one" },{ name:"Two", id:"two" },{ name:"Three", id:"three" }]}),getButtonRow({ disabled:true, buttons: [{ name:"Four", id:"four" },{ name:"Five", id:"five" },{ name:"Six", id:"six" }] })] })
     }
 
-    let result = Math.floor(Math.random() * 6) + 1 
+    let result = Math.floor(Math.random() * 6)
     if(result == userGuess){
       messageText = await sendMessage.reply(message, `${numToText[result]}! <@${message.author.id}>, you win!`)
       if (amount > 0){
