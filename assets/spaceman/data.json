@@ -1,0 +1,198 @@
+[
+  {
+    "category": "antenna",
+    "category_id": "00",
+    "filepath": "./assets/spaceman/antenna/00.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "antenna",
+    "category_id": "01",
+    "filepath": "./assets/spaceman/antenna/01.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "antenna",
+    "category_id": "02",
+    "filepath": "./assets/spaceman/antenna/02.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "backpack",
+    "category_id": "00",
+    "filepath": "./assets/spaceman/backpack/00.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "backpack",
+    "category_id": "01",
+    "filepath": "./assets/spaceman/backpack/01.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "chest",
+    "category_id": "00",
+    "filepath": "./assets/spaceman/chest/00.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "ears",
+    "category_id": "00",
+    "filepath": "./assets/spaceman/ears/00.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "ears",
+    "category_id": "01",
+    "filepath": "./assets/spaceman/ears/01.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "ears",
+    "category_id": "02",
+    "filepath": "./assets/spaceman/ears/02.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "ears",
+    "category_id": "03",
+    "filepath": "./assets/spaceman/ears/03.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "face",
+    "category_id": "00",
+    "filepath": "./assets/spaceman/face/00.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "face",
+    "category_id": "01",
+    "filepath": "./assets/spaceman/face/01.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "patches",
+    "category_id": "00",
+    "filepath": "./assets/spaceman/patches/00.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "patches",
+    "category_id": "01",
+    "filepath": "./assets/spaceman/patches/01.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "patches",
+    "category_id": "02",
+    "filepath": "./assets/spaceman/patches/02.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "patches",
+    "category_id": "03",
+    "filepath": "./assets/spaceman/patches/03.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "patches",
+    "category_id": "04",
+    "filepath": "./assets/spaceman/patches/04.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "patches",
+    "category_id": "05",
+    "filepath": "./assets/spaceman/patches/05.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "patches",
+    "category_id": "06",
+    "filepath": "./assets/spaceman/patches/06.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "patches",
+    "category_id": "07",
+    "filepath": "./assets/spaceman/patches/07.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "patches",
+    "category_id": "08",
+    "filepath": "./assets/spaceman/patches/08.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "patches",
+    "category_id": "09",
+    "filepath": "./assets/spaceman/patches/09.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "patches",
+    "category_id": "0A",
+    "filepath": "./assets/spaceman/patches/0A.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "patches",
+    "category_id": "0B",
+    "filepath": "./assets/spaceman/patches/0B.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "patches",
+    "category_id": "0C",
+    "filepath": "./assets/spaceman/patches/0C.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "suit",
+    "category_id": "00",
+    "filepath": "./assets/spaceman/suit/00.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "visor",
+    "category_id": "00",
+    "filepath": "./assets/spaceman/visor/00.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "visor",
+    "category_id": "01",
+    "filepath": "./assets/spaceman/visor/01.png",
+    "name": "",
+    "description": ""
+  }
+]
