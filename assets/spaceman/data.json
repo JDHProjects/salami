@@ -84,93 +84,93 @@
     "description": ""
   },
   {
-    "category": "patches",
+    "category": "patch",
     "category_id": "00",
-    "filepath": "./assets/spaceman/patches/00.png",
+    "filepath": "./assets/spaceman/patch/00.png",
     "name": "",
     "description": ""
   },
   {
-    "category": "patches",
+    "category": "patch",
     "category_id": "01",
-    "filepath": "./assets/spaceman/patches/01.png",
+    "filepath": "./assets/spaceman/patch/01.png",
     "name": "",
     "description": ""
   },
   {
-    "category": "patches",
+    "category": "patch",
     "category_id": "02",
-    "filepath": "./assets/spaceman/patches/02.png",
+    "filepath": "./assets/spaceman/patch/02.png",
     "name": "",
     "description": ""
   },
   {
-    "category": "patches",
+    "category": "patch",
     "category_id": "03",
-    "filepath": "./assets/spaceman/patches/03.png",
+    "filepath": "./assets/spaceman/patch/03.png",
     "name": "",
     "description": ""
   },
   {
-    "category": "patches",
+    "category": "patch",
     "category_id": "04",
-    "filepath": "./assets/spaceman/patches/04.png",
+    "filepath": "./assets/spaceman/patch/04.png",
     "name": "",
     "description": ""
   },
   {
-    "category": "patches",
+    "category": "patch",
     "category_id": "05",
-    "filepath": "./assets/spaceman/patches/05.png",
+    "filepath": "./assets/spaceman/patch/05.png",
     "name": "",
     "description": ""
   },
   {
-    "category": "patches",
+    "category": "patch",
     "category_id": "06",
-    "filepath": "./assets/spaceman/patches/06.png",
+    "filepath": "./assets/spaceman/patch/06.png",
     "name": "",
     "description": ""
   },
   {
-    "category": "patches",
+    "category": "patch",
     "category_id": "07",
-    "filepath": "./assets/spaceman/patches/07.png",
+    "filepath": "./assets/spaceman/patch/07.png",
     "name": "",
     "description": ""
   },
   {
-    "category": "patches",
+    "category": "patch",
     "category_id": "08",
-    "filepath": "./assets/spaceman/patches/08.png",
+    "filepath": "./assets/spaceman/patch/08.png",
     "name": "",
     "description": ""
   },
   {
-    "category": "patches",
+    "category": "patch",
     "category_id": "09",
-    "filepath": "./assets/spaceman/patches/09.png",
+    "filepath": "./assets/spaceman/patch/09.png",
     "name": "",
     "description": ""
   },
   {
-    "category": "patches",
+    "category": "patch",
     "category_id": "0A",
-    "filepath": "./assets/spaceman/patches/0A.png",
+    "filepath": "./assets/spaceman/patch/0A.png",
     "name": "",
     "description": ""
   },
   {
-    "category": "patches",
+    "category": "patch",
     "category_id": "0B",
-    "filepath": "./assets/spaceman/patches/0B.png",
+    "filepath": "./assets/spaceman/patch/0B.png",
     "name": "",
     "description": ""
   },
   {
-    "category": "patches",
+    "category": "patch",
     "category_id": "0C",
-    "filepath": "./assets/spaceman/patches/0C.png",
+    "filepath": "./assets/spaceman/patch/0C.png",
     "name": "",
     "description": ""
   },
