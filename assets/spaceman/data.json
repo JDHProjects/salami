@@ -21,6 +21,13 @@
     "description": ""
   },
   {
+    "category": "antenna",
+    "category_id": "03",
+    "filepath": "./assets/spaceman/antenna/03.png",
+    "name": "",
+    "description": ""
+  },
+  {
     "category": "backpack",
     "category_id": "00",
     "filepath": "./assets/spaceman/backpack/00.png",
@@ -35,9 +42,72 @@
     "description": ""
   },
   {
+    "category": "backpack",
+    "category_id": "02",
+    "filepath": "./assets/spaceman/backpack/02.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "backpack",
+    "category_id": "03",
+    "filepath": "./assets/spaceman/backpack/03.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "backpack",
+    "category_id": "04",
+    "filepath": "./assets/spaceman/backpack/04.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "backpack",
+    "category_id": "05",
+    "filepath": "./assets/spaceman/backpack/05.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "backpack",
+    "category_id": "06",
+    "filepath": "./assets/spaceman/backpack/06.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "backpack",
+    "category_id": "07",
+    "filepath": "./assets/spaceman/backpack/07.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "backpack",
+    "category_id": "08",
+    "filepath": "./assets/spaceman/backpack/08.png",
+    "name": "",
+    "description": ""
+  },
+  {
     "category": "chest",
     "category_id": "00",
     "filepath": "./assets/spaceman/chest/00.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "chest",
+    "category_id": "01",
+    "filepath": "./assets/spaceman/chest/01.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "chest",
+    "category_id": "02",
+    "filepath": "./assets/spaceman/chest/02.png",
     "name": "",
     "description": ""
   },
@@ -70,6 +140,27 @@
     "description": ""
   },
   {
+    "category": "ears",
+    "category_id": "04",
+    "filepath": "./assets/spaceman/ears/04.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "ears",
+    "category_id": "05",
+    "filepath": "./assets/spaceman/ears/05.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "ears",
+    "category_id": "06",
+    "filepath": "./assets/spaceman/ears/06.png",
+    "name": "",
+    "description": ""
+  },
+  {
     "category": "face",
     "category_id": "00",
     "filepath": "./assets/spaceman/face/00.png",
@@ -80,6 +171,27 @@
     "category": "face",
     "category_id": "01",
     "filepath": "./assets/spaceman/face/01.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "face",
+    "category_id": "02",
+    "filepath": "./assets/spaceman/face/02.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "face",
+    "category_id": "03",
+    "filepath": "./assets/spaceman/face/03.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "face",
+    "category_id": "04",
+    "filepath": "./assets/spaceman/face/04.png",
     "name": "",
     "description": ""
   },
@@ -175,6 +287,13 @@
     "description": ""
   },
   {
+    "category": "patch",
+    "category_id": "0D",
+    "filepath": "./assets/spaceman/patch/0D.png",
+    "name": "",
+    "description": ""
+  },
+  {
     "category": "suit",
     "category_id": "00",
     "filepath": "./assets/spaceman/suit/00.png",
@@ -192,6 +311,27 @@
     "category": "visor",
     "category_id": "01",
     "filepath": "./assets/spaceman/visor/01.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "visor",
+    "category_id": "02",
+    "filepath": "./assets/spaceman/visor/02.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "visor",
+    "category_id": "03",
+    "filepath": "./assets/spaceman/visor/03.png",
+    "name": "",
+    "description": ""
+  },
+  {
+    "category": "visor",
+    "category_id": "04",
+    "filepath": "./assets/spaceman/visor/04.png",
     "name": "",
     "description": ""
   }
