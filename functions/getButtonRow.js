@@ -7,8 +7,8 @@ const getButtonRow = function(buttonsInfo) {
     let thisButton = new MessageButton()
       .setCustomId(button.id)
       .setLabel(button.name)
-      .setDisabled(disabled)
-      .setStyle( buttonsInfo.disabled ? (button.picked ? "SUCCESS" : "SECONDARY") : "PRIMARY" )
+      .setDisabled(button.disabled || disabled)
+      .setStyle( button.style != null ? button.style : buttonsInfo.disabled ? (button.picked ? "SUCCESS" : "SECONDARY") : "PRIMARY" )
     row.addComponents(thisButton)
   })
   return row
