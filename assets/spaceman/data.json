@@ -3,336 +3,336 @@
     "category": "antenna",
     "category_id": "00",
     "filepath": "./assets/spaceman/antenna/00.png",
-    "name": "",
-    "description": ""
+    "name": "Heart",
+    "description": "Love is in the air"
   },
   {
     "category": "antenna",
     "category_id": "01",
     "filepath": "./assets/spaceman/antenna/01.png",
-    "name": "",
-    "description": ""
+    "name": "Star",
+    "description": "Like a magic wand has been glued to your helmet"
   },
   {
     "category": "antenna",
     "category_id": "02",
     "filepath": "./assets/spaceman/antenna/02.png",
-    "name": "",
-    "description": ""
+    "name": "Circle",
+    "description": "Just a bog standard antenna"
   },
   {
     "category": "antenna",
     "category_id": "03",
     "filepath": "./assets/spaceman/antenna/03.png",
-    "name": "",
-    "description": ""
+    "name": "None",
+    "description": "Where did it go?"
   },
   {
     "category": "backpack",
     "category_id": "00",
     "filepath": "./assets/spaceman/backpack/00.png",
-    "name": "",
-    "description": ""
+    "name": "Paladin",
+    "description": "For when magic just isn't enough"
   },
   {
     "category": "backpack",
     "category_id": "01",
     "filepath": "./assets/spaceman/backpack/01.png",
-    "name": "",
-    "description": ""
+    "name": "Mage",
+    "description": "You're a wizard Harry"
   },
   {
     "category": "backpack",
     "category_id": "02",
     "filepath": "./assets/spaceman/backpack/02.png",
-    "name": "",
-    "description": ""
+    "name": "Fighter",
+    "description": "Close quarters combat only"
   },
   {
     "category": "backpack",
     "category_id": "03",
     "filepath": "./assets/spaceman/backpack/03.png",
-    "name": "",
-    "description": ""
+    "name": "Tentacles",
+    "description": "Release the Kraken!"
   },
   {
     "category": "backpack",
     "category_id": "04",
     "filepath": "./assets/spaceman/backpack/04.png",
-    "name": "",
-    "description": ""
+    "name": "Fire",
+    "description": "Who was smoking around the oxygen?"
   },
   {
     "category": "backpack",
     "category_id": "05",
     "filepath": "./assets/spaceman/backpack/05.png",
-    "name": "",
-    "description": ""
+    "name": "Dual Wield",
+    "description": "For when one sword just isn't enough"
   },
   {
     "category": "backpack",
     "category_id": "06",
     "filepath": "./assets/spaceman/backpack/06.png",
-    "name": "",
-    "description": ""
+    "name": "Southpaw Fighter",
+    "description": "Fighting, just left handed"
   },
   {
     "category": "backpack",
     "category_id": "07",
     "filepath": "./assets/spaceman/backpack/07.png",
-    "name": "",
-    "description": ""
+    "name": "Steampunk",
+    "description": "Is that a claw machine?"
   },
   {
     "category": "backpack",
     "category_id": "08",
     "filepath": "./assets/spaceman/backpack/08.png",
-    "name": "",
-    "description": ""
+    "name": "Spacepack",
+    "description": "Gotta keep your oxygen somewhere"
   },
   {
     "category": "chest",
     "category_id": "00",
     "filepath": "./assets/spaceman/chest/00.png",
-    "name": "",
-    "description": ""
+    "name": "TV Test Screen",
+    "description": "I wonder what's about to start playing?"
   },
   {
     "category": "chest",
     "category_id": "01",
     "filepath": "./assets/spaceman/chest/01.png",
-    "name": "",
-    "description": ""
+    "name": "TV Static",
+    "description": "What happened to all the channels?"
   },
   {
     "category": "chest",
     "category_id": "02",
     "filepath": "./assets/spaceman/chest/02.png",
-    "name": "",
-    "description": ""
+    "name": "Arcanum",
+    "description": "I thought the tesseract was a cube"
   },
   {
     "category": "ears",
     "category_id": "00",
     "filepath": "./assets/spaceman/ears/00.png",
-    "name": "",
-    "description": ""
+    "name": "Horns",
+    "description": "Someone took Devils advocate a little too far"
   },
   {
     "category": "ears",
     "category_id": "01",
     "filepath": "./assets/spaceman/ears/01.png",
-    "name": "",
-    "description": ""
+    "name": "Sword",
+    "description": "That looks painful"
   },
   {
     "category": "ears",
     "category_id": "02",
     "filepath": "./assets/spaceman/ears/02.png",
-    "name": "",
-    "description": ""
+    "name": "None",
+    "description": "Where are my ears?"
   },
   {
     "category": "ears",
     "category_id": "03",
     "filepath": "./assets/spaceman/ears/03.png",
-    "name": "",
-    "description": ""
+    "name": "Flashlight",
+    "description": "Who gave this spacesuit headlights?"
   },
   {
     "category": "ears",
     "category_id": "04",
     "filepath": "./assets/spaceman/ears/04.png",
-    "name": "",
-    "description": ""
+    "name": "Speakers",
+    "description": "Why use headphones when you can make everyone listen"
   },
   {
     "category": "ears",
     "category_id": "05",
     "filepath": "./assets/spaceman/ears/05.png",
-    "name": "",
-    "description": ""
+    "name": "Steam Powered",
+    "description": "Hearing powered by coal"
   },
   {
     "category": "ears",
     "category_id": "06",
     "filepath": "./assets/spaceman/ears/06.png",
-    "name": "",
-    "description": ""
+    "name": "Elf Angel",
+    "description": "I don't know why this angel has elf ears"
   },
   {
     "category": "face",
     "category_id": "00",
     "filepath": "./assets/spaceman/face/00.png",
-    "name": "",
-    "description": ""
+    "name": "Skull",
+    "description": "Silence in the library please"
   },
   {
     "category": "face",
     "category_id": "01",
     "filepath": "./assets/spaceman/face/01.png",
-    "name": "",
-    "description": ""
+    "name": "Illuminati",
+    "description": "They see all"
   },
   {
     "category": "face",
     "category_id": "02",
     "filepath": "./assets/spaceman/face/02.png",
-    "name": "",
-    "description": ""
+    "name": "Egg",
+    "description": "Look at that happy lil fella"
   },
   {
     "category": "face",
     "category_id": "03",
     "filepath": "./assets/spaceman/face/03.png",
-    "name": "",
-    "description": ""
+    "name": "Spaceface",
+    "description": "They say space is a reflection of you"
   },
   {
     "category": "face",
     "category_id": "04",
     "filepath": "./assets/spaceman/face/04.png",
-    "name": "",
-    "description": ""
+    "name": "Drippy",
+    "description": "Help, my face is melting!"
   },
   {
     "category": "patch",
     "category_id": "00",
     "filepath": "./assets/spaceman/patch/00.png",
-    "name": "",
-    "description": ""
+    "name": "Finish",
+    "description": "Race to the checkered flag"
   },
   {
     "category": "patch",
     "category_id": "01",
     "filepath": "./assets/spaceman/patch/01.png",
-    "name": "",
-    "description": ""
+    "name": "Rune",
+    "description": "The symbol seems to glow"
   },
   {
     "category": "patch",
     "category_id": "02",
     "filepath": "./assets/spaceman/patch/02.png",
-    "name": "",
-    "description": ""
+    "name": "Pastel Rainbow",
+    "description": "A blend of more muted tones"
   },
   {
     "category": "patch",
     "category_id": "03",
     "filepath": "./assets/spaceman/patch/03.png",
-    "name": "",
-    "description": ""
+    "name": "Rainbow Road",
+    "description": "Watch out for the go karts"
   },
   {
     "category": "patch",
     "category_id": "04",
     "filepath": "./assets/spaceman/patch/04.png",
-    "name": "",
-    "description": ""
+    "name": "Green Pentagram",
+    "description": "Are you trying to summon the hulk?"
   },
   {
     "category": "patch",
     "category_id": "05",
     "filepath": "./assets/spaceman/patch/05.png",
-    "name": "",
-    "description": ""
+    "name": "Pentagram",
+    "description": "Don't summon anything you shouldn't"
   },
   {
     "category": "patch",
     "category_id": "06",
     "filepath": "./assets/spaceman/patch/06.png",
-    "name": "",
-    "description": ""
+    "name": "Letter",
+    "description": "Did you forget to post that?"
   },
   {
     "category": "patch",
     "category_id": "07",
     "filepath": "./assets/spaceman/patch/07.png",
-    "name": "",
-    "description": ""
+    "name": "Moon",
+    "description": "Its not even a planet"
   },
   {
     "category": "patch",
     "category_id": "08",
     "filepath": "./assets/spaceman/patch/08.png",
-    "name": "",
-    "description": ""
+    "name": "Red Drippy"
+    "description": "What is this stuff?"
   },
   {
     "category": "patch",
     "category_id": "09",
     "filepath": "./assets/spaceman/patch/09.png",
-    "name": "",
-    "description": ""
+    "name": "Drippy",
+    "description": "There's neon goo on your arm"
   },
   {
     "category": "patch",
     "category_id": "0A",
     "filepath": "./assets/spaceman/patch/0A.png",
-    "name": "",
-    "description": ""
+    "name": "patchwork",
+    "description": "Surely stitches aren't airtight"
   },
   {
     "category": "patch",
     "category_id": "0B",
     "filepath": "./assets/spaceman/patch/0B.png",
-    "name": "",
-    "description": ""
+    "name": "Blue & Red Stripes",
+    "description": "Like a sunburnt zebra"
   },
   {
     "category": "patch",
     "category_id": "0C",
     "filepath": "./assets/spaceman/patch/0C.png",
-    "name": "",
-    "description": ""
+    "name": "Stripes",
+    "description": "Purple and yellow, purple and yellow, purple and yellow, ooh yellow and purple"
   },
   {
     "category": "patch",
     "category_id": "0D",
     "filepath": "./assets/spaceman/patch/0D.png",
-    "name": "",
-    "description": ""
+    "name": "Camo",
+    "description": "Surely this doesn't work"
   },
   {
     "category": "suit",
     "category_id": "00",
     "filepath": "./assets/spaceman/suit/00.png",
-    "name": "",
-    "description": ""
+    "name": "White",
+    "description": "Basic suit, too cheap to pay for branding"
   },
   {
     "category": "visor",
     "category_id": "00",
     "filepath": "./assets/spaceman/visor/00.png",
-    "name": "",
-    "description": ""
+    "name": "Gold",
+    "description": "The midas touch"
   },
   {
     "category": "visor",
     "category_id": "01",
     "filepath": "./assets/spaceman/visor/01.png",
-    "name": "",
-    "description": ""
+    "name": "Transparent Gold",
+    "description": "How is this gold see-through?"
   },
   {
     "category": "visor",
     "category_id": "02",
     "filepath": "./assets/spaceman/visor/02.png",
-    "name": "",
-    "description": ""
+    "name": "Black",
+    "description": "Industry standard"
   },
   {
     "category": "visor",
     "category_id": "03",
     "filepath": "./assets/spaceman/visor/03.png",
-    "name": "",
-    "description": ""
+    "name": "Targeting",
+    "description": "Are you some kind of cyborg?"
   },
   {
     "category": "visor",
     "category_id": "04",
     "filepath": "./assets/spaceman/visor/04.png",
-    "name": "",
-    "description": ""
+    "name": "Transparent Targeting",
+    "description": "At least you can see what you're shooting at"
   }
 ]
