@@ -1,3 +1,6 @@
+const { getSelectMenu } = require("../functions/getSelectMenu.js")
+const { sendMessage } = require("./sendMessage.js")
+
 const messageDropdown = async function(message, messages, listOptions) {
   if(messages.length == 0){
     return

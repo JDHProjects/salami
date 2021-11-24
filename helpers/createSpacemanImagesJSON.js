@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require("fs")
 
 const createSpacemanImagesJSON = async function() {
   let items = recursiveSearch("./assets/","spaceman")

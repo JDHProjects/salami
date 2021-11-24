@@ -1,6 +1,5 @@
 const { sendMessage } = require("../functions/sendMessage.js")
-const { getButtonRow } = require("../functions/getButtonRow.js")
-const { getSelectMenu } = require("../functions/getSelectMenu.js")
+const { messagePagination } = require("../functions/messagePagination.js")
 const { MessageEmbed } = require("discord.js")
 const { MessageAttachment } = require("discord.js")
 
@@ -22,7 +21,7 @@ module.exports = {
     let messages = []
     let listOptions = []
     spacemen.forEach((spaceman, index) => {
-      let attachment = new MessageAttachment(spaceman.dataValues.image,`${index}.png`);
+      let attachment = new MessageAttachment(spaceman.dataValues.image,`${index}.png`)
       let ftEmbed = new MessageEmbed()
         .setColor("#0099ff")
         .setTitle(`${index}`)

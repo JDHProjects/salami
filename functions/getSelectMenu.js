@@ -19,19 +19,11 @@ const getSelectMenu = function(optionsInfo) {
     ])
   })
 
-  if(longList){
-    menu.addOptions([
-      {
-        label: option.label,
-        description: option.description,
-        value: option.value,
-        emoji: option.emoji,
-        default: index == optionsInfo.defaultOption ? true :false
-      }
-    ])
-  }
+  /*if(longList){
+    // do stuff  
+  }*/
   let row = new MessageActionRow()
-	.addComponents(menu)
+    .addComponents(menu)
   return row
 }
 
