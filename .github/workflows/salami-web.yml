@@ -1,0 +1,30 @@
+name: Salami Web Deploy
+
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build_and_deploy:
+    name: Build and deploy GH pages website
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+    - name: Install node 16
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+    - name: Install dependencies
+      working-directory: ./web
+      run: npm ci
+    - name: Build website 
+      working-directory: ./web
+      run: npm run build
+    - name: Deploy to GH pages
+      uses: JamesIves/github-pages-deploy-action@4.1.7
+      with:
+        branch: gh-pages
+        folder: web/build
