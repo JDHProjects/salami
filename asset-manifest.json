@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/salami/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/salami/static/js/main.a9116b7c.chunk.js",
+    "main.js.map": "/salami/static/js/main.a9116b7c.chunk.js.map",
+    "runtime-main.js": "/salami/static/js/runtime-main.1a46f037.js",
+    "runtime-main.js.map": "/salami/static/js/runtime-main.1a46f037.js.map",
+    "static/js/2.2f840922.chunk.js": "/salami/static/js/2.2f840922.chunk.js",
+    "static/js/2.2f840922.chunk.js.map": "/salami/static/js/2.2f840922.chunk.js.map",
+    "static/js/3.74072b9b.chunk.js": "/salami/static/js/3.74072b9b.chunk.js",
+    "static/js/3.74072b9b.chunk.js.map": "/salami/static/js/3.74072b9b.chunk.js.map",
+    "index.html": "/salami/index.html",
+    "static/css/main.8c8b27cf.chunk.css.map": "/salami/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.2f840922.chunk.js.LICENSE.txt": "/salami/static/js/2.2f840922.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/salami/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1a46f037.js",
+    "static/js/2.2f840922.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.a9116b7c.chunk.js"
+  ]
+}
