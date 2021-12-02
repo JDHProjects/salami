@@ -22,4 +22,7 @@ jobs:
       run: npm ci
     - name: Build and deploy to GH pages 
       working-directory: ./web
-      run: npm run deploy
+      run: |
+          git config --global user.name 'JDHProjects Deploybot'
+          git config --global user.email 'deploybot@no-email.com'
+          npm run deploy
