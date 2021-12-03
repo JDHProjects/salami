@@ -4,7 +4,7 @@ module.exports = {
   name: "fixmoney",
   description: "Used by an admin to change a users money. + to add, - to remove, = to set equal. Mention the user to change",
   usage: "fixmoney",
-  example: "",
+  example: "@Salami + 1000",
   admin: true,
   tested: true,
   execute: async function(message, args) {

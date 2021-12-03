@@ -9,7 +9,6 @@ module.exports = {
   execute: async function(message, args) {
     const { bankAccounts } = require("../db/db.js")
     const { sendFromBank } = require("../db/functions/sendFromBank.js")
-    console.log("hello")
 
     let operator = Math.floor(Math.random() * 3)
     let operandOne = Math.floor(Math.random() * 20)

@@ -3,7 +3,7 @@ const { sendMessage } = require("../functions/sendMessage.js")
 module.exports = {
   name: "bank",
   description: "Check the amount the central bank has",
-  usage: "just send bank, theres really not much to this",
+  usage: "just send bank, there's really not much to this",
   example: "",
   tested: true,
   execute: async function(message, args) {

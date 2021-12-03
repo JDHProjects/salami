@@ -4,9 +4,9 @@ const { getButtonRow } = require("../functions/getButtonRow.js")
 module.exports = {
   name: "coinflip",
   description: "Flip a coin, guess on the result, you can even bet on the result if you want",
-  usage: "requires either \"heads\" or \"tails\", bet by providing a number as an additional arg",
+  usage: "Bet by providing a number as an arg",
   cooldown: 2,
-  example: "heads 100",
+  example: "100",
   tested: true,
   execute: async function(message, args) {
     const { bankAccounts } = require("../db/db.js")
