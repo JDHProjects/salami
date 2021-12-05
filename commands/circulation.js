@@ -2,6 +2,7 @@ const { sendMessage } = require("../functions/sendMessage.js")
 const { Op } = require("sequelize")
 
 module.exports = {
+  display: "Circulation",
   name: "circulation",
   description: "Run this command to see the total amount of salami in circulation",
   usage: "just send circulation",

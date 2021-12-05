@@ -4,6 +4,7 @@ const prefix = process.env.PREFIX
 const { sendMessage } = require("../functions/sendMessage.js")
 
 module.exports = {
+  display: "Help",
   name: "help",
   description: "List all of my commands or info about a specific command.",
   usage: `You can send \`${prefix}help [command name]\` to get info on a specific command!`,

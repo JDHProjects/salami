@@ -3,6 +3,7 @@ require("dotenv").config()
 const { sendMessage } = require("../functions/sendMessage.js")
 
 module.exports = {
+  display: "Hook A Key",
   name: "hook-a-key",
   description: "Spend 50k salami for a steam game key",
   usage: "Just send hook-a-key, theres not much to this",

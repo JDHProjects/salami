@@ -6,6 +6,7 @@ const names = require("../assets/spells/names/names.json")
 const { sendMessage } = require("../functions/sendMessage.js")
 
 module.exports = {
+  display: "DND Spell Generator",
   name: "spellgen",
   description: "Generates a spell statblock for DND",
   usage: "Supply no args for a random spell. Use a spell name as an arg for a spell matching that name. Use a number as an arg for a spell matching that level",

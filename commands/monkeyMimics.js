@@ -1,6 +1,7 @@
 const { sendMessage } = require("../functions/sendMessage.js")
 
 module.exports = {
+  display: "Monkey Mimics",
   name: "monkey-mimics",
   description: "Sends 3 different images of monkeys to the channel, and one to the user privately. Imitate the noise you think your secret monkey would make and see if anyone can guess which monkey you're mimicking",
   usage: "Just send monkey-mimics, theres really not much to this",

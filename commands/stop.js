@@ -1,6 +1,7 @@
 const { sendMessage } = require("../functions/sendMessage.js")
 
 module.exports = {
+  display: "Stop",
   name: "stop",
   description: "Salami has some sass",
   usage: "Just send stop, theres really not much to this",

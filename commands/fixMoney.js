@@ -1,6 +1,7 @@
 const { sendMessage } = require("../functions/sendMessage.js")
 
 module.exports = {
+  display: "Fix Money",
   name: "fixmoney",
   description: "Used by an admin to change a users money. + to add, - to remove, = to set equal. Mention the user to change",
   usage: "fixmoney",

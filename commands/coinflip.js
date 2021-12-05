@@ -2,6 +2,7 @@ const { sendMessage } = require("../functions/sendMessage.js")
 const { getButtonRow } = require("../functions/getButtonRow.js")
 
 module.exports = {
+  display: "Coinflip",
   name: "coinflip",
   description: "Flip a coin, guess on the result, you can even bet on the result if you want",
   usage: "Bet by providing a number as an arg",

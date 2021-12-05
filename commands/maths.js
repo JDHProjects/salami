@@ -1,6 +1,7 @@
 const { sendMessage } = require("../functions/sendMessage.js")
 
 module.exports = {
+  display: "Maths",
   name: "maths",
   description: "solve a basic maths question to make some money",
   usage: "just send maths, then send your response as a normal message",

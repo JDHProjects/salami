@@ -1,0 +1,250 @@
+[
+  {
+    "display": "Bank",
+    "name": "bank",
+    "description": "Check the amount the central bank has",
+    "usage": "just send bank, there's really not much to this",
+    "example": "",
+    "admin": false
+  },
+  {
+    "display": "Circulation",
+    "name": "circulation",
+    "description": "Run this command to see the total amount of salami in circulation",
+    "usage": "just send circulation",
+    "example": "",
+    "admin": false
+  },
+  {
+    "display": "Coinflip",
+    "name": "coinflip",
+    "description": "Flip a coin, guess on the result, you can even bet on the result if you want",
+    "usage": "Bet by providing a number as an arg",
+    "example": "100",
+    "admin": false
+  },
+  {
+    "display": "Daily",
+    "name": "daily",
+    "description": "this command allows you to receive 1000 salami once every 24 hours",
+    "usage": "Just send daily, theres really not much to this",
+    "example": "",
+    "admin": false
+  },
+  {
+    "display": "Database Backup",
+    "name": "dbbackup",
+    "description": "Used to backup database by sending a copy of the database file to your private messages",
+    "usage": "just send dbbackup, theres really not much to this",
+    "example": "",
+    "admin": true
+  },
+  {
+    "display": "Dice Roller",
+    "name": "d",
+    "description": "Rolls as many dice as required and adds them up for you",
+    "usage": "2D6 will roll 2xD6 dice, 1D10 will roll 1xD10 dice etc. Modifier can be added at any point with +5 -5 etc. Multiple Dice can be supplied to a single command. Can roll up to 100 dice with a value up to 1 million",
+    "example": "4D6 2D20+5 1D10-2 +10",
+    "admin": false
+  },
+  {
+    "display": "Dice Game",
+    "name": "dicegame",
+    "description": "Roll a dice, guess on the result, you can even bet on the result if you want",
+    "usage": "Bet by providing a number as an arg",
+    "example": "100",
+    "admin": false
+  },
+  {
+    "display": "Fix Money",
+    "name": "fixmoney",
+    "description": "Used by an admin to change a users money. + to add, - to remove, = to set equal. Mention the user to change",
+    "usage": "fixmoney",
+    "example": "@Salami + 1000",
+    "admin": true
+  },
+  {
+    "display": "Heist",
+    "name": "heist",
+    "description": "try and perform a bank heist, the setup cost is 1k though",
+    "usage": "just send heist, theres really not much to this",
+    "example": "",
+    "admin": false
+  },
+  {
+    "display": "Help",
+    "name": "help",
+    "description": "List all of my commands or info about a specific command.",
+    "usage": "You can send `>help [command name]` to get info on a specific command!",
+    "example": "ping",
+    "admin": false
+  },
+  {
+    "display": "Hook A Key",
+    "name": "hook-a-key",
+    "description": "Spend 50k salami for a steam game key",
+    "usage": "Just send hook-a-key, theres not much to this",
+    "example": "",
+    "admin": false
+  },
+  {
+    "display": "Image Search",
+    "name": "image",
+    "description": "Returns the first google image result of your choice.\nALL IMAGES FROM GOOGLE, I TAKE NO RESPONSIBILITY FOR THE IMAGES RETURNED",
+    "usage": "The word or phrase you want to search is the command argument",
+    "example": "nature landscape",
+    "admin": false
+  },
+  {
+    "display": "DND Item Generator",
+    "name": "itemgen",
+    "description": "Generates a item statblock for DND",
+    "usage": "Supply no args for a random item. Use an item name as an arg for a item matching that name",
+    "example": "0.25",
+    "admin": false
+  },
+  {
+    "display": "Jackpot",
+    "name": "jackpot",
+    "description": "Run this command to try and win the jackpot, currently there's a 1 in 5000 chance of winning. You could also win a spot prize. Roll 0 to win",
+    "usage": "just send jackpot",
+    "example": "",
+    "admin": false
+  },
+  {
+    "display": "Latency",
+    "name": "latency",
+    "description": "time taken for the bot to see a message and deliver its response to it",
+    "usage": "just call latency",
+    "example": "",
+    "admin": false
+  },
+  {
+    "display": "Maths",
+    "name": "maths",
+    "description": "solve a basic maths question to make some money",
+    "usage": "just send maths, then send your response as a normal message",
+    "example": "",
+    "admin": false
+  },
+  {
+    "display": "Money",
+    "name": "money",
+    "description": "Main way to interface with your bank account balance",
+    "usage": "With no args it returns your balance, or with args you can send to others",
+    "example": "send @Salami 10",
+    "admin": false
+  },
+  {
+    "display": "Monkey Mimics",
+    "name": "monkey-mimics",
+    "description": "Sends 3 different images of monkeys to the channel, and one to the user privately. Imitate the noise you think your secret monkey would make and see if anyone can guess which monkey you're mimicking",
+    "usage": "Just send monkey-mimics, theres really not much to this",
+    "example": "",
+    "admin": false
+  },
+  {
+    "display": "DND Monster Generator",
+    "name": "monstergen",
+    "description": "Generates a monster statblock for DND",
+    "usage": "Supply no args for a random monster. Use a monster name as an arg for a monster matching that name. Use a number as an arg for a monster matching that challenge rating",
+    "example": "0.25",
+    "admin": false
+  },
+  {
+    "display": "Ping",
+    "name": "ping",
+    "description": "A simple ping pong",
+    "usage": "Just send ping, theres really not much to this",
+    "example": "",
+    "admin": false
+  },
+  {
+    "display": "Poll Creator",
+    "name": "poll",
+    "description": "create a poll that users can react to in order to vote",
+    "usage": "poll create to create a poll (optional extra argument for poll duration in seconds, max 30 minutes)",
+    "example": "create 120",
+    "admin": false
+  },
+  {
+    "display": "Pong",
+    "name": "pong",
+    "description": "You've got this all backwards",
+    "usage": "Just send pong, theres really not much to this",
+    "example": "",
+    "admin": false
+  },
+  {
+    "display": "Database Query",
+    "name": "query",
+    "description": "Sends a query to the database",
+    "usage": "query with sql query after",
+    "example": "",
+    "admin": true
+  },
+  {
+    "display": "Rock Paper Scissors",
+    "name": "rps",
+    "description": "play rock, paper, scissors against the bot, bet by providing an argument",
+    "usage": "just send rps, add a number to bet on the result",
+    "example": "100",
+    "admin": false
+  },
+  {
+    "display": "Server Info",
+    "name": "server",
+    "description": "General server data (region, members etc)",
+    "usage": "Just send server, theres really not much to this",
+    "example": "",
+    "admin": false
+  },
+  {
+    "display": "Server Statistics",
+    "name": "serverstats",
+    "description": "Gives top commands usage from largest to smallest, defaults to top 3",
+    "usage": "add command name as an arg to get top three users for that command. add arg \"full\" to get full user list",
+    "example": "ping",
+    "admin": false
+  },
+  {
+    "display": "DND Spell Generator",
+    "name": "spellgen",
+    "description": "Generates a spell statblock for DND",
+    "usage": "Supply no args for a random spell. Use a spell name as an arg for a spell matching that name. Use a number as an arg for a spell matching that level",
+    "example": "2",
+    "admin": false
+  },
+  {
+    "display": "User Statistics",
+    "name": "stats",
+    "description": "Gives command stats from largest to smallest, defaults to top 3",
+    "usage": "add user mention as an arg to get stats for that user. add arg \"full\" to get full stats",
+    "example": "@Salami",
+    "admin": false
+  },
+  {
+    "display": "Stocks Simulator",
+    "name": "stocks",
+    "description": "Trade your salami against the real stock market! Any stock you can find on yahoo finances can be bought and sold with salami. Salami uses premarket and after hours prices, so trade around the clock!",
+    "usage": "\n`stocks price <STOCK SYMBOL>` to see current stock market prices\n`stocks portfolio` to list all your stocks\n`stocks buy <STOCK SYMBOL> <SALAMI AMOUNT>` to buy some stock with salami\n`stocks sell <STOCK SYMBOL> <SALAMI AMOUNT>` to sell some stock for salami",
+    "example": "buy GME 10000",
+    "admin": false
+  },
+  {
+    "display": "Stop",
+    "name": "stop",
+    "description": "Salami has some sass",
+    "usage": "Just send stop, theres really not much to this",
+    "example": "",
+    "admin": false
+  },
+  {
+    "display": "DND Wildsurge",
+    "name": "wildsurge",
+    "description": "Gives a random wild surge (1 of 10,000). Data from https://github.com/haa-gg/Improbability-Drive",
+    "usage": "Just send wildsurge, theres really not much to this",
+    "example": "",
+    "admin": false
+  }
+]
