@@ -3,6 +3,7 @@ const yahooFinance = require("yahoo-finance")
 const { sendMessage } = require("../functions/sendMessage.js")
 
 module.exports = {
+  display: "Stocks Simulator",
   name: "stocks",
   description: "Trade your salami against the real stock market! Any stock you can find on yahoo finances can be bought and sold with salami. Salami uses premarket and after hours prices, so trade around the clock!",
   usage: "\n`stocks price <STOCK SYMBOL>` to see current stock market prices\n`stocks portfolio` to list all your stocks\n`stocks buy <STOCK SYMBOL> <SALAMI AMOUNT>` to buy some stock with salami\n`stocks sell <STOCK SYMBOL> <SALAMI AMOUNT>` to sell some stock for salami",

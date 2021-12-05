@@ -1,6 +1,7 @@
 const { sendMessage } = require("../functions/sendMessage.js")
 
 module.exports = {
+  display: "Money",
   name: "money",
   description: "Main way to interface with your bank account balance",
   usage: "With no args it returns your balance, or with args you can send to others",

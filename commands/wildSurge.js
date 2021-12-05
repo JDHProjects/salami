@@ -2,6 +2,7 @@ const { wild_values } = require("../assets/wildSurge/table.json")
 const { sendMessage } = require("../functions/sendMessage.js")
 
 module.exports = {
+  display: "DND Wildsurge",
   name: "wildsurge",
   description: "Gives a random wild surge (1 of 10,000). Data from https://github.com/haa-gg/Improbability-Drive",
   usage: "Just send wildsurge, theres really not much to this",

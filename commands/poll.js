@@ -12,6 +12,7 @@ const questions = ["1️⃣",
   "🔟"]
 
 module.exports = {
+  display: "Poll Creator",
   name: "poll",
   description: "create a poll that users can react to in order to vote",
   usage: "poll create to create a poll (optional extra argument for poll duration in seconds, max 30 minutes)",

@@ -8,6 +8,7 @@ const names = require("../assets/monsters/names/names.json")
 const { sendMessage } = require("../functions/sendMessage.js")
 
 module.exports = {
+  display: "DND Monster Generator",
   name: "monstergen",
   description: "Generates a monster statblock for DND",
   usage: "Supply no args for a random monster. Use a monster name as an arg for a monster matching that name. Use a number as an arg for a monster matching that challenge rating",

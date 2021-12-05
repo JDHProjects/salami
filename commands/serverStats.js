@@ -1,6 +1,7 @@
 const { sendMessage } = require("../functions/sendMessage.js")
 
 module.exports = {
+  display: "Server Statistics",
   name: "serverstats",
   description: "Gives top commands usage from largest to smallest, defaults to top 3",
   usage: "add command name as an arg to get top three users for that command. add arg \"full\" to get full user list",

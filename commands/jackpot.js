@@ -1,6 +1,7 @@
 const { bulkReply } = require("../functions/bulkMessage.js")
 
 module.exports = {
+  display: "Jackpot",
   name: "jackpot",
   description: "Run this command to try and win the jackpot, currently there's a 1 in 5000 chance of winning. You could also win a spot prize. Roll 0 to win",
   usage: "just send jackpot",

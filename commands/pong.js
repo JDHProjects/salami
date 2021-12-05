@@ -1,6 +1,7 @@
 const { sendMessage } = require("../functions/sendMessage.js")
 
 module.exports = {
+  display: "Pong",
   name: "pong",
   description: "You've got this all backwards",
   usage: "Just send pong, theres really not much to this",

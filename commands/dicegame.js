@@ -2,11 +2,12 @@ const { sendMessage } = require("../functions/sendMessage.js")
 const { getButtonRow } = require("../functions/getButtonRow.js")
 
 module.exports = {
+  display: "Dice Game",
   name: "dicegame",
   description: "Roll a dice, guess on the result, you can even bet on the result if you want",
-  usage: "requires from \"one\" to \"six\" in words, bet by providing a number as an additional arg",
+  usage: "Bet by providing a number as an arg",
   cooldown: 2,
-  example: "\"one\" 100",
+  example: "100",
   tested: true,
   execute: async function(message, args) {
     const { bankAccounts } = require("../db/db.js")

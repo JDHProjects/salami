@@ -3,6 +3,7 @@ const { searchForImage } = require("../functions/searchForImage.js")
 const { sendMessage } = require("../functions/sendMessage.js")
 
 module.exports = {
+  display: "Image Search",
   name: "image",
   description: "Returns the first google image result of your choice.\nALL IMAGES FROM GOOGLE, I TAKE NO RESPONSIBILITY FOR THE IMAGES RETURNED",
   usage: "The word or phrase you want to search is the command argument",
