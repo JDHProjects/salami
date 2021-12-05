@@ -1,6 +1,7 @@
 const { sendMessage } = require("../functions/sendMessage.js")
 
 module.exports = {
+  display: "Database Query",
   name: "query",
   description: "Sends a query to the database",
   usage: "query with sql query after",

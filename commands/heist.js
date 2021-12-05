@@ -1,6 +1,7 @@
 const { sendMessage } = require("../functions/sendMessage.js")
 
 module.exports = {
+  display: "Heist",
   name: "heist",
   description: "try and perform a bank heist, the setup cost is 1k though",
   usage: "just send heist, theres really not much to this",

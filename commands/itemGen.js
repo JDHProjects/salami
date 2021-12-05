@@ -7,6 +7,7 @@ const names = require("../assets/items/names/names.json")
 const { sendMessage } = require("../functions/sendMessage.js")
 
 module.exports = {
+  display: "DND Item Generator",
   name: "itemgen",
   description: "Generates a item statblock for DND",
   usage: "Supply no args for a random item. Use an item name as an arg for a item matching that name",

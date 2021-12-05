@@ -2,6 +2,7 @@ const { sendMessage } = require("../functions/sendMessage.js")
 const { getButtonRow } = require("../functions/getButtonRow.js")
 
 module.exports = {
+  display: "Rock Paper Scissors",
   name: "rps",
   description: "play rock, paper, scissors against the bot, bet by providing an argument",
   usage: "just send rps, add a number to bet on the result",

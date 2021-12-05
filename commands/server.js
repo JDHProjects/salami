@@ -1,6 +1,7 @@
 const { sendMessage } = require("../functions/sendMessage.js")
 
 module.exports = {
+  display: "Server Info",
   name: "server",
   description: "General server data (region, members etc)",
   usage: "Just send server, theres really not much to this",
