@@ -21,12 +21,11 @@ const generateSpaceman = async function(ownerId) {
     .draw(images(imageList[4].dataValues.filepath), 0, 0) //patch
     .draw(images(imageList[5].dataValues.filepath), 0, 0) //suit
     .draw(images(imageList[6].dataValues.filepath), 0, 0) //ears
-    .draw(images(imageList[7].dataValues.filepath), 0, 0) //antenna
     .encode("png")
 
   await generatedSpacemans.create({id: spacemanId, owner_id: ownerId, image: spaceBuffer})
 
-  return spaceBuffer
+  return {id: spacemanId, owner_id: ownerId, image: spaceBuffer}
 }
 const getFromCategory = async function(category_name){
   const { spacemanImages, sequelize } = require("../db/db.js")
@@ -40,7 +39,7 @@ const getFromCategory = async function(category_name){
 }
 
 const getIdAndImageList = async function(){
-  let categories = ["backpack", "face", "visor", "chest", "patch", "suit", "ears", "antenna"]
+  let categories = ["backpack", "face", "visor", "chest", "patch", "suit", "ears"]
   let spacemanId = ""
   let imageList = []
 

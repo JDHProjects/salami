@@ -1,5 +1,7 @@
 const { sendMessage } = require("../functions/sendMessage.js")
 const { generateSpaceman } = require("../functions/generateSpaceman.js")
+const { MessageEmbed } = require("discord.js")
+const { MessageAttachment } = require("discord.js")
 
 module.exports = {
   name: "mint-ft",
@@ -15,9 +17,17 @@ module.exports = {
     if (20000 > user.dataValues.money){
       return await sendMessage.reply(message,"you don't have enough salami to mint a spaceman FT")
     }
-    let buffer = await generateSpaceman(message.author.id)
+    let spaceman = await generateSpaceman(message.author.id)
     lossWithTax(user, 20000)
-    
-    return await sendMessage.reply(message, "Here's your spaceman!", { files: [ buffer ] })
+
+    let attachment = new MessageAttachment(spaceman.image,`spaceman.png`)
+
+    let ftEmbed = new MessageEmbed()
+      .setColor("#0099ff")
+      .setTitle(`Spaceman ID: ${spaceman.id}`)
+      .setImage(`attachment://spaceman.png`)
+      .setDescription(`Owned by: <@${spaceman.owner_id}>`)
+
+    return await  await sendMessage.send(message, "Here's your spaceman!", {embeds: [ftEmbed], files:[attachment], attachments: []})
   }
 }

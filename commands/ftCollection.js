@@ -10,7 +10,7 @@ module.exports = {
   example: "",
   tested: false,
   execute: async function(message, args) {
-    const { generatedSpacemans } = require("../db/db.js")
+    const { generatedSpacemans, spacemanImages } = require("../db/db.js")
 
     let spacemen = await generatedSpacemans.findAll({where: {owner_id: message.author.id}})
 
@@ -19,16 +19,17 @@ module.exports = {
     }
 
     let messages = []
-    let listOptions = []
-    spacemen.forEach((spaceman, index) => {
+    let index = -1
+    for (const spaceman of spacemen) {
+      index ++
       let attachment = new MessageAttachment(spaceman.dataValues.image,`${index}.png`)
       let ftEmbed = new MessageEmbed()
         .setColor("#0099ff")
-        .setTitle(`${index}`)
+        .setTitle(`Spaceman ID: ${spaceman.dataValues.id}`)
         .setImage(`attachment://${index}.png`)
+        
       messages.push({embeds: [ftEmbed], files:[attachment], attachments: []})
-      listOptions.push({label: spaceman.dataValues.id, value: `${index}`, description: "A unique spaceman variant", emoji: {name: "🚀",}})
-    })
-    return await messagePagination(message, messages, listOptions)
+    }
+    return await messagePagination(message, messages)
   }
 }
