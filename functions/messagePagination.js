@@ -18,7 +18,7 @@ const messagePagination = async function(message, messages) {
   while(page >= 0)
   {
     try {
-      let buttonResp = await navigator.awaitMessageComponent({ filter, time: 5000 })
+      let buttonResp = await navigator.awaitMessageComponent({ filter, time: 15000 })
     
       if (buttonResp.customId === "first") {
         page=0
@@ -50,7 +50,6 @@ const messagePagination = async function(message, messages) {
       }
       buttonResp.deferUpdate()
     } catch {
-      
       navigator = await sendMessage.edit(navigator, "", { components: [getButtonRow({ disabled: true, buttons: [{ name:"<--", id:"first" },{ name:"<-", id:"prev" },{ name:`${page+1}`, id:"num", style: "SUCCESS" },{ name:"->", id:"next" },{ name:"-->", id:"last" }]})] })
       page=-1
     }

@@ -10,7 +10,7 @@
         "localhost": "ENVIRONMENT=localhost PREFIX=, DOWN_DETECTION=FALSE nodemon index.js",
         "development": "ENVIRONMENT=development PREFIX=. DOWN_DETECTION=FALSE nodemon index.js",
         "production": "ENVIRONMENT=production PREFIX=\\> DOWN_DETECTION=TRUE nodemon index.js",
-        "test": "TEST=TRUE OWNER=1 PREFIX=\\> mocha --reporter list --recursive",
+        "test": "TEST=TRUE OWNER=1 PREFIX=\\> mocha --reporter list --recursive --timeout 4000",
         "check-format": "eslint ./",
         "format": "eslint ./ --fix"
     },

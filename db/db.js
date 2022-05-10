@@ -16,9 +16,9 @@ const botValues = require("./models/bot_values")(sequelize, Sequelize.DataTypes)
 const fiveEMonsters = require("./models/5e_monsters")(sequelize, Sequelize.DataTypes)
 const fiveESpells = require("./models/5e_spells")(sequelize, Sequelize.DataTypes)
 const fiveEItems = require("./models/5e_items")(sequelize, Sequelize.DataTypes)
+const spacemanLayers = require("./models/spaceman_layers")(sequelize, Sequelize.DataTypes)
 const spacemanImages = require("./models/spaceman_images")(sequelize, Sequelize.DataTypes)
-const generatedSpacemans = require("./models/generated_spacemans")(sequelize, Sequelize.DataTypes)
 
-const models = [ stocks, commandStats, bankAccounts, hookAKeys, botValues, fiveEMonsters, fiveESpells, fiveEItems, spacemanImages,generatedSpacemans ]
+const models = [ stocks, commandStats, bankAccounts, hookAKeys, botValues, fiveEMonsters, fiveESpells, fiveEItems, spacemanLayers, spacemanImages ]
 
-module.exports = {sequelize, stocks, commandStats, bankAccounts, hookAKeys, botValues, fiveEMonsters, fiveEItems, fiveESpells, models, spacemanImages, generatedSpacemans }
+module.exports = {sequelize, stocks, commandStats, bankAccounts, hookAKeys, botValues, fiveEMonsters, fiveEItems, fiveESpells, models, spacemanLayers, spacemanImages }
