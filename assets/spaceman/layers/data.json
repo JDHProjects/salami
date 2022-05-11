@@ -84,11 +84,11 @@
     "description": "Store your oxygen in style!"
   },
   {
-    "category": "backpack",
-    "category_id": "0C",
+    "layer": "backpack",
+    "layer_id": "0C",
     "filepath": "./assets/spaceman/layers/backpack/0C.png",
     "name": "Fishing Rod",
-    "description": "Fish fear me, Women want me!"
+    "description": "Women want me, fish fear me"
   },
   {
     "layer": "chest",
