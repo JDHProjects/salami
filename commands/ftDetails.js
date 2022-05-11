@@ -33,6 +33,6 @@ module.exports = {
       ftEmbed.addField(`**__${layersFormatted[i]}__**`,`**Name**: ${layerDetails.dataValues.name}\n**Description**: ${layerDetails.dataValues.description}`, false)
     }
 
-    return await sendMessage.send(message, "", {embeds: [ftEmbed], files: [spaceman.filepath]})
+    return await sendMessage.reply(message, "", {embeds: [ftEmbed], files: [spaceman.filepath]})
   }
 }

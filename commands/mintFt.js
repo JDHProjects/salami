@@ -25,6 +25,6 @@ module.exports = {
       .setImage(`attachment://${spaceman.id}.png`)
       .setDescription(`Owned by: <@${spaceman.owner_id}>`)
 
-    return await  await sendMessage.send(message, "Here's your spaceman!", {embeds: [ftEmbed], files: [spaceman.filepath]})
+    return await  await sendMessage.reply(message, "Here's your spaceman!", {embeds: [ftEmbed], files: [spaceman.filepath]})
   }
 }
