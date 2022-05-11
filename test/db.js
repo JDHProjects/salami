@@ -10,7 +10,7 @@ describe("The database", function() {
 
   it("should successfully set up", async function() {
     const { syncDB } = require("../db/functions/syncDB.js")
-    let idealResp = /Bank refreshed\n[0-9]+ monsters added to database\n[0-9]+ spells added to database\n[0-9]+ items added to database\nDatabase synced/g
+    let idealResp = /Bank refreshed\n[0-9]+ monsters added to database\n[0-9]+ spells added to database\n[0-9]+ items added to database\n[0-9]+ spaceman variants added to database\n[0-9]+ spaceman images regenerated from ID\nDatabase synced/g
     let actualResp = await syncDB()
     let matches = actualResp.match(idealResp)
     if (matches == null) {
@@ -39,5 +39,12 @@ describe("The database", function() {
 
     let resp = await add5EItems()
     assert.ok(resp.includes("items added to database"))
+  })
+
+  it("should add spacemen variants", async function() {
+    const { addSpacemanLayers } = require("../db/functions/addSpacemanLayers.js")
+
+    let resp = await addSpacemanLayers()
+    assert.ok(resp.includes("spaceman variants added to database"))
   })
 })
