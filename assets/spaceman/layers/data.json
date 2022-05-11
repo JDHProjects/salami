@@ -84,6 +84,13 @@
     "description": "Store your oxygen in style!"
   },
   {
+    "category": "backpack",
+    "category_id": "0C",
+    "filepath": "./assets/spaceman/backpack/0C.png",
+    "name": "Fishing Rod",
+    "description": "Fish fear me, Women want me!"
+  },
+  {
     "layer": "chest",
     "layer_id": "00",
     "filepath": "./assets/spaceman/layers/chest/00.png",
@@ -136,8 +143,8 @@
     "layer": "ears",
     "layer_id": "03",
     "filepath": "./assets/spaceman/layers/ears/03.png",
-    "name": "",
-    "description": ""
+    "name": "Sunday Best",
+    "description": "No one's impressed but it's better than nothing"
   },
   {
     "layer": "ears",
@@ -360,15 +367,15 @@
     "layer": "visor",
     "layer_id": "01",
     "filepath": "./assets/spaceman/layers/visor/01.png",
-    "name": "Blueish tint",
+    "name": "Blueish Tint",
     "description": "A blue tint can have a calming effect on the eyes"
   },
   {
     "layer": "visor",
     "layer_id": "02",
     "filepath": "./assets/spaceman/layers/visor/02.png",
-    "name": "",
-    "description": ""
+    "name": "Mirror Image",
+    "description": "Like Hubble. Like the telescope"
   },
   {
     "layer": "visor",
