@@ -1,0 +1,422 @@
+[
+  {
+    "layer": "backpack",
+    "layer_id": "00",
+    "filepath": "./assets/spaceman/layers/backpack/00.png",
+    "name": "Veteran Adventurer",
+    "description": "You wield both Magic and Sword."
+  },
+   {
+    "layer": "backpack",
+    "layer_id": "01",
+    "filepath": "./assets/spaceman/layers/backpack/01.png",
+    "name": "Mage",
+    "description": "You're a wizard Harry"
+  },
+  {
+    "layer": "backpack",
+    "layer_id": "02",
+    "filepath": "./assets/spaceman/layers/backpack/02.png",
+    "name": "Shiny!",
+    "description": "What a gaudy glow, maybe it's rare?"
+  },
+  {
+    "layer": "backpack",
+    "layer_id": "03",
+    "filepath": "./assets/spaceman/layers/backpack/03.png",
+    "name": "Tentacles",
+    "description": "Release the Kraken!"
+  },
+  {
+    "layer": "backpack",
+    "layer_id": "04",
+    "filepath": "./assets/spaceman/layers/backpack/04.png",
+    "name": "Fire",
+    "description": "Who was smoking around the oxygen?"
+  },
+  {
+    "layer": "backpack",
+    "layer_id": "05",
+    "filepath": "./assets/spaceman/layers/backpack/05.png",
+    "name": "Fighter",
+    "description": "I guess one sword just isn't enough"
+  },
+  {
+    "layer": "backpack",
+    "layer_id": "06",
+    "filepath": "./assets/spaceman/layers/backpack/06.png",
+    "name": "Steampunk",
+    "description": "Is that a claw machine?"
+  },
+  {
+    "layer": "backpack",
+    "layer_id": "07",
+    "filepath": "./assets/spaceman/layers/backpack/07.png",
+    "name": "Striped Spacepack",
+    "description": "Horizontal stripes can make you look thinner."
+  },
+  {
+    "layer": "backpack",
+    "layer_id": "08",
+    "filepath": "./assets/spaceman/layers/backpack/08.png",
+    "name": "Standard Spacepack",
+    "description": "Gotta keep your oxygen somewhere"
+  },
+  {
+    "layer": "backpack",
+    "layer_id": "09",
+    "filepath": "./assets/spaceman/layers/backpack/09.png",
+    "name": "Edgy Spacepack",
+    "description": "Careful not to cut yourself on that"
+  },
+  {
+    "layer": "backpack",
+    "layer_id": "0A",
+    "filepath": "./assets/spaceman/layers/backpack/0A.png",
+    "name": "O-B Spacepack",
+    "description": "Orange and Blue, how very fashionable"
+  },
+  {
+    "layer": "backpack",
+    "layer_id": "0B",
+    "filepath": "./assets/spaceman/layers/backpack/0B.png",
+    "name": "Golden Spacepack",
+    "description": "Store your oxygen in style!"
+  },
+  {
+    "layer": "backpack",
+    "layer_id": "0C",
+    "filepath": "./assets/spaceman/layers/backpack/0C.png",
+    "name": "Fishing Rod",
+    "description": "Women want me, fish fear me"
+  },
+  {
+    "layer": "chest",
+    "layer_id": "00",
+    "filepath": "./assets/spaceman/layers/chest/00.png",
+    "name": "TV Test Screen",
+    "description": "I wonder what's about to start playing?"
+  },
+  {
+    "layer": "chest",
+    "layer_id": "01",
+    "filepath": "./assets/spaceman/layers/chest/01.png",
+    "name": "Nutrient Chamber",
+    "description": "A mycological marvel of technology"
+  },
+  {
+    "layer": "chest",
+    "layer_id": "02",
+    "filepath": "./assets/spaceman/layers/chest/02.png",
+    "name": "Arcanum",
+    "description": "I thought the tesseract was a cube"
+  },
+  {
+    "layer": "chest",
+    "layer_id": "03",
+    "filepath": "./assets/spaceman/layers/chest/03.png",
+    "name": "Serenity",
+    "description": "No need to play Koi"
+  },
+  {
+    "layer": "ears",
+    "layer_id": "00",
+    "filepath": "./assets/spaceman/layers/ears/00.png",
+    "name": "Horns",
+    "description": "Someone took Devils advocate a little too far"
+  },
+  {
+    "layer": "ears",
+    "layer_id": "01",
+    "filepath": "./assets/spaceman/layers/ears/01.png",
+    "name": "Sword",
+    "description": "That looks painful"
+  },
+  {
+    "layer": "ears",
+    "layer_id": "02",
+    "filepath": "./assets/spaceman/layers/ears/02.png",
+    "name": "Flashlight",
+    "description": "Who gave this spacesuit headlights?"
+  },
+  {
+    "layer": "ears",
+    "layer_id": "03",
+    "filepath": "./assets/spaceman/layers/ears/03.png",
+    "name": "Sunday Best",
+    "description": "No one's impressed but it's better than nothing"
+  },
+  {
+    "layer": "ears",
+    "layer_id": "04",
+    "filepath": "./assets/spaceman/layers/ears/04.png",
+    "name": "Speakers",
+    "description": "Why use headphones when you can make everyone listen"
+  },
+  {
+    "layer": "ears",
+    "layer_id": "05",
+    "filepath": "./assets/spaceman/layers/ears/05.png",
+    "name": "Steam Powered",
+    "description": "Hearing powered by coal"
+  },
+  {
+    "layer": "ears",
+    "layer_id": "06",
+    "filepath": "./assets/spaceman/layers/ears/06.png",
+    "name": "Angelic",
+    "description": "Truly halo's are a thing of beauty"
+  },
+  {
+    "layer": "ears",
+    "layer_id": "07",
+    "filepath": "./assets/spaceman/layers/ears/07.png",
+    "name": "Cap",
+    "description": "DO NOT EAT!"
+  },
+  {
+    "layer": "face",
+    "layer_id": "00",
+    "filepath": "./assets/spaceman/layers/face/00.png",
+    "name": "Baloonatic",
+    "description": "A poker face that could rival the gods"
+  },
+  {
+    "layer": "face",
+    "layer_id": "01",
+    "filepath": "./assets/spaceman/layers/face/01.png",
+    "name": "Skull",
+    "description": "Silence in the library please"
+  },
+  {
+    "layer": "face",
+    "layer_id": "02",
+    "filepath": "./assets/spaceman/layers/face/02.png",
+    "name": "Oraphim",
+    "description": "Descent from heaven requires the proper equipment"
+  },
+  {
+    "layer": "face",
+    "layer_id": "03",
+    "filepath": "./assets/spaceman/layers/face/03.png",
+    "name": "Egg",
+    "description": "Look at that happy lil fella"
+  },
+  {
+    "layer": "face",
+    "layer_id": "04",
+    "filepath": "./assets/spaceman/layers/face/04.png",
+    "name": "Mychael",
+    "description": "He seems like a... Fungi"
+  },
+  {
+    "layer": "face",
+    "layer_id": "05",
+    "filepath": "./assets/spaceman/layers/face/05.png",
+    "name": "Monster",
+    "description": "Whatever's out there, let's hope it's not these."
+  },
+  {
+    "layer": "face",
+    "layer_id": "06",
+    "filepath": "./assets/spaceman/layers/face/06.png",
+    "name": "Human",
+    "description": "That's one small step for man, one giant leap for mankind"
+  },
+  {
+    "layer": "face",
+    "layer_id": "07",
+    "filepath": "./assets/spaceman/layers/face/07.png",
+    "name": "Spaceface",
+    "description": "They say space is a reflection of you"
+  },
+  {
+    "layer": "face",
+    "layer_id": "08",
+    "filepath": "./assets/spaceman/layers/face/08.png",
+    "name": "Drippy",
+    "description": "Help, my face is melting!"
+  },
+  {
+    "layer": "patch",
+    "layer_id": "00",
+    "filepath": "./assets/spaceman/layers/patch/00.png",
+    "name": "Finish",
+    "description": "Race to the checkered flag"
+  },
+  {
+    "layer": "patch",
+    "layer_id": "01",
+    "filepath": "./assets/spaceman/layers/patch/01.png",
+    "name": "Rune",
+    "description": "The symbol seems to glow, what does it mean?"
+  },
+  {
+    "layer": "patch",
+    "layer_id": "02",
+    "filepath": "./assets/spaceman/layers/patch/02.png",
+    "name": "Rainbow Road",
+    "description": "Watch out for the go karts"
+  },
+  {
+    "layer": "patch",
+    "layer_id": "03",
+    "filepath": "./assets/spaceman/layers/patch/03.png",
+    "name": "Pentagram",
+    "description": "Don't summon anything you shouldn't"
+  },
+  {
+    "layer": "patch",
+    "layer_id": "04",
+    "filepath": "./assets/spaceman/layers/patch/04.png",
+    "name": "Letter",
+    "description": "Did you forget to post that?"
+  },
+  {
+    "layer": "patch",
+    "layer_id": "05",
+    "filepath": "./assets/spaceman/layers/patch/05.png",
+    "name": "Crescent Moon",
+    "description": "Huh, where's the rest?"
+  },
+  {
+    "layer": "patch",
+    "layer_id": "06",
+    "filepath": "./assets/spaceman/layers/patch/06.png",
+    "name": "Red Drippy",
+    "description": "What is this stuff?"
+  },
+  {
+    "layer": "patch",
+    "layer_id": "07",
+    "filepath": "./assets/spaceman/layers/patch/07.png",
+    "name": "Drippy",
+    "description": "There's neon goo on your arm... again."
+  },
+  {
+    "layer": "patch",
+    "layer_id": "08",
+    "filepath": "./assets/spaceman/layers/patch/08.png",
+    "name": "patchwork",
+    "description": "Surely stitches aren't airtight"
+  },
+  {
+    "layer": "patch",
+    "layer_id": "09",
+    "filepath": "./assets/spaceman/layers/patch/09.png",
+    "name": "Blue & Red Stripes",
+    "description": "Like a sunburnt zebra"
+  },
+  {
+    "layer": "patch",
+    "layer_id": "0A",
+    "filepath": "./assets/spaceman/layers/patch/0A.png",
+    "name": "Camo",
+    "description": "Surely this doesn't work"
+  },
+  {
+    "layer": "suit",
+    "layer_id": "00",
+    "filepath": "./assets/spaceman/layers/suit/00.png",
+    "name": "White Spacesuit",
+    "description": "A Standard Issue White EVA Suit"
+  },
+  {
+    "layer": "suit",
+    "layer_id": "01",
+    "filepath": "./assets/spaceman/layers/suit/01.png",
+    "name": "NASA Suit",
+    "description": "The iconic orange suit of the National Aeronautics and Space Administration"
+  },
+  {
+    "layer": "suit",
+    "layer_id": "02",
+    "filepath": "./assets/spaceman/layers/suit/02.png",
+    "name": "Skylab Spacesuit",
+    "description": "A design inspired by an old Apollo/Skylab spacesuit"
+  },
+  {
+    "layer": "suit",
+    "layer_id": "03",
+    "filepath": "./assets/spaceman/layers/suit/03.png",
+    "name": "Grey Spacesuit",
+    "description": "This suit seems unbound to any known nation by colours, perhaps it comes from elsewhere?"
+  },
+  {
+    "layer": "suit",
+    "layer_id": "04",
+    "filepath": "./assets/spaceman/layers/suit/04.png",
+    "name": "Edgy Spacesuit",
+    "description": "If you shout any attack names at me i'll be very dissapointed"
+  },
+  {
+    "layer": "suit",
+    "layer_id": "05",
+    "filepath": "./assets/spaceman/layers/suit/05.png",
+    "name": "Solid Gold Suit",
+    "description": "Midas would be proud but surely this isn't practical."
+  },
+  {
+    "layer": "visor",
+    "layer_id": "00",
+    "filepath": "./assets/spaceman/layers/visor/00.png",
+    "name": "Golden Visor",
+    "description": "Gold tinted for your viewing pleasure"
+  },
+  {
+    "layer": "visor",
+    "layer_id": "01",
+    "filepath": "./assets/spaceman/layers/visor/01.png",
+    "name": "Blueish Tint",
+    "description": "A blue tint can have a calming effect on the eyes"
+  },
+  {
+    "layer": "visor",
+    "layer_id": "02",
+    "filepath": "./assets/spaceman/layers/visor/02.png",
+    "name": "Mirror Image",
+    "description": "Like Hubble. Like the telescope"
+  },
+  {
+    "layer": "visor",
+    "layer_id": "03",
+    "filepath": "./assets/spaceman/layers/visor/03.png",
+    "name": "Cracked",
+    "description": "What happened, are you okay?"
+  },
+  {
+    "layer": "visor",
+    "layer_id": "04",
+    "filepath": "./assets/spaceman/layers/visor/04.png",
+    "name": "Targeting",
+    "description": "Are you some kind of cyborg?"
+  },
+  {
+    "layer": "visor",
+    "layer_id": "05",
+    "filepath": "./assets/spaceman/layers/visor/05.png",
+    "name": "Transparent Targeting",
+    "description": "At least you can see what you're shooting at"
+  },
+  {
+    "layer": "visor",
+    "layer_id": "06",
+    "filepath": "./assets/spaceman/layers/visor/06.png",
+    "name": "Tinted Black",
+    "description": "Industry standard, do not look directly at nearby stars"
+  },
+  {
+    "layer": "visor",
+    "layer_id": "07",
+    "filepath": "./assets/spaceman/layers/visor/07.png",
+    "name": "Black Visor",
+    "description": "Isn't that hard to see through?"
+  },
+  {
+    "layer": "visor",
+    "layer_id": "08",
+    "filepath": "./assets/spaceman/layers/visor/08.png",
+    "name": "Open",
+    "description": "That can't be safe"
+  }
+]
