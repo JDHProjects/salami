@@ -40,7 +40,7 @@ module.exports = {
       return messageText
     }
     message.channel.sendTyping()
-    var spellEmbed = new EmbedBuilder()
+    const spellEmbed = new EmbedBuilder()
       .setColor("#0099ff")
       .setTitle(spell.dataValues.name)
       .setURL(`https://roll20.net/compendium/dnd5e/${spell.dataValues.name == "Shield" ? "Spells:Shield" : spell.dataValues.name}`.replaceAll(" ", "%20"))
