@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 const { searchForImage } = require("../functions/searchForImage.js")
 const { parseAndRollDice } = require("../functions/parseAndRollDice.js")
 const { checkEmbedLength } = require("../functions/checkEmbedLength.js")
@@ -43,27 +43,18 @@ module.exports = {
     }
     message.channel.sendTyping()
     let url = await searchForImage(`dnd 5e ${monster.dataValues.name} image`, 0)
-    const monsterEmbed = new MessageEmbed()
+    const monsterEmbed = new EmbedBuilder()
       .setColor("#0099ff")
       .setTitle(monster.dataValues.name)
       .setURL(`https://roll20.net/compendium/dnd5e/Monsters:${monster.dataValues.name}`.replaceAll(" ", "%20"))
       .setDescription(`*${monster.dataValues.size} ${monster.dataValues.type}, ${monster.dataValues.alignment}*`)
       .setImage(url)
     if (monster.dataValues.description != null){
-      monsterEmbed.addField("\u200b\nDescription", `${monster.dataValues.description}`, false)
+      monsterEmbed.addFields({name:"\u200b\nDescription", value:`${monster.dataValues.description}`, inline:false})
     }
-    monsterEmbed.addField("\u200b\nStats", `**Armor Class**: ${monster.dataValues.ac} ${monster.dataValues.ac_info != null ? " ("+monster.dataValues.ac_info+")" : ""}
+    monsterEmbed.addFields({name:"\u200b\nStats", value:`**Armor Class**: ${monster.dataValues.ac} ${monster.dataValues.ac_info != null ? " ("+monster.dataValues.ac_info+")" : ""}
                                           **Hit Points**: ${parseAndRollDice(monster.dataValues.hp_dice)[1]} (Rolled from: ${monster.dataValues.hp_dice})
-                                          **Speed**: ${monster.dataValues.speed}`, false)
-  
-    monsterEmbed.addFields(
-      { name: "\u200b\nSTR", value: `${monster.dataValues.str} (${monster.dataValues.str_mod})`, inline: true },
-      { name: "\u200b\nDEX", value: `${monster.dataValues.dex} (${monster.dataValues.dex_mod})`, inline: true },
-      { name: "\u200b\nCON", value: `${monster.dataValues.con} (${monster.dataValues.con_mod})`, inline: true },
-      { name: "INT", value: `${monster.dataValues.int} (${monster.dataValues.int_mod})`, inline: true },
-      { name: "WIS", value: `${monster.dataValues.wis} (${monster.dataValues.wis_mod})`, inline: true },
-      { name: "CHA", value: `${monster.dataValues.cha} (${monster.dataValues.cha_mod})`, inline: true },
-    )
+                                          **Speed**: ${monster.dataValues.speed}`, inline:false})
 
     let misc_info = ""
     misc_info += `${monster.dataValues.saving_throws != null ? `**Saving Throws**: ${monster.dataValues.saving_throws}\n` : ""}`
@@ -76,7 +67,15 @@ module.exports = {
     misc_info += `${monster.dataValues.languages != null ? `**Languages**: ${monster.dataValues.languages}\n` : ""}`
     misc_info += `${`**Challenge Rating**: ${monster.dataValues.challenge_rating} (${monster.dataValues.challenge_xp} XP)\n`}`
 
-    monsterEmbed.addField("\u200b\nStats", misc_info)
+    monsterEmbed.addFields(
+      { name: "\u200b\nSTR", value: `${monster.dataValues.str} (${monster.dataValues.str_mod})`, inline: true },
+      { name: "\u200b\nDEX", value: `${monster.dataValues.dex} (${monster.dataValues.dex_mod})`, inline: true },
+      { name: "\u200b\nCON", value: `${monster.dataValues.con} (${monster.dataValues.con_mod})`, inline: true },
+      { name: "INT", value: `${monster.dataValues.int} (${monster.dataValues.int_mod})`, inline: true },
+      { name: "WIS", value: `${monster.dataValues.wis} (${monster.dataValues.wis_mod})`, inline: true },
+      { name: "CHA", value: `${monster.dataValues.cha} (${monster.dataValues.cha_mod})`, inline: true },
+      { name: "\u200b\nStats", value: misc_info, inline: false}
+    )
 
     if (monster.dataValues.traits != null){
       checkEmbedLength(monsterEmbed, "\u200b\nTraits", `${monster.dataValues.traits}`)

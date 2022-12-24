@@ -1,6 +1,6 @@
 const { sendMessage } = require("../functions/sendMessage.js")
 const { generateSpaceman } = require("../functions/generateSpaceman.js")
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
   name: "mint-ft",
@@ -19,7 +19,7 @@ module.exports = {
     let spaceman = await generateSpaceman(message.author.id)
     lossWithTax(user, 20000)
 
-    let ftEmbed = new MessageEmbed()
+    let ftEmbed = new EmbedBuilder()
       .setColor("#0099ff")
       .setTitle(`Spaceman ID: ${spaceman.id}`)
       .setImage(`attachment://${spaceman.id}.png`)
