@@ -1,5 +1,5 @@
 const { sendMessage } = require("../functions/sendMessage.js")
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
   name: "ft-details",
@@ -22,7 +22,7 @@ module.exports = {
 
     let layers = ["backpack", "face", "visor", "chest", "patch", "suit", "ears"]
     let layersFormatted = ["Backpack", "Face", "Visor", "Chest", "Patch", "Suit", "Ears"]
-    let ftEmbed = new MessageEmbed()
+    let ftEmbed = new EmbedBuilder()
       .setColor("#0099ff")
       .setTitle(`Spaceman ID: ${spaceman.dataValues.id}`)
       .setImage(`attachment://${spaceman.id}.png`)
@@ -30,7 +30,7 @@ module.exports = {
     let splitId = spaceman.dataValues.id.match(/[A-F0-9][A-F0-9]/g)
     for (let i = 0; i < layers.length; i++){
       let layerDetails = await spacemanLayers.findOne({ where: { layer: layers[i], layer_id: splitId[i] }})
-      ftEmbed.addField(`**__${layersFormatted[i]}__**`,`**Name**: ${layerDetails.dataValues.name}\n**Description**: ${layerDetails.dataValues.description}`, false)
+      ftEmbed.addFields({name:`**__${layersFormatted[i]}__**`, value:`**Name**: ${layerDetails.dataValues.name}\n**Description**: ${layerDetails.dataValues.description}`, inline:false})
     }
 
     return await sendMessage.reply(message, "", {embeds: [ftEmbed], files: [spaceman.filepath]})

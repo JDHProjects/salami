@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 const { searchForImage } = require("../functions/searchForImage.js")
 const { checkEmbedLength } = require("../functions/checkEmbedLength.js")
 const { Op } = require("sequelize")
@@ -37,38 +37,38 @@ module.exports = {
     }
     message.channel.sendTyping()
     let url = await searchForImage(`dnd 5e ${item.dataValues.name} image`, 0)
-    const itemEmbed = new MessageEmbed()
+    const itemEmbed = new EmbedBuilder()
       .setColor("#0099ff")
       .setTitle(item.dataValues.name)
       .setURL(`https://roll20.net/compendium/dnd5e/Items:${item.dataValues.name}`.replaceAll(" ", "%20").replaceAll("+", "%2B"))
       .setDescription(`*${item.dataValues.type == null ? "" : `${item.dataValues.type}`}${item.dataValues.type != null && item.dataValues.subtype != null ? " " : ""}${item.dataValues.subtype == null ? "" : `(${item.dataValues.subtype})`}*`)
       .setImage(url)
     if (item.dataValues.modifiers != null){
-      itemEmbed.addField("\u200b\nModifiers", `${item.dataValues.modifiers}`, false)
+      itemEmbed.addFields({name:"\u200b\nModifiers", value:`${item.dataValues.modifiers}`, inline:false})
     }
     if (item.dataValues.weight != null){
-      itemEmbed.addField("\u200b\nWeight", `${item.dataValues.weight}`, false)
+      itemEmbed.addFields({name:"\u200b\nWeight", value:`${item.dataValues.weight}`, inline:false})
     }
     if (item.dataValues.damage != null){
-      itemEmbed.addField("\u200b\nDamage", `${item.dataValues.damage}`, false)
+      itemEmbed.addFields({name:"\u200b\nDamage", value:`${item.dataValues.damage}`, inline:false})
     }
     if (item.dataValues.damage_type != null){
-      itemEmbed.addField("\u200b\nDamage Type", `${item.dataValues.damage_type}`, false)
+      itemEmbed.addFields({name:"\u200b\nDamage Type", value:`${item.dataValues.damage_type}`, inline:false})
     }
     if (item.dataValues.properties != null){
-      itemEmbed.addField("\u200b\nProperties", `${item.dataValues.properties}`, false)
+      itemEmbed.addFields({name:"\u200b\nProperties", value:`${item.dataValues.properties}`, inline:false})
     }
     if (item.dataValues.range != null){
-      itemEmbed.addField("\u200b\nRange", `${item.dataValues.range}`, false)
+      itemEmbed.addFields({name:"\u200b\nRange", value:`${item.dataValues.range}`, inline:false})
     }
     if (item.dataValues.duration != null){
-      itemEmbed.addField("\u200b\nDuration", `${item.dataValues.duration}`, false)
+      itemEmbed.addFields({name:"\u200b\nDuration", value:`${item.dataValues.duration}`, inline:false})
     }
     if (item.dataValues.ac != null){
-      itemEmbed.addField("\u200b\nArmor Class", `${item.dataValues.ac}`, false)
+      itemEmbed.addFields({name:"\u200b\nArmor Class", value:`${item.dataValues.ac}`, inline:false})
     }
     if (item.dataValues.stealth != null){
-      itemEmbed.addField("\u200b\nStealth", `${item.dataValues.stealth}`, false)
+      itemEmbed.addFields({name:"\u200b\nStealth", value:`${item.dataValues.stealth}`, inline:false})
     }
     if (item.dataValues.description != null){
       checkEmbedLength(itemEmbed, "\u200b\nDescription", `${item.dataValues.description}`)
