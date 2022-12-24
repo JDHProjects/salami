@@ -17,7 +17,6 @@ describe("The itemGen command", function() {
   })
 
   it("should respond correctly when a user requests a random item", async function() {
-    this.timeout(5000)
     let actualMessage = (await execute(dummyMessage, []))
     assert.ok(names.includes(actualMessage.embeds[0].data.title))
   })
@@ -37,7 +36,6 @@ describe("The itemGen command", function() {
   })
 
   it("should respond correctly when a user requests a specific item", async function() {
-    this.timeout(5000)
     let idealTitle = "Abacus"
     let actualMessage = (await execute(dummyMessage, ["Abacus"]))
 

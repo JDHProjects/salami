@@ -17,7 +17,6 @@ describe("The monsterGen command", function() {
   })
 
   it("should respond correctly when a user requests a random monster", async function() {
-    this.timeout(5000)
     let actualMessage = (await execute(dummyMessage, []))
     
     assert.ok(names.includes(actualMessage.embeds[0].data.title))
@@ -38,7 +37,6 @@ describe("The monsterGen command", function() {
   })
 
   it("should respond correctly when a user requests a specific monster", async function() {
-    this.timeout(5000)
     let idealTitle = "Aboleth"
     let actualMessage = (await execute(dummyMessage, ["Aboleth"]))
 

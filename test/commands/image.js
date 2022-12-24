@@ -12,7 +12,6 @@ describe("The image command", function() {
   })
 
   it("should respond correctly to a user searching for an image", async function() {
-    this.timeout(5000)
     let idealMessage = /http[s]?:\/\//g
     let actualMessage = (await execute({}, ["test"])).content
     let matches = actualMessage.match(idealMessage)
@@ -24,7 +23,6 @@ describe("The image command", function() {
   })
 
   it("should respond correctly to a user searching for an image with a different index", async function() {
-    this.timeout(5000)
     let messageOne = (await execute({}, ["test"])).content
     let messageTwo = (await execute({}, ["test","1"])).content
     
