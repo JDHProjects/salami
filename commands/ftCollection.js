@@ -1,6 +1,6 @@
 const { sendMessage } = require("../functions/sendMessage.js")
 const { messagePagination } = require("../functions/messagePagination.js")
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
   name: "ft-collection",
@@ -19,7 +19,7 @@ module.exports = {
 
     let messages = []
     for (const spaceman of spacemen) {
-      let ftEmbed = new MessageEmbed()
+      let ftEmbed = new EmbedBuilder()
         .setColor("#0099ff")
         .setTitle(`Spaceman ID: ${spaceman.dataValues.id}`)
         .setImage(`attachment://${spaceman.id}.png`)

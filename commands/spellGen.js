@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 const { checkEmbedLength } = require("../functions/checkEmbedLength.js")
 const { Op } = require("sequelize")
 const names = require("../assets/spells/names/names.json")
@@ -40,17 +40,18 @@ module.exports = {
       return messageText
     }
     message.channel.sendTyping()
-    const spellEmbed = new MessageEmbed()
+    const spellEmbed = new EmbedBuilder()
       .setColor("#0099ff")
       .setTitle(spell.dataValues.name)
       .setURL(`https://roll20.net/compendium/dnd5e/${spell.dataValues.name == "Shield" ? "Spells:Shield" : spell.dataValues.name}`.replaceAll(" ", "%20"))
       .setDescription(`*${spell.dataValues.level == 0 ? "cantrip," : `level ${spell.dataValues.level},`} ${spell.dataValues.school}*`)
     
-    spellEmbed.addField("\u200b\nCasting Time", `${spell.dataValues.casting_time}`, false)
-    spellEmbed.addField("\u200b\nRange", `${spell.dataValues.range}`, false)
-    spellEmbed.addField("\u200b\nComponents", `${spell.dataValues.components} ${spell.dataValues.materials == null ? "" : `(${spell.dataValues.materials})`}`, false)
-    spellEmbed.addField("\u200b\nDuration", `${spell.dataValues.duration}`, false)
-    spellEmbed.addField("\u200b\nClasses", `${spell.dataValues.classes}`, false)
+    spellEmbed.addFields(
+      {name:"\u200b\nCasting Time", value:`${spell.dataValues.casting_time}`, inline:false},
+      {name:"\u200b\nRange", value:`${spell.dataValues.range}`, inline:false},
+      {name:"\u200b\nComponents", value:`${spell.dataValues.components} ${spell.dataValues.materials == null ? "" : `(${spell.dataValues.materials})`}`, inline:false},
+      {name:"\u200b\nDuration", value:`${spell.dataValues.duration}`, inline:false},
+      {name:"\u200b\nClasses", value:`${spell.dataValues.classes}`, inline:false})
     checkEmbedLength(spellEmbed, "\u200b\nDescription", `${spell.dataValues.description}`)
     if (spell.dataValues.higher_level != null){
       checkEmbedLength(spellEmbed, "\u200b\nHigher Level", `${spell.dataValues.higher_level}`)

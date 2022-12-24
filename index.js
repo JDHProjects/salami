@@ -1,4 +1,4 @@
-const { Client, Collection } = require("discord.js")
+const { Client, Collection, GatewayIntentBits, Partials } = require("discord.js")
 const { syncDB } = require("./db/functions/syncDB.js")
 const { runEachCommand } = require("./db/functions/runEachCommand.js")
 const { downDetector } = require("./functions/downDetector.js")
@@ -10,6 +10,8 @@ const prefix = process.env.PREFIX
 const stringSimilarity = require("string-similarity")
 
 const Sentry = require("@sentry/node")
+// eslint-disable-next-line  no-unused-vars
+const SentryTracing = require("@sentry/tracing")
 
 Sentry.init({
   dsn: process.env.SENTRY_KEY,
@@ -18,7 +20,7 @@ Sentry.init({
 })
 
 // Create a new client instance
-const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS", "DIRECT_MESSAGES", "DIRECT_MESSAGE_REACTIONS"], partials: ["CHANNEL"] })
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.GuildMessageTyping, GatewayIntentBits.DirectMessages, GatewayIntentBits.DirectMessageReactions, GatewayIntentBits.DirectMessageTyping, GatewayIntentBits.MessageContent], partials: [Partials.Channel] })
 
 
 client.commands = new Collection()

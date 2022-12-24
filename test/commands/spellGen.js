@@ -19,7 +19,7 @@ describe("The spellGen command", function() {
   it("should respond correctly when a user requests a random spell", async function() {
     let actualMessage = (await execute(dummyMessage, []))
     
-    assert.ok(names.includes(actualMessage.embeds[0].title))
+    assert.ok(names.includes(actualMessage.embeds[0].data.title))
   })
 
   it("should respond correctly when a user requests an spell that doesn't exist", async function() {
@@ -40,6 +40,6 @@ describe("The spellGen command", function() {
     let idealTitle = "Acid Arrow"
     let actualMessage = (await execute(dummyMessage, ["Acid Arrow"]))
 
-    assert.equal(idealTitle, actualMessage.embeds[0].title)
+    assert.equal(idealTitle, actualMessage.embeds[0].data.title)
   })
 })
