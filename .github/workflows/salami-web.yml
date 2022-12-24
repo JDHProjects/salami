@@ -13,10 +13,10 @@ jobs:
     steps:
     - name: Checkout repo
       uses: actions/checkout@v2
-    - name: Install node 16
+    - name: Install node 18
       uses: actions/setup-node@v2
       with:
-        node-version: '16'
+        node-version: '18'
     - name: Install dependencies
       working-directory: ./web
       run: npm ci
