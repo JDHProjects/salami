@@ -17,7 +17,7 @@ describe("The query command", function() {
   })
 
   it("should respond correctly to a query", async function() {
-    let idealMessage = "Response:\n[[{\"user_id\":\"12345\",\"money\":0},{\"user_id\":\"637400095821660180\",\"money\":0},{\"user_id\":\"0\",\"money\":1000000000}],{\"sql\":\"SELECT * FROM bank_accounts\"}]\nResponse complete"
+    let idealMessage = "Response:\n[[{\"user_id\":\"12345\",\"money\":0},{\"user_id\":\"637400095821660180\",\"money\":0},{\"user_id\":\"0\",\"money\":1000000000}],{}]\nResponse complete"
     let actualMessage = (await execute({}, ["SELECT", "*", "FROM", "bank_accounts"]))[1].content
     assert.equal(idealMessage, actualMessage)
   })

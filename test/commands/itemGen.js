@@ -19,8 +19,7 @@ describe("The itemGen command", function() {
   it("should respond correctly when a user requests a random item", async function() {
     this.timeout(5000)
     let actualMessage = (await execute(dummyMessage, []))
-    
-    assert.ok(names.includes(actualMessage.embeds[0].title))
+    assert.ok(names.includes(actualMessage.embeds[0].data.title))
   })
 
   it("should respond correctly when a user requests an item that doesn't exist", async function() {
@@ -42,6 +41,6 @@ describe("The itemGen command", function() {
     let idealTitle = "Abacus"
     let actualMessage = (await execute(dummyMessage, ["Abacus"]))
 
-    assert.equal(idealTitle, actualMessage.embeds[0].title)
+    assert.equal(idealTitle, actualMessage.embeds[0].data.title)
   })
 })

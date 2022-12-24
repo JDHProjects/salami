@@ -15,25 +15,26 @@
         "format": "eslint ./ --fix"
     },
     "dependencies": {
-        "@sentry/node": "^6.13.2",
-        "cron": "^1.8.2",
-        "discord.js": "^13.3.1",
-        "dotenv": "^10.0.0",
+        "@sentry/node": "^7.28.1",
+        "@sentry/tracing": "^7.28.1",
+        "cron": "^2.1.0",
+        "discord.js": "^14.7.1",
+        "dotenv": "^16.0.3",
         "fetch": "^1.1.0",
-        "g-i-s": "^2.1.5",
-        "images": "^3.2.3",
+        "g-i-s": "^2.1.6",
+        "images": "^3.2.4",
         "node-images": "^2.2.1",
-        "ping": "^0.4.1",
+        "ping": "^0.4.2",
         "request": "^2.88.2",
-        "sequelize": "^6.3.5",
-        "sqlite3": "^4.2.0",
+        "sequelize": "^6.28.0",
+        "sqlite3": "^5.1.4",
         "string-similarity": "^4.0.4",
-        "yahoo-finance": "^0.3.6"
+        "yahoo-finance": "^0.3.7"
     },
     "devDependencies": {
-        "eslint": "^7.32.0",
-        "eslint-plugin-mocha": "^9.0.0",
-        "mocha": "^9.1.1",
-        "nodemon": "^2.0.7"
+        "eslint": "^8.30.0",
+        "eslint-plugin-mocha": "^10.1.0",
+        "mocha": "^10.2.0",
+        "nodemon": "^2.0.20"
     }
 }
