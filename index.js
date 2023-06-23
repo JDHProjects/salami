@@ -1,13 +1,10 @@
-const { Client, Collection, GatewayIntentBits, Partials } = require("discord.js")
+const { Client, Collection, Events, GatewayIntentBits, Partials } = require("discord.js")
 const { syncDB } = require("./db/functions/syncDB.js")
 const { runEachCommand } = require("./db/functions/runEachCommand.js")
 const { downDetector } = require("./functions/downDetector.js")
 
 const fs = require("fs")
 require("dotenv").config()
-const prefix = process.env.PREFIX
-
-const stringSimilarity = require("string-similarity")
 
 const Sentry = require("@sentry/node")
 // eslint-disable-next-line  no-unused-vars
@@ -29,9 +26,11 @@ const commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith("
 const commandNames = []
 
 for (const file of commandFiles) {
-  const command = require(`./commands/${file}`)
-  client.commands.set(command.name, command)
-  commandNames.push(command.name)
+  let command = require(`./commands/${file}`)
+  if ('data' in command && 'execute' in command) {
+    client.commands.set(command.data.name, command)
+    commandNames.push(command.data.name)
+  }
 }
 
 client.on("ready", () => {
@@ -39,83 +38,62 @@ client.on("ready", () => {
   downDetector()
 })
 
-client.on("messageCreate", async message => {
-  if (!message.content.startsWith(prefix) || message.author.bot) return
+client.on(Events.InteractionCreate, async interaction => {
+	if (!interaction.isChatInputCommand()) return;
 
-  const args = message.content.slice(prefix.length).split(/ +/).map(arg => arg.toLowerCase())
-    
-  const commandName = args.shift()
-
+  const command = interaction.client.commands.get(interaction.commandName);
   Sentry.setUser(
     { 
-      id: `${message.author.id}`,
-      username: `${message.author.username}`
+      id: `${interaction.user.id}`,
+      username: `${interaction.user.username}`
     }
   )
 
-  if (!client.commands.has(commandName)){
-
-    const transaction = Sentry.startTransaction({
-      op: "invalid_command",
-      name: "invalid command",
-    })
-
-    let similar = stringSimilarity.findBestMatch(commandName, commandNames).bestMatch
-    if (similar.rating < 0.3){
-      message.channel.send("Sorry, I don't know that command!")
-    }
-    else{
-      message.channel.send(`Sorry, I don't know that command!\nDid you mean:\n       \`${prefix}${similar.target}\``)
-    }
-    transaction.finish()
-    return
-  }
-
   const transaction = Sentry.startTransaction({
-    op: commandName,
-    name: commandName,
+    op: interaction.commandName,
+    name: interaction.commandName,
   })
 
-  const command = client.commands.get(commandName)
-
-  if (command.admin === true && process.env.OWNER != message.author.id){
-    message.channel.send("You're not an admin!")
+  if (command.admin === true && process.env.OWNER != interaction.user.id){
+    interaction.reply("You're not an admin!")
     transaction.finish()
     return
   }
-
-  if (!cooldowns.has(command.name)) {
-    cooldowns.set(command.name, new Collection())
-  }
-  const now = Date.now()
-  const timestamps = cooldowns.get(command.name)
-  const cooldownAmount = (command.cooldown || 0) * 1000
-
-  if (timestamps.has(message.author.id)) {
-    const expirationTime = timestamps.get(message.author.id) + cooldownAmount
-    
-    if (now < expirationTime) {
-      const timeLeft = ((expirationTime - now) / 1000).toFixed(1)
-      let hours = Math.floor(timeLeft / 3600)
-      let mins = Math.floor((timeLeft % 3600) / 60)
-      let secs = Math.floor((timeLeft % 3600) % 60)
-
-      message.reply(`please wait ${hours}:${mins}:${secs} before reusing the \`${command.name}\` command.`)
-      transaction.finish()
-      return
+  console.log(command.data.name)
+  if (command.cooldown != undefined) {
+    if (!cooldowns.has(command.data.name)) {
+      cooldowns.set(command.data.name, new Collection())
     }
+    const now = Date.now()
+    const timestamps = cooldowns.get(command.data.name)
+    const cooldownAmount = (command.cooldown || 0) * 1000
+
+    if (timestamps.has(interaction.user.id)) {
+      const expirationTime = timestamps.get(interaction.user.id) + cooldownAmount
+      
+      if (now < expirationTime) {
+        const timeLeft = ((expirationTime - now) / 1000).toFixed(1)
+        let hours = Math.floor(timeLeft / 3600)
+        let mins = Math.floor((timeLeft % 3600) / 60)
+        let secs = Math.floor((timeLeft % 3600) % 60)
+
+        interaction.reply({content:`please wait ${hours}:${mins}:${secs} before reusing the \`${command.data.name}\` command.`, ephemeral: true})
+        transaction.finish()
+        return
+      }
+    }
+
+    timestamps.set(interaction.user.id, now)
+    setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount)
   }
 
-  timestamps.set(message.author.id, now)
-  setTimeout(() => timestamps.delete(message.author.id), cooldownAmount)
-
-  await runEachCommand(commandName, message.author.id.toString())
+  await runEachCommand(interaction.commandName, interaction.user.id.toString())
   try {
-    await command.execute(message, args)
+    await command.execute(interaction)
   } catch (error) {
     Sentry.captureException(error)
     console.log(error)
-    message.channel.send("there was an error trying to execute that command!")
+    interaction.reply("there was an error trying to execute that command!")
   } finally {
     transaction.finish()
   }
