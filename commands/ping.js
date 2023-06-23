@@ -1,13 +1,10 @@
-const { sendMessage } = require("../functions/sendMessage.js")
+const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
-  display: "Ping",
-  name: "ping",
-  description: "A simple ping pong",
-  usage: "Just send ping, theres really not much to this",
-  example: "",
-  tested: true,
-  execute: async function(message, args) {
-    return await sendMessage.send(message, "Pong!")
-  },
-}
+	data: new SlashCommandBuilder()
+		.setName('ping')
+		.setDescription('A simple ping pong'),
+	async execute(interaction) {
+		await interaction.reply('Pong!');
+	},
+};

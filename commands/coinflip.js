@@ -1,72 +1,49 @@
-const { sendMessage } = require("../functions/sendMessage.js")
-const { getButtonRow } = require("../functions/getButtonRow.js")
+const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
-  display: "Coinflip",
-  name: "coinflip",
-  description: "Flip a coin, guess on the result, you can even bet on the result if you want",
-  usage: "Bet by providing a number as an arg",
-  cooldown: 2,
-  example: "100",
-  tested: true,
-  execute: async function(message, args) {
+	data: new SlashCommandBuilder()
+		.setName('coinflip')
+		.setDescription('Flip a coin, guess on the result, you can even bet on the result if you want')
+    .addStringOption(option =>
+      option.setName('choice')
+        .setDescription('Your guess')
+        .setRequired(true)
+        .addChoices(
+          { name: 'Heads', value: "Heads" },
+          { name: 'Tails', value: "Tails" },
+        ))
+    .addIntegerOption(option => 
+      option.setName('bet')
+        .setDescription('Your (optional) bet')
+        .setMinValue(1)),
+	async execute(interaction) {
     const { bankAccounts } = require("../db/db.js")
     const { lossWithTax } = require("../db/functions/lossWithTax.js")
     const { sendFromBank } = require("../db/functions/sendFromBank.js")
 
-    const numToText = ["Heads", "Tails"]
-    let messageText = ""
-    let user = null
+    const coinLookup = ["Heads", "Tails"]
 
-    let amount = 0 
-    if (args.length > 0){
-      if (!isNaN(parseInt(args[0]))){
-        amount = Math.abs(parseInt(args[0]))
-      }
-    }
+    let amount = interaction.options.getInteger('bet')
 
-    if(amount != 0){
-      user = await bankAccounts.findByPk(message.author.id)
+    if(amount != null){
+      user = await bankAccounts.findByPk(interaction.user.id)
       if (amount > user.dataValues.money){
-        return await sendMessage.reply(message,"you don't have enough salami to make that bet")
+        return await interaction.reply("You don't have enough salami to make that bet")
       }
     }
 
-    let userGuess = -1
-
-    const filter = (m) => m.user.id === message.author.id
-
-    let question = await sendMessage.reply(message, "Please select an option", { components: [getButtonRow({ buttons: [{ name:"Heads", id:"heads" },{ name:"Tails", id:"tails" }] })] })
-
-    try {
-      let buttonResp = await question.awaitMessageComponent({ filter, time: 5000 })
-    
-      if (buttonResp.customId === "heads") {
-        await buttonResp.update({ content: "Selection made!", components: [getButtonRow({ disabled:true, buttons: [{ name:"Heads", id:"heads", picked:true },{ name:"Tails", id:"tails" }] })] })
-        userGuess = 0
-      }
-      else if (buttonResp.customId === "tails") {
-        await buttonResp.update({ content: "Selection made!", components: [getButtonRow({ disabled:true, buttons: [{ name:"Heads", id:"heads" },{ name:"Tails", id:"tails", picked:true }] })] })
-        userGuess = 1
-      }
-    } catch {
-      return await sendMessage.edit(question, "You forgot to pick an option :(", { components: [getButtonRow({ disabled:true, buttons: [{ name:"Heads", id:"heads" },{ name:"Tails", id:"tails" }] })] })
-    }
-
-    
-    let flip = Math.floor(Math.random() * 2) 
-    if(flip == userGuess){
-      messageText = await sendMessage.reply(message,`${numToText[flip]}, you win!`)
-      if (amount > 0){
+    let flip = coinLookup[Math.floor(Math.random() * 2)]
+    if(flip == interaction.options.getString('choice')){
+      await interaction.reply(`${flip}, you win!`)
+      if (amount != null){
         await sendFromBank(user, amount)
       }
     }
     else{
-      messageText = await sendMessage.reply(message,`${numToText[flip]}, you lose`)
-      if (amount > 0){
+      await interaction.reply(`${flip}, you lose`)
+      if (amount != null){
         await lossWithTax(user, amount)
       }
     }
-    return messageText
-  },
-}
+	},
+};
