@@ -1,14 +1,11 @@
-const { sendMessage } = require("../functions/sendMessage.js")
 const { Op } = require("sequelize")
+const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
-  display: "Circulation",
-  name: "circulation",
-  description: "Run this command to see the total amount of salami in circulation",
-  usage: "just send circulation",
-  example: "",
-  tested: true,
-  execute: async function(message, args) {
+	data: new SlashCommandBuilder()
+		.setName('circulation')
+		.setDescription('Check the total amount of salami in circulation'),
+	async execute(interaction) {
     const { bankAccounts } = require("../db/db.js")
 
     let total = await bankAccounts.sum("money", { where: { user_id: { [Op.ne]: "0" } } } )
@@ -19,7 +16,6 @@ module.exports = {
     }  
     let salami = await bankAccounts.findByPk( "637400095821660180" )
     let botMoney = salami.dataValues.money
-    let messageText = await sendMessage.send(message,`The current amount of salami in user circulation on ${date.toLocaleTimeString("en-us", options)} is:\n**${total} salami**\n<@637400095821660180> owns ${botMoney != 0 ? Math.floor((botMoney/total)*100) : 0}% of the salami in circulation`)
-    return messageText
-  },
-}
+    await interaction.reply(`The current amount of salami in user circulation on ${date.toLocaleTimeString("en-us", options)} is:\n**${total} salami**\n<@637400095821660180> owns ${botMoney != 0 ? Math.floor((botMoney/total)*100) : 0}% of the salami in circulation`)
+	},
+};

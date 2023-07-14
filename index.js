@@ -55,11 +55,11 @@ client.on(Events.InteractionCreate, async interaction => {
   })
 
   if (command.admin === true && process.env.OWNER != interaction.user.id){
-    interaction.reply("You're not an admin!")
+    interaction.reply({content: "You're not an admin!", ephemeral: true})
     transaction.finish()
     return
   }
-  console.log(command.data.name)
+
   if (command.cooldown != undefined) {
     if (!cooldowns.has(command.data.name)) {
       cooldowns.set(command.data.name, new Collection())

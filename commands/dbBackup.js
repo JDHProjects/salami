@@ -1,15 +1,11 @@
-const { sendMessage } = require("../functions/sendMessage.js")
+const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
-  display: "Database Backup",
-  name: "dbbackup",
-  description: "Used to backup database by sending a copy of the database file to your private messages",
-  usage: "just send dbbackup, theres really not much to this",
-  example: "",
+	data: new SlashCommandBuilder()
+		.setName('dbbackup')
+		.setDescription('Backup database by sending a copy of the database file to your private messages'),
   admin: true,
-  tested: true,
-  execute: async function(message, args) {
-    let messageText = await sendMessage.author(message, "DB backup file", { files: ["./database.sqlite"] })
-    return messageText
-  }
-}
+	async execute(interaction) {
+		await interaction.reply({ content: "DB backup file", files: ["./database.sqlite"], ephemeral: true });
+	},
+};
